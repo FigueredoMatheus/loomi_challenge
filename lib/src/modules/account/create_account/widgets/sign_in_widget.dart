@@ -13,7 +13,7 @@ class CreateAccountSignInWidget extends StatelessWidget {
         children: [
           TextSpan(
             text: 'Already have an account? ',
-            style: Get.textTheme.bodySmall,
+            style: MyAppKColors.subtitle1(),
           ),
           TextSpan(
               text: 'Sign In!',
