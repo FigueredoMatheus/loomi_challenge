@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:330600322380:android:eb752aeb97225138d7abe9",
+        "android_client_info": {
+          "package_name": "com.loomi.challenge.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAREtMUCx6c3TVW79_8_qp4OFVD2Kgw2m4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:330600322380:android:867dc1166a38ae13d7abe9",
         "android_client_info": {
           "package_name": "com.loomi.challenge.homo"
