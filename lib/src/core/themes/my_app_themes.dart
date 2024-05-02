@@ -11,20 +11,24 @@ class MyAppThemes extends GetxService {
       textTheme: GoogleFonts.epilogueTextTheme().copyWith(
         displayLarge: TextStyle(
           fontSize: 26,
-          color: Colors.white,
+          color: MyAppKColors.kWhiteColor,
           fontWeight: FontWeight.w700,
         ),
         displayMedium: TextStyle(
           fontSize: 24,
-          color: Colors.white,
+          color: MyAppKColors.kWhiteColor,
           fontWeight: FontWeight.w600,
         ),
         titleLarge: TextStyle(
           fontSize: 16,
-          color: Colors.white,
+          color: MyAppKColors.kWhiteColor,
           fontWeight: FontWeight.w700,
         ),
-        bodyMedium: TextStyle(fontSize: 14, color: Colors.white),
+        bodyMedium: TextStyle(fontSize: 14, color: MyAppKColors.kWhiteColor),
+        bodySmall: TextStyle(
+          color: MyAppKColors.kWhiteColor.withOpacity(0.40),
+          fontSize: 15,
+        ),
       ),
       scaffoldBackgroundColor: Color(0xff131418),
       appBarTheme: AppBarTheme(
@@ -64,7 +68,7 @@ class MyAppThemes extends GetxService {
         errorBorder: _getLightThemeTextFieldBorder(),
         enabledBorder: _getLightThemeTextFieldBorder(),
         labelStyle: GoogleFonts.epilogue(
-          color: MyAppKColors.kWhiteColor.withOpacity(0.45),
+          color: MyAppKColors.kWhiteColor.withOpacity(0.40),
           fontSize: 15,
         ),
       ),
