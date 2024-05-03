@@ -17,6 +17,14 @@ class MyAppKColors {
   static const kFormFieldBgColor = Color(0xFF23252C);
   static const kButtonShowColor = Color(0xFFF1CC4C);
 
+  static TextStyle title2() {
+    return GoogleFonts.epilogue(
+      fontSize: 14,
+      color: MyAppKColors.kWhiteColor,
+      fontWeight: FontWeight.w700,
+    );
+  }
+
   static TextStyle title3() {
     return GoogleFonts.epilogue(
       fontSize: 12,
