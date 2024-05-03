@@ -3,8 +3,8 @@ import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 
-class CreateUserAccountSecondtPageFormsWidget extends StatelessWidget {
-  const CreateUserAccountSecondtPageFormsWidget({super.key});
+class CreateUserAccountSecondPageFormsWidget extends StatelessWidget {
+  const CreateUserAccountSecondPageFormsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
