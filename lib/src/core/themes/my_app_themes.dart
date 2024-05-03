@@ -30,7 +30,7 @@ class MyAppThemes extends GetxService {
           fontSize: 15,
         ),
       ),
-      scaffoldBackgroundColor: Color(0xff131418),
+      scaffoldBackgroundColor: MyAppKColors.kVeryDarkGrayColor,
       appBarTheme: AppBarTheme(
         color: Colors.transparent,
         elevation: 0,
