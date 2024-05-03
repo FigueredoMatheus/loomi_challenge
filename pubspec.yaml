@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_core: ^2.27.0
+  flutter_svg: ^2.0.10+1
   get: ^4.6.6
   google_fonts: ^5.1.0
 
@@ -53,6 +54,9 @@ flavorizr:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/icons/
 
   
   
