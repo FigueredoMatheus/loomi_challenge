@@ -18,3 +18,8 @@ enum ImageSourceType {
 enum SnackBarType {
   textFieldError,
 }
+
+enum RequiredPermission {
+  photosPermission,
+  cameraPermission,
+}
