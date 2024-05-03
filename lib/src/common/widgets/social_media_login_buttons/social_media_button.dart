@@ -22,6 +22,9 @@ class _SocialMedialLoginButtonWidgetState
   Widget build(BuildContext context) {
     return InkWell(
       onTap: getOnTap,
+      overlayColor: MaterialStateProperty.resolveWith((states) {
+        return Colors.transparent;
+      }),
       child: Container(
         width: 70,
         height: 70,
@@ -57,7 +60,7 @@ class _SocialMedialLoginButtonWidgetState
       case SocialMediaType.apple:
       default:
         return SvgPicture.asset(
-          'assets/icons/Vector.svg',
+          'assets/icons/apple_icon.svg',
           semanticsLabel: 'Google',
           fit: BoxFit.scaleDown,
           height: 30,
