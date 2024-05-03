@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   email_validator: ^2.1.17
+  file_picker: 8.0.0+1
   firebase_core: ^2.27.0
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
