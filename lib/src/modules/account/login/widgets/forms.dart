@@ -31,7 +31,7 @@ class LoginPageForms extends StatelessWidget {
         const SizedBox(height: 40),
         CustomElevatedButton(
           label: 'Login',
-          onPressed: () {},
+          onPressed: controller.onLoginButtonTapped,
         ),
       ],
     );

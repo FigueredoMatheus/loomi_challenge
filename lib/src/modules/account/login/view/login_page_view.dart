@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_rich_text.dart';
-import 'package:loomi_challenge/src/common/widgets/sign_up_with_widget.dart';
+import 'package:loomi_challenge/src/common/widgets/form_head.dart';
 import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
 import 'package:loomi_challenge/src/common/widgets/social_media_login_buttons/social_media_icons_row.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
