@@ -6,7 +6,12 @@ import 'package:loomi_challenge/src/modules/account/create_account/widgets/page_
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/sign_in_widget.dart';
 
 class CreateUserAccountFirstPage extends StatelessWidget {
-  const CreateUserAccountFirstPage({super.key});
+  final PageController pageViewController;
+
+  const CreateUserAccountFirstPage({
+    super.key,
+    required this.pageViewController,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,12 @@ import 'package:loomi_challenge/src/modules/account/create_account/widgets/secon
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/second_page/forms.dart';
 
 class CreateUserAccountSecondPage extends StatelessWidget {
-  const CreateUserAccountSecondPage({super.key});
+  final PageController pageViewController;
+
+  const CreateUserAccountSecondPage({
+    super.key,
+    required this.pageViewController,
+  });
 
   @override
   Widget build(BuildContext context) {
