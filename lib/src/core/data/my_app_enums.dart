@@ -3,3 +3,8 @@ enum TextFormFieldType {
   email,
   name,
 }
+
+enum SocialMediaType {
+  google,
+  apple,
+}
