@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
@@ -24,13 +25,16 @@ class CreateUserAccountSecondPageFormsWidget extends StatelessWidget {
         CustomElevatedButton(
           label: 'Continue',
           onPressed: () {
-            final isValid = controller.validatorFields();
+            final validatorMessage = controller.validatorFields();
 
-            if (isValid) {
-              print('PASSOU');
-            } else {
-              print('NÂO PASSOU');
-            }
+            MyAppSnackBar(
+              message: validatorMessage,
+              snackBarType: SnackBarType.textFieldError,
+            )..show();
+
+            if (validatorMessage != null) return;
+
+            print('--- DATA: ${controller.toJson()}');
           },
         ),
         const SizedBox(height: 10),

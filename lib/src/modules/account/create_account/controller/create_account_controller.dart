@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
-import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 
 class CreateUserAccountController {
@@ -20,26 +18,45 @@ class CreateUserAccountController {
     this.pageViewController = pageController;
   }
 
-  bool validatorFields() {
+  String? validatorFields() {
     String? message;
 
     message = TextFieldValidatorsHelper.emailValidator(email);
 
+    if (message != null) {
+      return message;
+    }
+
     message = TextFieldValidatorsHelper.passwordValidator(password);
+
+    if (message != null) {
+      return message;
+    }
 
     message = TextFieldValidatorsHelper.confirmPasswordValidator(
       confirmPassword,
       password!,
     );
 
+    if (message != null) {
+      return message;
+    }
+
     message = TextFieldValidatorsHelper.nameValidator(name);
 
-    MyAppSnackBar(
-      message: message,
-      snackBarType: SnackBarType.textFieldError,
-    )..show();
+    if (message != null) {
+      return message;
+    }
 
-    return message == null;
+    return null;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'email': this.email,
+      'name': this.name,
+      'password': this.password,
+    };
   }
 
   nextPage() => pageViewController.nextPage(
@@ -53,7 +70,7 @@ class CreateUserAccountController {
       );
 
   setEmail(String email) {
-    email = email;
+    this.email = email;
   }
 
   setPassword(String text) {
