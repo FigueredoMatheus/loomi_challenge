@@ -23,16 +23,16 @@ class CreateUserAccountController {
   bool validatorFields() {
     String? message;
 
-    message = TextFieldValidators.emailValidator(email);
+    message = TextFieldValidatorsHelper.emailValidator(email);
 
-    message = TextFieldValidators.passwordValidator(password);
+    message = TextFieldValidatorsHelper.passwordValidator(password);
 
-    message = TextFieldValidators.confirmPasswordValidator(
+    message = TextFieldValidatorsHelper.confirmPasswordValidator(
       confirmPassword,
       password!,
     );
 
-    message = TextFieldValidators.nameValidator(name);
+    message = TextFieldValidatorsHelper.nameValidator(name);
 
     MyAppSnackBar(
       message: message,

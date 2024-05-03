@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 
-class TextFieldValidators {
+class TextFieldValidatorsHelper {
   static String? emailValidator(String? text) {
     if (text == null || text.isEmpty) {
       return 'Email is required ';
