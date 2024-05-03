@@ -23,12 +23,19 @@ class CustomTextFormField extends StatefulWidget {
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   late TextEditingController textController;
   late bool obscureText;
+  late bool isPasswordField;
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(text: widget.initalValue);
-    obscureText = widget.textFormFieldType == TextFormFieldType.password;
+    textController = TextEditingController(
+      text: widget.initalValue,
+    );
+
+    isPasswordField = widget.textFormFieldType == TextFormFieldType.password ||
+        widget.textFormFieldType == TextFormFieldType.confirmPassword;
+
+    obscureText = isPasswordField;
   }
 
   @override
@@ -47,7 +54,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   }
 
   Widget? suffixWidget() {
-    return widget.textFormFieldType == TextFormFieldType.password
+    return isPasswordField
         ? InkWell(
             onTap: () {
               setState(() {
