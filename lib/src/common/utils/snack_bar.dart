@@ -30,9 +30,13 @@ class MyAppSnackBar {
 
   Color _getSnackBarColor() {
     switch (snackBarType) {
-      case SnackBarType.textFieldError:
-      default:
+      case SnackBarType.fail:
         return Colors.red;
+      case SnackBarType.alert:
+        return Colors.yellow;
+      case SnackBarType.success:
+      default:
+        return Colors.green;
     }
   }
 }

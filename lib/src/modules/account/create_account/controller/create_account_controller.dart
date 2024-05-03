@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
+import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
+import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/repositories/firebase_database_repository/firebase_database_repository.dart';
@@ -64,7 +67,7 @@ class CreateUserAccountController {
     };
   }
 
-  Future<Map<String, dynamic>> createUserAccount() async {
+  Future<Map<String, dynamic>> _createUserAccount() async {
     final responseCreateUserAccount = await authRepository.createUserEmailPass(
         email: email!, password: password!);
 
@@ -83,6 +86,31 @@ class CreateUserAccountController {
     }
 
     return {'success': true, 'message': 'User created successfully'};
+  }
+
+  continueButtonOnTap() async {
+    final validatorMessage = validatorFields();
+
+    MyAppSnackBar(
+      message: validatorMessage,
+      snackBarType: SnackBarType.fail,
+    )..show();
+
+    if (validatorMessage != null) return;
+
+    loadingDialog();
+
+    final createUserAccountResponse = await _createUserAccount();
+
+    Get.back();
+
+    final bool success = createUserAccountResponse['success'];
+    final String message = createUserAccountResponse['message'];
+
+    MyAppSnackBar(
+      message: message,
+      snackBarType: success ? SnackBarType.success : SnackBarType.fail,
+    )..show();
   }
 
   nextPage() => pageViewController.nextPage(

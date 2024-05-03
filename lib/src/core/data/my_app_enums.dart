@@ -16,7 +16,9 @@ enum ImageSourceType {
 }
 
 enum SnackBarType {
-  textFieldError,
+  fail,
+  alert,
+  success,
 }
 
 enum RequiredPermission {

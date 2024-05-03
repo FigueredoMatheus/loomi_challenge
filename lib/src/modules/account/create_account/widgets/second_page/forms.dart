@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
-class CreateUserAccountSecondPageFormsWidget extends StatelessWidget {
+class CreateUserAccountSecondPageFormsWidget extends StatefulWidget {
   const CreateUserAccountSecondPageFormsWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final controller = getIt<CreateUserAccountController>();
+  State<CreateUserAccountSecondPageFormsWidget> createState() =>
+      _CreateUserAccountSecondPageFormsWidgetState();
+}
 
+class _CreateUserAccountSecondPageFormsWidgetState
+    extends State<CreateUserAccountSecondPageFormsWidget> {
+  late CreateUserAccountController controller;
+  @override
+  void initState() {
+    super.initState();
+
+    controller = getIt<CreateUserAccountController>();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         CustomTextFormField(
@@ -24,18 +36,7 @@ class CreateUserAccountSecondPageFormsWidget extends StatelessWidget {
         const SizedBox(height: 40),
         CustomElevatedButton(
           label: 'Continue',
-          onPressed: () {
-            final validatorMessage = controller.validatorFields();
-
-            MyAppSnackBar(
-              message: validatorMessage,
-              snackBarType: SnackBarType.textFieldError,
-            )..show();
-
-            if (validatorMessage != null) return;
-
-            print('--- DATA: ${controller.toJson()}');
-          },
+          onPressed: controller.continueButtonOnTap,
         ),
         const SizedBox(height: 10),
         TextButton(
