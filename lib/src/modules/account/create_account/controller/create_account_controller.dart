@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/helpers/text_field_validators.dart';
+import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 
 class CreateUserAccountController {
   String? email;
@@ -13,6 +13,8 @@ class CreateUserAccountController {
   var profileImage = ''.obs;
 
   late PageController pageViewController;
+
+  bool get hasImage => profileImage.value.isNotEmpty;
 
   init({required PageController pageController}) {
     this.pageViewController = pageController;
@@ -50,8 +52,8 @@ class CreateUserAccountController {
         curve: Curves.ease,
       );
 
-  setEmail(String text) {
-    email = text;
+  setEmail(String email) {
+    email = email;
   }
 
   setPassword(String text) {
@@ -66,8 +68,8 @@ class CreateUserAccountController {
     name = text;
   }
 
-  setProfileImage(String text) {
-    profileImage.value = text;
+  setProfileImage(String imagePth) {
+    profileImage.value = imagePth;
   }
 
   dispose() {
