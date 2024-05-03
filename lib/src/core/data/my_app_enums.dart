@@ -8,3 +8,8 @@ enum SocialMediaType {
   google,
   apple,
 }
+
+enum ImageSourceType {
+  camera,
+  gallery,
+}

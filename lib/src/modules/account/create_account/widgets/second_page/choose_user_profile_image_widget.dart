@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loomi_challenge/src/common/utils/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/widgets/second_page/choose_image_modal_body.dart';
 
 class CreateUserAccountChooseUserProfileImageWidget extends StatefulWidget {
   const CreateUserAccountChooseUserProfileImageWidget({super.key});
@@ -23,7 +25,10 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
   Widget profileImageContainer() {
     return InkWell(
       onTap: () {
-        print('--- Choose image TAPPED');
+        openModalBottomSheet(
+          title: 'CHOOSE IMAGE',
+          child: ChooseUserProfileImageModalBody(),
+        );
       },
       overlayColor: MaterialStateProperty.resolveWith((states) {
         return Colors.transparent;
