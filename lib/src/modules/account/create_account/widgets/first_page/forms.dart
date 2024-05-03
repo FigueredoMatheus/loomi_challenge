@@ -4,7 +4,7 @@ import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
-import 'package:loomi_challenge/src/common/widgets/form_head.dart';
+import 'package:loomi_challenge/src/common/widgets/sign_up_with_widget.dart';
 
 class CreateUserAccountFirstPageFormsWidget extends StatelessWidget {
   const CreateUserAccountFirstPageFormsWidget({super.key});
