@@ -1,5 +1,6 @@
 enum TextFormFieldType {
   password,
+  confirmPassword,
   email,
   name,
 }
@@ -12,4 +13,8 @@ enum SocialMediaType {
 enum ImageSourceType {
   camera,
   gallery,
+}
+
+enum SnackBarType {
+  textFieldError,
 }
