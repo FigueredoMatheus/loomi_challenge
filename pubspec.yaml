@@ -12,9 +12,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  email_validator: ^2.1.17
   firebase_core: ^2.27.0
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
+  get_it: ^7.6.7
   google_fonts: ^5.1.0
 
   cupertino_icons: ^1.0.2
