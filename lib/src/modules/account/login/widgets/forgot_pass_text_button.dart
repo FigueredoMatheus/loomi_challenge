@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 
 class LoginPageForgotPasswordTextButton extends StatelessWidget {
   const LoginPageForgotPasswordTextButton({super.key});
@@ -9,7 +11,7 @@ class LoginPageForgotPasswordTextButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-          onPressed: () {},
+          onPressed: () => Get.toNamed(RoutesNames.forgotPasswordPageView),
           child: Text('Forgot password?'),
         ),
       ],
