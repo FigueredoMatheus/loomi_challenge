@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/page_info_text.dart';
 
@@ -41,7 +43,7 @@ class _SucccessOnSendEmailPageViewState
                 Spacer(),
                 CustomElevatedButton(
                   label: 'Login',
-                  onPressed: () {},
+                  onPressed: () => Get.toNamed(RoutesNames.loginPageView),
                 ),
               ],
             ),
