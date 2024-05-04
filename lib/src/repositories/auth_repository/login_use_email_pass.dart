@@ -16,6 +16,10 @@ Future<Map<String, dynamic>> implLoginUserEmailPass({
       message = 'No user found for that email.';
     } else if (e.code == 'wrong-password') {
       message = 'Wrong password provided for that user.';
+    } else if (e.code == 'invalid-credential') {
+      message = 'Invalid Credentials';
+    } else if (e.code == 'invalid-email') {
+      message = 'Invalid Email';
     }
 
     return {'success': false, 'message': message};
