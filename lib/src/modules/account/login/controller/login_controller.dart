@@ -32,13 +32,13 @@ class LoginController {
   }
 
   onLoginButtonTapped() async {
-    final validatorMessage = validatorFields();
-    MyAppSnackBar(
-      message: validatorMessage,
-      snackBarType: SnackBarType.fail,
-    )..show();
+    // final validatorMessage = validatorFields();
+    // MyAppSnackBar(
+    //   message: validatorMessage,
+    //   snackBarType: SnackBarType.fail,
+    // )..show();
 
-    if (validatorMessage != null) return;
+    // if (validatorMessage != null) return;
 
     loadingDialog();
 
