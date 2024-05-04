@@ -4,15 +4,15 @@ import 'package:loomi_challenge/src/modules/account/create_account/controller/cr
 import 'package:loomi_challenge/src/modules/account/create_account/view/pages/first_page.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/view/pages/second_page.dart';
 
-class CreateUserAccountModule extends StatefulWidget {
-  const CreateUserAccountModule({super.key});
+class CreateUserAccountPageView extends StatefulWidget {
+  const CreateUserAccountPageView({super.key});
 
   @override
-  State<CreateUserAccountModule> createState() =>
-      _CreateUserAccountModuleState();
+  State<CreateUserAccountPageView> createState() =>
+      _CreateUserAccountPageViewState();
 }
 
-class _CreateUserAccountModuleState extends State<CreateUserAccountModule> {
+class _CreateUserAccountPageViewState extends State<CreateUserAccountPageView> {
   late PageController pageViewController;
   late GlobalKey<FormState> formKey;
   @override

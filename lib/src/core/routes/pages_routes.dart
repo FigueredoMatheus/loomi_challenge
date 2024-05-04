@@ -21,7 +21,7 @@ class PagesRoutes {
     ),
     GetPage(
       name: RoutesNames.createAccountPageView,
-      page: () => const CreateUserAccountModule(),
+      page: () => const CreateUserAccountPageView(),
     ),
   ];
 }
