@@ -123,19 +123,19 @@ class CreateUserAccountController {
         curve: Curves.ease,
       );
 
-  setEmail(String email) {
+  setEmail(String? email) {
     this.email = email;
   }
 
-  setPassword(String text) {
+  setPassword(String? text) {
     password = text;
   }
 
-  setConfirmPassword(String text) {
+  setConfirmPassword(String? text) {
     confirmPassword = text;
   }
 
-  setName(String text) {
+  setName(String? text) {
     name = text;
   }
 
@@ -145,5 +145,10 @@ class CreateUserAccountController {
 
   dispose() {
     pageViewController.dispose();
+    setName(null);
+    setConfirmPassword(null);
+    setPassword(null);
+    setEmail(null);
+    setProfileImage('');
   }
 }
