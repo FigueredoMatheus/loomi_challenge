@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 
 class CustomRichText extends StatelessWidget {
@@ -61,11 +62,7 @@ class CustomRichText extends StatelessWidget {
     }
   }
 
-  signInOnTap() {
-    print('--- SIGN IN ON TAP');
-  }
+  signInOnTap() => Get.toNamed(RoutesNames.loginPageView);
 
-  signUpOnTap() {
-    print('--- SIGN UP ON TAP');
-  }
+  signUpOnTap() => Get.toNamed(RoutesNames.createAccountPageView);
 }
