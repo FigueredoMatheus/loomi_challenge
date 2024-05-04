@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: FlavorSettings.title,
-      getPages: PagesRoute.pages,
+      getPages: PagesRoutes.pages,
       debugShowCheckedModeBanner: false,
       theme: Get.find<MyAppThemes>().getLightTheme(),
       home: LoginPageView(),
