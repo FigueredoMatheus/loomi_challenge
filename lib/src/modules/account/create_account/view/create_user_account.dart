@@ -52,4 +52,10 @@ class _CreateUserAccountPageViewState extends State<CreateUserAccountPageView> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    getIt<CreateUserAccountController>().dispose();
+  }
 }
