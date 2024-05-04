@@ -9,18 +9,9 @@ Future<Map<String, dynamic>> implLoginUserEmailPass({
         .signInWithEmailAndPassword(email: email, password: password);
 
     return {'success': true, 'user_id': credential.user?.uid};
-  } on FirebaseAuthException catch (e) {
-    String message = 'Fail on log user in';
-
-    if (e.code == 'user-not-found') {
-      message = 'No user found for that email.';
-    } else if (e.code == 'wrong-password') {
-      message = 'Wrong password provided for that user.';
-    } else if (e.code == 'invalid-credential') {
-      message = 'Invalid Credentials';
-    } else if (e.code == 'invalid-email') {
-      message = 'Invalid Email';
-    }
+  } on FirebaseAuthException catch (exception) {
+    String message =
+        HandleFirebaseExceptionsHelper.getExceptionMessage(exception);
 
     return {'success': false, 'message': message};
   }

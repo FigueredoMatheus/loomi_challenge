@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:loomi_challenge/src/core/helpers/handle_firebase_exceptions_helper.dart';
 
 part 'create_account_email_pass.dart';
 part 'login_use_email_pass.dart';
