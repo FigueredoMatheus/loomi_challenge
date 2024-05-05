@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/custom_rate_pop_up_menu.dart';
 
-class MovieCardBottomButton extends StatefulWidget {
+class MovieCardBottomRateMovieWidget extends StatefulWidget {
   final MovieModel movie;
-  final MovieCardBottomButtonType type;
 
-  const MovieCardBottomButton(
-      {super.key, required this.movie, required this.type});
+  const MovieCardBottomRateMovieWidget({super.key, required this.movie});
 
   @override
-  State<MovieCardBottomButton> createState() => _MovieCardBottomButtonState();
+  State<MovieCardBottomRateMovieWidget> createState() =>
+      _MovieCardBottomRateMovieWidgetState();
 }
 
-class _MovieCardBottomButtonState extends State<MovieCardBottomButton> {
+class _MovieCardBottomRateMovieWidgetState
+    extends State<MovieCardBottomRateMovieWidget> {
   CustomPopupMenuController popUpController = CustomPopupMenuController();
   @override
   Widget build(BuildContext context) {
@@ -26,14 +25,14 @@ class _MovieCardBottomButtonState extends State<MovieCardBottomButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            getButtonIconPath(),
+            'assets/icons/rate_button_icon.svg',
             semanticsLabel: 'Rate',
             fit: BoxFit.scaleDown,
             height: 30,
             width: 30,
           ),
           Text(
-            getLabel(),
+            'Rate',
             style: MyAppKColors.movieCardBottomButton(),
           ),
         ],
@@ -45,27 +44,5 @@ class _MovieCardBottomButtonState extends State<MovieCardBottomButton> {
       controller: popUpController,
       barrierColor: Colors.black.withOpacity(0.25),
     );
-  }
-
-  String getLabel() {
-    switch (widget.type) {
-      case MovieCardBottomButtonType.rate:
-        return 'Rate';
-      case MovieCardBottomButtonType.share:
-        return 'Gift to someone?';
-      default:
-        return '';
-    }
-  }
-
-  String getButtonIconPath() {
-    switch (widget.type) {
-      case MovieCardBottomButtonType.rate:
-        return 'assets/icons/rate_button_icon.svg';
-      case MovieCardBottomButtonType.share:
-        return 'assets/icons/share_button_icon.svg';
-      default:
-        return '';
-    }
   }
 }
