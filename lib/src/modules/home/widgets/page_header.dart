@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
+import 'package:loomi_challenge/src/core/data/temp_file.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/circle_avatar_profile_image.dart';
 
 class HomePageViewHeader extends StatelessWidget {
@@ -12,7 +13,10 @@ class HomePageViewHeader extends StatelessWidget {
       color: Colors.transparent,
       height: homePageViewCustomAppBarHeight,
       width: double.infinity,
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 50),
+      margin: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top + 50,
+        bottom: 15,
+      ),
       padding: const EdgeInsets.symmetric(horizontal: pageViewDefaultPadding),
       child: Stack(
         children: [
@@ -23,7 +27,7 @@ class HomePageViewHeader extends StatelessWidget {
           ),
           Positioned(
             right: 0,
-            child: CircleAvatarProfileImage(),
+            child: CircleAvatarProfileImage(user: user),
           ),
         ],
       ),
