@@ -1,0 +1,101 @@
+import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+
+class CustomRatePopUpMenuWidget extends StatelessWidget {
+  final CustomPopupMenuController popUpController;
+
+  const CustomRatePopUpMenuWidget({super.key, required this.popUpController});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 290,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: const EdgeInsets.only(left: 15),
+      decoration: BoxDecoration(
+        color: MyAppKColors.kDarkShadeGrayColor.withOpacity(1),
+        borderRadius: BorderRadius.circular(60),
+      ),
+      child: Row(
+        children: [
+          rateIcon(RateMovieOptions.dislike),
+          rateIcon(RateMovieOptions.like),
+          rateIcon(RateMovieOptions.superLike),
+          Spacer(),
+          closeMenuIcon(),
+        ],
+      ),
+    );
+  }
+
+  Widget closeMenuIcon() {
+    return InkWell(
+      onTap: () {
+        popUpController.hideMenu();
+      },
+      child: Container(
+        width: 22,
+        height: 22,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border.all(color: MyAppKColors.kPurpleColor, width: 2),
+          borderRadius: BorderRadius.circular(7),
+        ),
+        child: Icon(
+          Icons.close_rounded,
+          color: MyAppKColors.kPurpleColor,
+          size: 18,
+        ),
+      ),
+    );
+  }
+
+  Widget rateIcon(RateMovieOptions rateOption) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          SvgPicture.asset(
+            getRateOptionIconPath(rateOption),
+            semanticsLabel: 'rateIcon',
+            fit: BoxFit.scaleDown,
+            height: 30,
+            width: 30,
+          ),
+          Text(
+            getRateOptionLabel(rateOption),
+            style: MyAppKColors.movieCardBottomButton(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String getRateOptionLabel(RateMovieOptions rateOption) {
+    switch (rateOption) {
+      case RateMovieOptions.dislike:
+        return 'It\'s not for me';
+      case RateMovieOptions.like:
+        return 'I Like it';
+      case RateMovieOptions.superLike:
+      default:
+        return 'I love it!';
+    }
+  }
+
+  String getRateOptionIconPath(RateMovieOptions rateOption) {
+    switch (rateOption) {
+      case RateMovieOptions.dislike:
+        return 'assets/icons/dislike_icon.dart.svg';
+      case RateMovieOptions.like:
+        return 'assets/icons/like_icon.svg';
+      case RateMovieOptions.superLike:
+      default:
+        return 'assets/icons/super_like_icon.svg';
+    }
+  }
+}
