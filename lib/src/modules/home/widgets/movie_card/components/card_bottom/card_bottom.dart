@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/button_widget.dart';
+import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/rate_movie_widget.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/expires_date_widget.dart';
+import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/share_movie_widget.dart';
 
 class MovieCardBottom extends StatelessWidget {
   final MovieModel movie;
@@ -24,11 +24,9 @@ class MovieCardBottom extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              MovieCardBottomButton(
-                  movie: movie, type: MovieCardBottomButtonType.rate),
+              MovieCardBottomRateMovieWidget(movie: movie),
               const SizedBox(width: 30),
-              MovieCardBottomButton(
-                  movie: movie, type: MovieCardBottomButtonType.share),
+              MovieCardBottomShareMovieWidget(movie: movie),
               Spacer(),
               MovieCardBottomMovieExpiresDate(movie: movie),
             ],
