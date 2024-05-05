@@ -14,6 +14,12 @@ class MovieModel {
   final DateTime expiresDate;
   final List<MovieCommentModel> comments;
 
+  int get numberOfComments => comments.length;
+
+  MovieCommentModel get mostRecenteComment =>
+      comments.reduce((value, element) =>
+          value.createAt.isAfter(element.createAt) ? value : element);
+
   MovieModel({
     required this.title,
     required this.sinopse,
