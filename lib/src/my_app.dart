@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       getPages: PagesRoutes.pages,
       debugShowCheckedModeBanner: false,
       theme: Get.find<MyAppThemes>().getLightTheme(),
-      initialRoute: RoutesNames.createAccountPageView,
+      initialRoute: RoutesNames.HomePageView,
     );
   }
 }
