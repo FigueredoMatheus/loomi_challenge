@@ -12,11 +12,11 @@ MovieCommentModel _$MovieCommentModelFromJson(Map<String, dynamic> json) =>
       user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
       createAt: DateTime.parse(json['create_at'] as String),
       replies: (json['replies'] as num).toInt(),
-    )..commentId = json['comment_id'] as String?;
+    )..id = json['id'] as String?;
 
 Map<String, dynamic> _$MovieCommentModelToJson(MovieCommentModel instance) =>
     <String, dynamic>{
-      'comment_id': instance.commentId,
+      'id': instance.id,
       'comment': instance.comment,
       'user': instance.user,
       'create_at': instance.createAt.toIso8601String(),

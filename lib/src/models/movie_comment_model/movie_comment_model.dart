@@ -5,8 +5,7 @@ part 'movie_comment_model.g.dart';
 
 @JsonSerializable()
 class MovieCommentModel {
-  @JsonKey(name: 'comment_id')
-  String? commentId;
+  String? id;
   final String comment;
   final UserModel user;
   @JsonKey(name: 'create_at')
