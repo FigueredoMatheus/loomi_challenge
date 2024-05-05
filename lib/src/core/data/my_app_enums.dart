@@ -11,3 +11,5 @@ enum RequiredPermission { photosPermission, cameraPermission }
 enum CustomRichTextType { signUp, signIn }
 
 enum MovieCardBottomButtonType { rate, share }
+
+enum RateMovieOptions { like, dislike, superLike }
