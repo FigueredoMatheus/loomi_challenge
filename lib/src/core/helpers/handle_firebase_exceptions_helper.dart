@@ -7,7 +7,7 @@ class HandleFirebaseExceptionsHelper {
         return 'No user found for that email.';
       case 'wrong-password':
         return 'Wrong password provided for that user.';
-      case 'invalid-credential':
+      case 'invalid-credential' || 'channel-error':
         return 'Email or password is invalid';
       case 'invalid-email':
         return 'Invalid Email';
@@ -15,6 +15,7 @@ class HandleFirebaseExceptionsHelper {
         return 'The account already exists for that email.';
       case 'weak-password':
         return 'The password provided is too weak.';
+
       default:
         return 'Unknown error';
     }

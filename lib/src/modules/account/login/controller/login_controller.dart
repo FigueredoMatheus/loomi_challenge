@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
@@ -16,7 +17,7 @@ class LoginController {
 
   Future<Map<String, dynamic>> _loginUser() async {
     final responseLoginUser = await authRepository.loginUserEmailPass(
-        email: email!, password: password!);
+        email: email ?? '', password: password ?? '');
     if (!responseLoginUser['success']) {
       return responseLoginUser;
     }
