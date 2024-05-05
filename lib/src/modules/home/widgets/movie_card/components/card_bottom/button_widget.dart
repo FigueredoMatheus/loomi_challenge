@@ -4,7 +4,7 @@ import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/custom_rate_tooltil.dart';
+import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/custom_rate_pop_up_menu.dart';
 
 class MovieCardBottomButton extends StatefulWidget {
   final MovieModel movie;
@@ -39,7 +39,7 @@ class _MovieCardBottomButtonState extends State<MovieCardBottomButton> {
         ],
       ),
       menuBuilder: () =>
-          CustomPopUpMenuWidget(popUpController: popUpController),
+          CustomRatePopUpMenuWidget(popUpController: popUpController),
       pressType: PressType.singleClick,
       position: PreferredPosition.top,
       controller: popUpController,
