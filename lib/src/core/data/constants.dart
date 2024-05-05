@@ -1,3 +1,3 @@
-const double pageViewDefaultPadding = 15;
+const double pageViewDefaultPadding = 20;
 
 const double homePageViewCustomAppBarHeight = 50;
