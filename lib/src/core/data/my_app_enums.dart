@@ -11,3 +11,5 @@ enum RequiredPermission { photosPermission, cameraPermission }
 enum CustomRichTextType { signUp, signIn }
 
 enum RateMovieOptions { like, dislike, superLike }
+
+enum SignInMethod { google, emailPass }
