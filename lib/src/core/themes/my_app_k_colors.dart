@@ -7,6 +7,7 @@ class MyAppKColors {
 
   static const kVeryDarkGrayColor = Color(0xff131418);
   static const kLightGrayColor = Color(0xFFD7D7D7);
+  static const kDarkShadeGrayColor = Color(0xFF1A1A20);
   static const kDarkGrayColor = Color(0xFF555252);
   static const kSilverGrayColor = Color(0xFFBBBBBB);
   static const kGainsboroGrayColor = Color(0xFFD9D9D9);
