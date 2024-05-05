@@ -12,7 +12,20 @@
           "package_name": "com.loomi.challenge"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "244827145294-1uepj6552ml0kh97ooerblk5b5d5p39i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loomi.challenge",
+            "certificate_hash": "e6757ad98a4b1bbc2db0bae461b7ce7b8254c965"
+          }
+        },
+        {
+          "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBmsWgLjdWiTJmX4w6wt1u7BFGXV9kE3YM"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
