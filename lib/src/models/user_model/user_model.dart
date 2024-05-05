@@ -7,11 +7,15 @@ class UserModel {
   final String? id;
   final String name;
   final String email;
+  final String? image;
+
+  bool get hasImage => image != null;
 
   UserModel({
-    required this.id,
     required this.name,
     required this.email,
+    this.id,
+    this.image,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

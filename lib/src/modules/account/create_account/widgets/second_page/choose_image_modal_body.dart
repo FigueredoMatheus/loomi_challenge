@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/helpers/image_helper.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
 class ChooseUserProfileImageModalBody extends StatefulWidget {
   const ChooseUserProfileImageModalBody({super.key});
@@ -120,21 +123,15 @@ class _ChooseUserProfileImageModalBodyState
     }
   }
 
-  getOnTap(ImageSourceType imageSourceType) {
-    switch (imageSourceType) {
-      case ImageSourceType.camera:
-        return cameraOnTap();
-      case ImageSourceType.gallery:
-      default:
-        return galleryOnTap();
-    }
-  }
+  getOnTap(ImageSourceType imageSourceType) async {
+    final controller = getIt<CreateUserAccountController>();
+    final selectedImagePath =
+        await ImageHelper().getDeviceImage(imageSourceType);
 
-  cameraOnTap() {
-    print('--- CAMERA ON TAP');
-  }
+    if (selectedImagePath == null) return;
 
-  galleryOnTap() {
-    print('--- GALLERY ON TAP');
+    print('---selectedImagePath: $selectedImagePath');
+
+    controller.setProfileImage(selectedImagePath);
   }
 }

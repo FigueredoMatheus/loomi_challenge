@@ -1,18 +1,30 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/permissions_helper.dart';
+import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 
 class ImageHelper {
   Future<String?> getDeviceImage(ImageSourceType imageSourceType) async {
+    String? imagePath;
+
     switch (imageSourceType) {
       case ImageSourceType.camera:
-        return await _getImageFromCamera();
+        imagePath = await _getImageFromCamera();
       case ImageSourceType.gallery:
       default:
-        return await _getImageFromGallery();
+        imagePath = await _getImageFromGallery();
     }
+    return imagePath;
+
+    // if (imagePath != null) {
+    //   final String? imgCropped = await _croppImage(imagePath);
+    //   return imgCropped;
+    // } else {
+    //   return null;
+    // }
   }
 
   Future<String?> _getImageFromGallery() async {
@@ -56,5 +68,37 @@ class ImageHelper {
       );
       return null;
     }
+  }
+
+  Future<String?> _croppImage(String imagePath) async {
+    final CroppedFile? imgCropped = await ImageCropper.platform.cropImage(
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarColor: MyAppKColors.kVeryDarkGrayColor,
+          backgroundColor: MyAppKColors.kSilverGrayColor,
+          cropFrameColor: MyAppKColors.kDarkGrayColor,
+          showCropGrid: false,
+          toolbarTitle: 'Ajustar Imagem',
+          toolbarWidgetColor: MyAppKColors.kOffWhiteColor,
+          statusBarColor: MyAppKColors.kVeryDarkGrayColor,
+        ),
+        IOSUiSettings(
+          title: 'Ajustar Imagem',
+          doneButtonTitle: 'Ok',
+          cancelButtonTitle: 'Cancelar',
+        ),
+      ],
+      sourcePath: imagePath,
+      compressQuality: 90,
+      maxHeight: 200,
+      maxWidth: 200,
+      aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+    );
+
+    if (imgCropped == null) {
+      return null;
+    }
+
+    return imgCropped.path;
   }
 }

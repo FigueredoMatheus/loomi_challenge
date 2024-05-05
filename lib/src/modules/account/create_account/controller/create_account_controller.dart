@@ -4,6 +4,7 @@ import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/repositories/firebase_database_repository/firebase_database_repository.dart';
 
@@ -69,14 +70,15 @@ class CreateUserAccountController {
 
   Future<Map<String, dynamic>> _createUserAccount() async {
     final responseCreateUserAccount = await authRepository.createUserEmailPass(
-        email: email!, password: password!);
+        email: email!.toLowerCase(), password: password!);
 
     if (!responseCreateUserAccount['success']) {
       return responseCreateUserAccount;
     }
 
-    final data = toJson();
-    data['user_id'] = responseCreateUserAccount['user_id'];
+    final data = toJson()
+      ..update('user_id', (value) => responseCreateUserAccount['user_id'],
+          ifAbsent: () => responseCreateUserAccount['user_id']);
 
     final saveUserDataResponse =
         await firebaseDatabaseRepository.postUserData(data);
@@ -85,7 +87,26 @@ class CreateUserAccountController {
       return saveUserDataResponse;
     }
 
-    return {'success': true, 'message': 'User created successfully'};
+    if (hasImage) {
+      final responseUploadFile = await firebaseDatabaseRepository.uploadFile(
+        userId: data['user_id'],
+        imagePath: profileImage.value,
+      );
+      final bool success = responseUploadFile['success'];
+      if (success) {
+        data.update(
+          'image',
+          (value) => responseUploadFile['file_url'],
+          ifAbsent: () => responseUploadFile['file_url'],
+        );
+      }
+    }
+
+    return {
+      'success': true,
+      'message': 'User created successfully',
+      'user_data': data,
+    };
   }
 
   continueButtonOnTap() async {
@@ -102,6 +123,9 @@ class CreateUserAccountController {
 
     final createUserAccountResponse = await _createUserAccount();
 
+    final userData = createUserAccountResponse['user_data'];
+    print('--- Create User Data: $userData');
+
     Get.back();
 
     final bool success = createUserAccountResponse['success'];
@@ -111,12 +135,19 @@ class CreateUserAccountController {
       message: message,
       snackBarType: success ? SnackBarType.success : SnackBarType.fail,
     )..show();
+
+    if (success) {
+      Get.offAllNamed(RoutesNames.HomePageView);
+    }
   }
 
-  nextPage() => pageViewController.nextPage(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.ease,
-      );
+  nextPage() {
+    FocusScope.of(Get.context!).unfocus();
+    pageViewController.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
 
   previousPage() => pageViewController.previousPage(
         duration: const Duration(milliseconds: 500),
