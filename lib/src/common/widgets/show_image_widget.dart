@@ -40,6 +40,9 @@ class CustomShowImageWidget extends StatelessWidget {
   }
 
   Image showFileImage() {
-    return Image.file(File(imagePath));
+    return Image.file(
+      File(imagePath),
+      fit: BoxFit.cover,
+    );
   }
 }
