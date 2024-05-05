@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
 class SocialMedialLoginButtonWidget extends StatefulWidget {
   final SocialMediaType socialMediaType;
@@ -84,6 +86,6 @@ class _SocialMedialLoginButtonWidgetState
   }
 
   googleOnTap() {
-    print('--- GOOGLE ON TAP');
+    getIt<CreateUserAccountController>().signUpAccount(SignInMethod.google);
   }
 }
