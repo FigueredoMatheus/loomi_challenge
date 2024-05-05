@@ -1,25 +1,13 @@
-enum TextFormFieldType {
-  password,
-  confirmPassword,
-  email,
-  name,
-}
+enum TextFormFieldType { password, confirmPassword, email, name }
 
-enum SocialMediaType {
-  google,
-  apple,
-}
+enum SocialMediaType { google, apple }
 
-enum ImageSourceType {
-  camera,
-  gallery,
-}
+enum ImageSourceType { camera, gallery }
 
-enum SnackBarType {
-  textFieldError,
-}
+enum SnackBarType { fail, alert, success }
 
-enum RequiredPermission {
-  photosPermission,
-  cameraPermission,
-}
+enum RequiredPermission { photosPermission, cameraPermission }
+
+enum CustomRichTextType { signUp, signIn }
+
+enum RateMovieOptions { like, dislike, superLike }

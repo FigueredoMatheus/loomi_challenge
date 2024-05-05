@@ -19,7 +19,7 @@ class TextFieldValidatorsHelper {
       return 'Password is required';
     }
 
-    final bool isValid = text.length < 8;
+    final bool isValid = text.length >= 8;
 
     if (!isValid) {
       return 'Password too short';

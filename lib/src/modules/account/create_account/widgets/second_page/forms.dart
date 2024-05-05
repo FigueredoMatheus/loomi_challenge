@@ -5,13 +5,26 @@ import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
-class CreateUserAccountSecondPageFormsWidget extends StatelessWidget {
+class CreateUserAccountSecondPageFormsWidget extends StatefulWidget {
   const CreateUserAccountSecondPageFormsWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final controller = getIt<CreateUserAccountController>();
+  State<CreateUserAccountSecondPageFormsWidget> createState() =>
+      _CreateUserAccountSecondPageFormsWidgetState();
+}
 
+class _CreateUserAccountSecondPageFormsWidgetState
+    extends State<CreateUserAccountSecondPageFormsWidget> {
+  late CreateUserAccountController controller;
+  @override
+  void initState() {
+    super.initState();
+
+    controller = getIt<CreateUserAccountController>();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         CustomTextFormField(
@@ -23,15 +36,7 @@ class CreateUserAccountSecondPageFormsWidget extends StatelessWidget {
         const SizedBox(height: 40),
         CustomElevatedButton(
           label: 'Continue',
-          onPressed: () {
-            final isValid = controller.validatorFields();
-
-            if (isValid) {
-              print('PASSOU');
-            } else {
-              print('NÂO PASSOU');
-            }
-          },
+          onPressed: controller.continueButtonOnTap,
         ),
         const SizedBox(height: 10),
         TextButton(

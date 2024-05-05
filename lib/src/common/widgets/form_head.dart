@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 
-class CreateUserAccountFirstPageFormHeadWidget extends StatelessWidget {
-  const CreateUserAccountFirstPageFormHeadWidget({super.key});
+class SignUpWithWidget extends StatelessWidget {
+  const SignUpWithWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
