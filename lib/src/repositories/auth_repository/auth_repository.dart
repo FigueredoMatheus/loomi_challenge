@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loomi_challenge/src/core/helpers/handle_firebase_exceptions_helper.dart';
 
 part 'create_account_email_pass.dart';
 part 'login_use_email_pass.dart';
 part 'send_password_reset_email.dart';
+part 'google_sign_in.dart';
 
 class AuthRepository {
   Future<Map<String, dynamic>> createUserEmailPass({
@@ -22,4 +24,6 @@ class AuthRepository {
     required String email,
   }) async =>
       implSendPasswordResetEmail(email: email);
+
+  Future<UserCredential> googleSignIn() async => implGoogleSignIn();
 }
