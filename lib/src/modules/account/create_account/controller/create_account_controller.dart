@@ -4,6 +4,7 @@ import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/repositories/firebase_database_repository/firebase_database_repository.dart';
 
@@ -111,6 +112,10 @@ class CreateUserAccountController {
       message: message,
       snackBarType: success ? SnackBarType.success : SnackBarType.fail,
     )..show();
+
+    if (success) {
+      Get.offAllNamed(RoutesNames.HomePageView);
+    }
   }
 
   nextPage() => pageViewController.nextPage(
