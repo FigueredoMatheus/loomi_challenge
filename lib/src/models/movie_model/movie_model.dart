@@ -8,14 +8,16 @@ class MovieModel {
   String? id;
   final String title;
   final String sinopse;
-  final String genre;
+  @JsonKey(name: 'genre')
+  final List<String> genreList;
+  @JsonKey(name: 'expires_date')
   final DateTime expiresDate;
   final List<MovieCommentModel> comments;
 
   MovieModel({
     required this.title,
     required this.sinopse,
-    required this.genre,
+    required this.genreList,
     required this.expiresDate,
     required this.comments,
   });

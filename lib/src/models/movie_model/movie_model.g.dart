@@ -9,8 +9,9 @@ part of 'movie_model.dart';
 MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       title: json['title'] as String,
       sinopse: json['sinopse'] as String,
-      genre: json['genre'] as String,
-      expiresDate: DateTime.parse(json['expiresDate'] as String),
+      genreList:
+          (json['genre'] as List<dynamic>).map((e) => e as String).toList(),
+      expiresDate: DateTime.parse(json['expires_date'] as String),
       comments: (json['comments'] as List<dynamic>)
           .map((e) => MovieCommentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -21,7 +22,7 @@ Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'sinopse': instance.sinopse,
-      'genre': instance.genre,
-      'expiresDate': instance.expiresDate.toIso8601String(),
+      'genre': instance.genreList,
+      'expires_date': instance.expiresDate.toIso8601String(),
       'comments': instance.comments,
     };
