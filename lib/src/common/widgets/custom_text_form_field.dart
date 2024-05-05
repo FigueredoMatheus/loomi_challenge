@@ -61,7 +61,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 obscureText = !obscureText;
               });
             },
-            child: Icon(Icons.remove_circle),
+            child: Icon(obscureText
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined),
           )
         : null;
   }
