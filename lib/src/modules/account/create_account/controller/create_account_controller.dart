@@ -70,14 +70,15 @@ class CreateUserAccountController {
 
   Future<Map<String, dynamic>> _createUserAccount() async {
     final responseCreateUserAccount = await authRepository.createUserEmailPass(
-        email: email!, password: password!);
+        email: email!.toLowerCase(), password: password!);
 
     if (!responseCreateUserAccount['success']) {
       return responseCreateUserAccount;
     }
 
-    final data = toJson();
-    data['user_id'] = responseCreateUserAccount['user_id'];
+    final data = toJson()
+      ..update('user_id', (value) => responseCreateUserAccount['user_id'],
+          ifAbsent: () => responseCreateUserAccount['user_id']);
 
     final saveUserDataResponse =
         await firebaseDatabaseRepository.postUserData(data);
@@ -86,7 +87,26 @@ class CreateUserAccountController {
       return saveUserDataResponse;
     }
 
-    return {'success': true, 'message': 'User created successfully'};
+    if (hasImage) {
+      final responseUploadFile = await firebaseDatabaseRepository.uploadFile(
+        userId: data['user_id'],
+        imagePath: profileImage.value,
+      );
+      final bool success = responseUploadFile['success'];
+      if (success) {
+        data.update(
+          'image',
+          (value) => responseUploadFile['file_url'],
+          ifAbsent: () => responseUploadFile['file_url'],
+        );
+      }
+    }
+
+    return {
+      'success': true,
+      'message': 'User created successfully',
+      'user_data': data,
+    };
   }
 
   continueButtonOnTap() async {
@@ -103,6 +123,9 @@ class CreateUserAccountController {
 
     final createUserAccountResponse = await _createUserAccount();
 
+    final userData = createUserAccountResponse['user_data'];
+    print('--- Create User Data: $userData');
+
     Get.back();
 
     final bool success = createUserAccountResponse['success'];
@@ -118,10 +141,13 @@ class CreateUserAccountController {
     }
   }
 
-  nextPage() => pageViewController.nextPage(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.ease,
-      );
+  nextPage() {
+    FocusScope.of(Get.context!).unfocus();
+    pageViewController.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+  }
 
   previousPage() => pageViewController.previousPage(
         duration: const Duration(milliseconds: 500),
