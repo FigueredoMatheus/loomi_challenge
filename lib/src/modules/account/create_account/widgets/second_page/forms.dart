@@ -36,7 +36,9 @@ class _CreateUserAccountSecondPageFormsWidgetState
         const SizedBox(height: 40),
         CustomElevatedButton(
           label: 'Continue',
-          onPressed: controller.continueButtonOnTap,
+          onPressed: () {
+            controller.signUpAccount(SignInMethod.emailPass);
+          },
         ),
         const SizedBox(height: 10),
         TextButton(

@@ -68,7 +68,31 @@ class CreateUserAccountController {
     };
   }
 
-  Future<Map<String, dynamic>> _createUserAccount() async {
+  Future<Map<String, dynamic>> _googleSignUp() async {
+    final credentials = await AuthRepository().googleSignIn();
+    final userData = {
+      'name': credentials.user?.displayName,
+      'email': credentials.user?.email,
+      'image': credentials.user?.photoURL,
+      'user_id': credentials.user?.uid,
+    };
+
+    return {
+      'success': credentials.user != null,
+      'user_data': userData,
+      'message': 'Fail on login with google account',
+    };
+  }
+
+  Future<Map<String, dynamic>> _emailPassSignUp() async {
+    final validatorMessage = validatorFields();
+
+    if (validatorMessage != null) {
+      return {'success': false, 'message': validatorMessage};
+    }
+
+    loadingDialog();
+
     final responseCreateUserAccount = await authRepository.createUserEmailPass(
         email: email!.toLowerCase(), password: password!);
 
@@ -76,69 +100,69 @@ class CreateUserAccountController {
       return responseCreateUserAccount;
     }
 
-    final data = toJson()
+    final userData = toJson()
       ..update('user_id', (value) => responseCreateUserAccount['user_id'],
           ifAbsent: () => responseCreateUserAccount['user_id']);
 
+    return {'success': true, 'user_data': userData};
+  }
+
+  signUpAccount(SignInMethod signInMethod) async {
+    Map<String, dynamic> response = {};
+
+    final isGoogleSignUp = signInMethod == SignInMethod.google;
+
+    if (isGoogleSignUp) {
+      response = await _googleSignUp();
+    } else {
+      response = await _emailPassSignUp();
+    }
+
+    if (!response['success']) {
+      Get.back();
+      MyAppSnackBar(
+          message: response['message'], snackBarType: SnackBarType.fail)
+        ..show();
+      return;
+    }
+
+    if (isGoogleSignUp) loadingDialog();
+
+    final userData = response['user_data'];
+
     final saveUserDataResponse =
-        await firebaseDatabaseRepository.postUserData(data);
+        await firebaseDatabaseRepository.postUserData(userData);
 
     if (!saveUserDataResponse['success']) {
-      return saveUserDataResponse;
+      Get.back();
+      final String message = saveUserDataResponse['message'];
+      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
+      return;
     }
 
     if (hasImage) {
       final responseUploadFile = await firebaseDatabaseRepository.uploadFile(
-        userId: data['user_id'],
+        userId: userData['user_id'],
         imagePath: profileImage.value,
       );
       final bool success = responseUploadFile['success'];
       if (success) {
-        data.update(
+        userData.update(
           'image',
           (value) => responseUploadFile['file_url'],
           ifAbsent: () => responseUploadFile['file_url'],
         );
+      } else {
+        MyAppSnackBar(
+            message: responseUploadFile['message'],
+            snackBarType: SnackBarType.fail)
+          ..show();
       }
     }
 
-    return {
-      'success': true,
-      'message': 'User created successfully',
-      'user_data': data,
-    };
-  }
+    print(' -- UserData: $userData');
 
-  continueButtonOnTap() async {
-    final validatorMessage = validatorFields();
-
-    MyAppSnackBar(
-      message: validatorMessage,
-      snackBarType: SnackBarType.fail,
-    )..show();
-
-    if (validatorMessage != null) return;
-
-    loadingDialog();
-
-    final createUserAccountResponse = await _createUserAccount();
-
-    final userData = createUserAccountResponse['user_data'];
-    print('--- Create User Data: $userData');
-
-    Get.back();
-
-    final bool success = createUserAccountResponse['success'];
-    final String message = createUserAccountResponse['message'];
-
-    MyAppSnackBar(
-      message: message,
-      snackBarType: success ? SnackBarType.success : SnackBarType.fail,
-    )..show();
-
-    if (success) {
-      Get.offAllNamed(RoutesNames.HomePageView);
-    }
+    Get.offAllNamed(RoutesNames.HomePageView);
   }
 
   nextPage() {
