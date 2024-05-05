@@ -9,10 +9,12 @@ class UserModel {
   final String email;
   final String? image;
 
+  bool get hasImage => image != null;
+
   UserModel({
-    required this.id,
     required this.name,
     required this.email,
+    this.id,
     this.image,
   });
 
