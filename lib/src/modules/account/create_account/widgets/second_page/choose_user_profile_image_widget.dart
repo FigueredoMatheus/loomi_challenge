@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/open_modal_bottom_sheet.dart';
+import 'package:loomi_challenge/src/common/widgets/edit_profile_image_info_text.dart';
 import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
@@ -22,7 +23,10 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [profileImageContainer(), profileImageInfo()],
+      children: [
+        profileImageContainer(),
+        EditProfileImageInfoText(),
+      ],
     );
   }
 
@@ -63,24 +67,6 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
                   width: 20,
                 ),
         ),
-      ),
-    );
-  }
-
-  Widget profileImageInfo() {
-    return Container(
-      width: 91,
-      child: Column(
-        children: [
-          Text(
-            'Choose Image',
-            style: MyAppKColors.title3(),
-          ),
-          Text(
-            'A square .jpg, .gif, or .png image 200x200 or larger',
-            style: MyAppKColors.subtitle3(),
-          ),
-        ],
       ),
     );
   }
