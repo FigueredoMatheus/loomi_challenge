@@ -4,5 +4,6 @@ class RoutesNames {
   static const forgotPasswordPageView = '/forgot-password-page-view';
   static const successOnSendResentEmailPageView =
       '/success-on-send-resent-email-page-view';
-  static const HomePageView = '/home-page-view';
+  static const homePageView = '/home-page-view';
+  static const userSettingsPageView = '/user-settings-page-view';
 }

@@ -164,7 +164,7 @@ class CreateUserAccountController {
 
     Provider.of<AuthService>(Get.context!, listen: false).initUser(userData);
 
-    Get.offAllNamed(RoutesNames.HomePageView);
+    Get.offAllNamed(RoutesNames.homePageView);
   }
 
   nextPage() {

@@ -4,6 +4,7 @@ import 'package:loomi_challenge/src/modules/account/create_account/view/create_u
 import 'package:loomi_challenge/src/modules/account/forgot_password/view/forgot_password_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/forgot_password/view/success_on_send_email_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/login/view/login_page_view.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/view/user_settings_page_view.dart';
 import 'package:loomi_challenge/src/modules/home/view/home_page_view.dart';
 
 class PagesRoutes {
@@ -25,8 +26,12 @@ class PagesRoutes {
       page: () => const CreateUserAccountPageView(),
     ),
     GetPage(
-      name: RoutesNames.HomePageView,
+      name: RoutesNames.homePageView,
       page: () => const HomePageViewModel(),
+    ),
+    GetPage(
+      name: RoutesNames.userSettingsPageView,
+      page: () => const UserSettingsPageView(),
     ),
   ];
 }

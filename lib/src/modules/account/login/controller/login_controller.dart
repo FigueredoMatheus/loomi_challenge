@@ -50,7 +50,7 @@ class LoginController {
     if (success) {
       final userData = loginUserResponse['user_data'];
       Provider.of<AuthService>(Get.context!, listen: false).initUser(userData);
-      Get.offAllNamed(RoutesNames.HomePageView);
+      Get.offAllNamed(RoutesNames.homePageView);
     } else {
       final String message = loginUserResponse['message'];
       MyAppSnackBar(
