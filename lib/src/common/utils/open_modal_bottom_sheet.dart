@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 
@@ -16,15 +17,11 @@ Future<dynamic>? openModalBottomSheet({
       ),
     ),
     clipBehavior: Clip.antiAliasWithSaveLayer,
+    backgroundColor: MyAppKColors.kVeryDarkGrayColor,
     builder: (context) {
-      return Container(
-        height: 255,
-        decoration: BoxDecoration(
-          color: MyAppKColors.kVeryDarkGrayColor,
-        ),
+      return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Wrap(
           children: [
             Row(
               children: [
@@ -36,14 +33,17 @@ Future<dynamic>? openModalBottomSheet({
                   ),
                 ),
                 Spacer(),
-                Text(
-                  title,
-                  style: MyAppKColors.title3(),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    title,
+                    style: MyAppKColors.modalBottomSheetTitle(),
+                  ),
                 ),
                 Spacer(),
               ],
             ),
-            child,
+            child
           ],
         ),
       );
