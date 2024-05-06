@@ -11,7 +11,7 @@ class CustomOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(getButtonText()),
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(GoogleFonts.epilogue(
@@ -31,6 +31,24 @@ class CustomOutlinedButton extends StatelessWidget {
                 ))),
       ),
     );
+  }
+
+  onPressed() {
+    switch (buttonType) {
+      case CustomOutlinedButtonType.editProfile:
+        return editProfileOnTap();
+      case CustomOutlinedButtonType.logout:
+      default:
+        return logoutOnTap();
+    }
+  }
+
+  logoutOnTap() {
+    print('--- LOGOUT ON TAP');
+  }
+
+  editProfileOnTap() {
+    print('--- EDIT PROFILE ON TAP');
   }
 
   Color getButtonColor() {
