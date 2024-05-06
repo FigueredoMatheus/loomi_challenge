@@ -3,6 +3,7 @@ import 'package:loomi_challenge/src/common/widgets/custom_page_header/custom_pag
 import 'package:loomi_challenge/src/common/widgets/custom_page_view_title.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/change_password/forms.dart';
 
 class ChangeUserPasswordPageView extends StatelessWidget {
   const ChangeUserPasswordPageView({super.key});
@@ -24,7 +25,8 @@ class ChangeUserPasswordPageView extends StatelessWidget {
                   headerType: CustomPageViewHeaderType.changePassword),
               CustomPageViewTitle(
                   customPageViewTitleType:
-                      CustomPageViewTitleType.changePassword)
+                      CustomPageViewTitleType.changePassword),
+              ChangeUserPasswordPageViewForms(),
             ],
           ),
         ),

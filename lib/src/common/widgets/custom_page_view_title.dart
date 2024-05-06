@@ -13,7 +13,7 @@ class CustomPageViewTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.only(top: 10, bottom: 70),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
