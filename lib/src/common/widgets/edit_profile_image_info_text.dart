@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class EditProfileImageInfoText extends StatelessWidget {
   const EditProfileImageInfoText({super.key});
@@ -12,11 +12,16 @@ class EditProfileImageInfoText extends StatelessWidget {
         children: [
           Text(
             'Choose Image',
-            style: MyAppKColors.title3(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  fontSize: 12,
+                ),
           ),
           Text(
             'A square .jpg, .gif, or .png image 200x200 or larger',
-            style: MyAppKColors.subtitle3(),
+            style: MyThemes.get().outfitStyle.copyWith(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class CustomPageViewHeaderBackButton extends StatelessWidget {
   const CustomPageViewHeaderBackButton({super.key});
@@ -14,7 +14,7 @@ class CustomPageViewHeaderBackButton extends StatelessWidget {
       }),
       child: Icon(
         Icons.arrow_back_ios,
-        color: MyAppKColors.kPurpleColor,
+        color: MyThemes.get().kPurpleColor,
       ),
     );
   }

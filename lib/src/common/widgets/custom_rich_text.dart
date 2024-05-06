@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class CustomRichText extends StatelessWidget {
   final CustomRichTextType richTextType;
@@ -17,13 +17,17 @@ class CustomRichText extends StatelessWidget {
         children: [
           TextSpan(
             text: labelText(),
-            style: MyAppKColors.subtitle1(),
+            style: MyThemes.get().montserratStyle.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: MyThemes.get().kWhiteColor.withOpacity(0.45),
+                ),
           ),
           TextSpan(
             text: tappedText(),
             style: Get.textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w700,
-              color: MyAppKColors.kPurpleColor,
+              color: MyThemes.get().kPurpleColor,
             ),
             recognizer: TapGestureRecognizer()..onTap = getOnTap,
           ),

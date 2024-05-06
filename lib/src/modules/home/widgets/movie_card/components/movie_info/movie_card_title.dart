@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class MovieCardTitle extends StatelessWidget {
   final String title;
@@ -12,7 +12,10 @@ class MovieCardTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Text(
         title,
-        style: MyAppKColors.movieCardTitle(),
+        style: MyThemes.get().epilogueStyle.copyWith(
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+            ),
       ),
     );
   }

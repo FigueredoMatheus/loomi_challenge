@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
-class UserSettingsPageViewSubscriptionSectionCard extends StatelessWidget {
+class UserSettingsPageViewSubscriptionSectionCard extends StatefulWidget {
   const UserSettingsPageViewSubscriptionSectionCard({super.key});
 
+  @override
+  State<UserSettingsPageViewSubscriptionSectionCard> createState() =>
+      _UserSettingsPageViewSubscriptionSectionCardState();
+}
+
+class _UserSettingsPageViewSubscriptionSectionCardState
+    extends State<UserSettingsPageViewSubscriptionSectionCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
       decoration: BoxDecoration(
-        color: MyAppKColors.kdarkShadeBlue.withOpacity(0.9),
+        color: MyThemes.get().kdarkShadeBlue.withOpacity(0.9),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -27,7 +34,11 @@ class UserSettingsPageViewSubscriptionSectionCard extends StatelessWidget {
       },
       child: Text(
         'Coming soon',
-        style: MyAppKColors.subscriptionCardTextButton(),
+        style: MyThemes.get().epilogueStyle.copyWith(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: MyThemes.get().kPurpleColor,
+            ),
       ),
     );
   }
@@ -40,9 +51,18 @@ class UserSettingsPageViewSubscriptionSectionCard extends StatelessWidget {
         children: [
           Text(
             'STREAM Premium',
-            style: MyAppKColors.subscriptionCardTitle(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
           ),
-          Text('Jan 22, 2023', style: MyAppKColors.subscriptionCardSubtitle()),
+          Text(
+            'Jan 22, 2023',
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
         ],
       ),
     );

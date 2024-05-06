@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class CustomPageViewTitle extends StatelessWidget {
   final CustomPageViewTitleType customPageViewTitleType;
@@ -19,7 +19,10 @@ class CustomPageViewTitle extends StatelessWidget {
         children: [
           Text(
             getTitle(),
-            style: MyAppKColors.userSettingsProfileName(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  color: MyThemes.get().kWhiteColor,
+                  fontSize: 24,
+                ),
           ),
         ],
       ),

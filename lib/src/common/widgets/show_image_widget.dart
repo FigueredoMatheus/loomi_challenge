@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/helpers/extensions/on_string_extension.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class CustomShowImageWidget extends StatelessWidget {
   final String imagePath;
@@ -47,7 +47,7 @@ class CustomShowImageWidget extends StatelessWidget {
             child: CircularProgressIndicator(
               value: downloadProgress.progress,
               strokeWidth: 1,
-              color: MyAppKColors.kPurpleColor,
+              color: MyThemes.get().kPurpleColor,
             ),
           ),
         );

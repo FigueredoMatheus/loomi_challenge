@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
 class SocialMedialLoginButtonWidget extends StatefulWidget {
@@ -42,10 +42,10 @@ class _SocialMedialLoginButtonWidgetState
   Color bgColor() {
     switch (widget.socialMediaType) {
       case SocialMediaType.google:
-        return MyAppKColors.kLightPurpleColor.withOpacity(0.2);
+        return MyThemes.get().kLightPurpleColor.withOpacity(0.2);
       case SocialMediaType.apple:
       default:
-        return MyAppKColors.kWhiteColor.withOpacity(0.33);
+        return MyThemes.get().kWhiteColor.withOpacity(0.33);
     }
   }
 

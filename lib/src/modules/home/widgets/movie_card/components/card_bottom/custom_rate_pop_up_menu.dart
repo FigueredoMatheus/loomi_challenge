@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
-class CustomRatePopUpMenuWidget extends StatelessWidget {
+class CustomRatePopUpMenuWidget extends StatefulWidget {
   final CustomPopupMenuController popUpController;
 
   const CustomRatePopUpMenuWidget({super.key, required this.popUpController});
 
+  @override
+  State<CustomRatePopUpMenuWidget> createState() =>
+      _CustomRatePopUpMenuWidgetState();
+}
+
+class _CustomRatePopUpMenuWidgetState extends State<CustomRatePopUpMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +23,7 @@ class CustomRatePopUpMenuWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       margin: const EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
-        color: MyAppKColors.kDarkShadeGrayColor.withOpacity(1),
+        color: MyThemes.get().kDarkShadeGrayColor.withOpacity(1),
         borderRadius: BorderRadius.circular(60),
       ),
       child: Row(
@@ -35,19 +41,19 @@ class CustomRatePopUpMenuWidget extends StatelessWidget {
   Widget closeMenuIcon() {
     return InkWell(
       onTap: () {
-        popUpController.hideMenu();
+        widget.popUpController.hideMenu();
       },
       child: Container(
         width: 22,
         height: 22,
         decoration: BoxDecoration(
           color: Colors.transparent,
-          border: Border.all(color: MyAppKColors.kPurpleColor, width: 2),
+          border: Border.all(color: MyThemes.get().kPurpleColor, width: 2),
           borderRadius: BorderRadius.circular(7),
         ),
         child: Icon(
           Icons.close_rounded,
-          color: MyAppKColors.kPurpleColor,
+          color: MyThemes.get().kPurpleColor,
           size: 18,
         ),
       ),
@@ -68,7 +74,11 @@ class CustomRatePopUpMenuWidget extends StatelessWidget {
           ),
           Text(
             getRateOptionLabel(rateOption),
-            style: MyAppKColors.movieCardBottomButton(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  color: MyThemes.get().kWhiteColor.withOpacity(0.45),
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
         ],
       ),

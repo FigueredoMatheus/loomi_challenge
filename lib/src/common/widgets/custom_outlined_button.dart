@@ -5,7 +5,7 @@ import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/auth_service.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:provider/provider.dart';
 
 class CustomOutlinedButton extends StatefulWidget {
@@ -66,10 +66,10 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   Color getButtonColor() {
     switch (widget.buttonType) {
       case CustomOutlinedButtonType.editProfile:
-        return MyAppKColors.kPurpleColor;
+        return MyThemes.get().kPurpleColor;
       case CustomOutlinedButtonType.logout:
       default:
-        return MyAppKColors.kOutlinedButtonTextColor;
+        return MyThemes.get().kOutlinedButtonTextColor;
     }
   }
 

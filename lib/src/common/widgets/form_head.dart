@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
-class SignUpWithWidget extends StatelessWidget {
+class SignUpWithWidget extends StatefulWidget {
   const SignUpWithWidget({super.key});
 
+  @override
+  State<SignUpWithWidget> createState() => _SignUpWithWidgetState();
+}
+
+class _SignUpWithWidgetState extends State<SignUpWithWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,7 +17,9 @@ class SignUpWithWidget extends StatelessWidget {
         const SizedBox(width: 20),
         Text(
           'Or Sign up With',
-          style: MyAppKColors.subtitle2(),
+          style: MyThemes.get().outfitStyle.copyWith(
+                color: MyThemes.get().kDarkGrayColor,
+              ),
         ),
         const SizedBox(width: 20),
         divider()
@@ -23,7 +30,7 @@ class SignUpWithWidget extends StatelessWidget {
   Widget divider() {
     return Expanded(
         child: Divider(
-      color: MyAppKColors.kOffWhiteColor.withOpacity(0.2),
+      color: MyThemes.get().kOffWhiteColor.withOpacity(0.2),
     ));
   }
 }

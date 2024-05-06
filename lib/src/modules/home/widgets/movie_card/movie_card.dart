@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/card_bottom.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/movie_info/movice_card_sinopse.dart';
@@ -23,7 +23,10 @@ class HomePageViewMovieCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: pageViewDefaultPadding),
-            child: Text('Now Showing', style: MyAppKColors.title1()),
+            child: Text(
+              'Now Showing',
+              style: MyThemes.get().epilogueStyle,
+            ),
           ), // TODO implement correct fonts
           Expanded(
             child: Container(

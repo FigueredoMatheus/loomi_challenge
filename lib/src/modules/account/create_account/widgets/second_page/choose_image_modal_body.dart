@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/image_helper.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
 class ChooseUserProfileImageModalBody extends StatefulWidget {
@@ -80,7 +80,11 @@ class _ChooseUserProfileImageModalBodyState
     return Text(
       text,
       textAlign: TextAlign.center,
-      style: MyAppKColors.subtitle1(),
+      style: MyThemes.get().montserratStyle.copyWith(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: MyThemes.get().kWhiteColor.withOpacity(0.45),
+          ),
     );
   }
 
@@ -99,27 +103,27 @@ class _ChooseUserProfileImageModalBodyState
         return Icon(
           Icons.photo_library_outlined,
           color: Color(0xFFDEDEDE),
-        ); // TODO change this icon
+        );
     }
   }
 
   Color containerBgColor(ImageSourceType imageSourceType) {
     switch (imageSourceType) {
       case ImageSourceType.camera:
-        return MyAppKColors.kLightPurpleColor.withOpacity(0.2);
+        return MyThemes.get().kLightPurpleColor.withOpacity(0.2);
       case ImageSourceType.gallery:
       default:
-        return MyAppKColors.kSilverGrayColor.withOpacity(0.1);
+        return MyThemes.get().kSilverGrayColor.withOpacity(0.1);
     }
   }
 
   Color containerBorderColor(ImageSourceType imageSourceType) {
     switch (imageSourceType) {
       case ImageSourceType.camera:
-        return MyAppKColors.kPurpleColor;
+        return MyThemes.get().kPurpleColor;
       case ImageSourceType.gallery:
       default:
-        return MyAppKColors.kLightGrayColor.withOpacity(0.6);
+        return MyThemes.get().kLightGrayColor.withOpacity(0.6);
     }
   }
 

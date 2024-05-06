@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class UserSettingsPageViewSectionTitle extends StatelessWidget {
   final UserSettingSectionType sectionType;
@@ -19,7 +19,9 @@ class UserSettingsPageViewSectionTitle extends StatelessWidget {
         children: [
           Text(
             getSectionTitle(),
-            style: MyAppKColors.subscriprionSectionTitle(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
           )
         ],
       ),

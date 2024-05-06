@@ -5,7 +5,7 @@ import 'package:loomi_challenge/src/common/utils/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/common/widgets/edit_profile_image_info_text.dart';
 import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/second_page/choose_image_modal_body.dart';
 
@@ -48,7 +48,7 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
           height: 116,
           margin: const EdgeInsets.only(right: 15),
           decoration: BoxDecoration(
-            color: MyAppKColors.kLightPurpleColor.withOpacity(0.2),
+            color: MyThemes.get().kLightPurpleColor.withOpacity(0.2),
             borderRadius: BorderRadius.circular(34),
           ),
           child: controller.hasImage

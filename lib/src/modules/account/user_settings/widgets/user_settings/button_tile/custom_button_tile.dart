@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/delete_acc_modal_body.dart';
 
 class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
@@ -28,7 +28,7 @@ class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: MyAppKColors.kdarkShadeBlue.withOpacity(0.9)),
+            color: MyThemes.get().kdarkShadeBlue.withOpacity(0.9)),
         child: Row(
           children: [
             SvgPicture.asset(
@@ -41,12 +41,15 @@ class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
             const SizedBox(width: 15),
             Text(
               getButtonText(),
-              style: MyAppKColors.userSettingsCustomButtonTile(),
+              style: MyThemes.get().epilogueStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
             Spacer(),
             Icon(
               Icons.arrow_forward_ios,
-              color: MyAppKColors.kWhiteColor,
+              color: MyThemes.get().kWhiteColor,
               size: 15,
             ),
           ],

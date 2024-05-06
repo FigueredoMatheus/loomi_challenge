@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/custom_rate_pop_up_menu.dart';
@@ -33,7 +33,11 @@ class _MovieCardBottomRateMovieWidgetState
           ),
           Text(
             'Rate',
-            style: MyAppKColors.movieCardBottomButton(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  color: MyThemes.get().kWhiteColor.withOpacity(0.45),
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
         ],
       ),

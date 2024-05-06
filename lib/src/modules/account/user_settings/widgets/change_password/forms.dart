@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class ChangeUserPasswordPageViewForms extends StatelessWidget {
   const ChangeUserPasswordPageViewForms({super.key});
@@ -19,7 +19,7 @@ class ChangeUserPasswordPageViewForms extends StatelessWidget {
           ),
           const SizedBox(height: 45),
           Divider(
-            color: MyAppKColors.kGainsboroGrayColor.withOpacity(0.2),
+            color: MyThemes.get().kGainsboroGrayColor.withOpacity(0.2),
             height: 0,
           ),
           const SizedBox(height: 45),

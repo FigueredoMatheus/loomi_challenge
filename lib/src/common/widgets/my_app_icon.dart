@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class MyAppIcon extends StatelessWidget {
   const MyAppIcon({super.key});
@@ -19,7 +19,7 @@ class MyAppIcon extends StatelessWidget {
             width: homePageViewCustomAppBarHeight,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: MyAppKColors.kWhiteColor.withOpacity(0.6),
+              color: MyThemes.get().kWhiteColor.withOpacity(0.6),
             ),
           ),
           Container(
@@ -29,14 +29,14 @@ class MyAppIcon extends StatelessWidget {
                 homePageViewCustomAppBarHeight / 2,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: MyAppKColors.kVeryDarkGrayColor,
+              color: MyThemes.get().kVeryDarkGrayColor,
             ),
           ),
           Container(
             height: homePageViewCustomAppBarHeight * 0.1,
             width: homePageViewCustomAppBarHeight,
             decoration: BoxDecoration(
-              color: MyAppKColors.kVeryDarkGrayColor,
+              color: MyThemes.get().kVeryDarkGrayColor,
             ),
           ),
         ],

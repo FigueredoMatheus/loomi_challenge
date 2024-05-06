@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class MovieCardGenre extends StatelessWidget {
   final List<String> genreList;
@@ -10,7 +10,10 @@ class MovieCardGenre extends StatelessWidget {
     return Text(
       getText(),
       maxLines: 2,
-      style: MyAppKColors.movieCardGenre(),
+      style: MyThemes.get().epilogueStyle.copyWith(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
     );
   }
 

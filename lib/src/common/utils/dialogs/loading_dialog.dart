@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/flavors/flavors.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 loadingDialog({String? title}) {
   final context = Get.context!;
@@ -22,13 +22,13 @@ loadingDialog({String? title}) {
                 width: 50,
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: MyAppKColors.kVeryDarkGrayColor,
+                  color: MyThemes.get().kVeryDarkGrayColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: FittedBox(
                   fit: BoxFit.cover,
                   child: CircularProgressIndicator(
-                    color: MyAppKColors.kPurpleColor,
+                    color: MyThemes.get().kPurpleColor,
                   ),
                 ),
               ),
@@ -36,7 +36,9 @@ loadingDialog({String? title}) {
               if (hasTitle)
                 Text(
                   title,
-                  style: MyAppKColors.title2(),
+                  style: MyThemes.get().epilogueStyle.copyWith(
+                        fontSize: 14,
+                      ),
                   textAlign: TextAlign.center,
                 ),
             ],

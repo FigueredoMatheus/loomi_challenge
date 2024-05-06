@@ -4,7 +4,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/permissions_helper.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class ImageHelper {
   Future<String?> getDeviceImage(ImageSourceType imageSourceType) async {
@@ -74,13 +74,13 @@ class ImageHelper {
     final CroppedFile? imgCropped = await ImageCropper.platform.cropImage(
       uiSettings: [
         AndroidUiSettings(
-          toolbarColor: MyAppKColors.kVeryDarkGrayColor,
-          backgroundColor: MyAppKColors.kSilverGrayColor,
-          cropFrameColor: MyAppKColors.kDarkGrayColor,
+          toolbarColor: MyThemes.get().kVeryDarkGrayColor,
+          backgroundColor: MyThemes.get().kSilverGrayColor,
+          cropFrameColor: MyThemes.get().kDarkGrayColor,
           showCropGrid: false,
           toolbarTitle: 'Ajustar Imagem',
-          toolbarWidgetColor: MyAppKColors.kOffWhiteColor,
-          statusBarColor: MyAppKColors.kVeryDarkGrayColor,
+          toolbarWidgetColor: MyThemes.get().kOffWhiteColor,
+          statusBarColor: MyThemes.get().kVeryDarkGrayColor,
         ),
         IOSUiSettings(
           title: 'Ajustar Imagem',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
 
@@ -17,7 +17,10 @@ class MovieCardComments extends StatelessWidget {
         children: [
           Text(
             'Comments 1.322',
-            style: MyAppKColors.movieCardNumberOfComments(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           const SizedBox(height: 5),
           Row(
@@ -31,7 +34,10 @@ class MovieCardComments extends StatelessWidget {
                 child: Text(
                   movie.mostRecenteComment.comment,
                   overflow: TextOverflow.ellipsis,
-                  style: MyAppKColors.movieCardMostRecentComment(),
+                  style: MyThemes.get().epilogueStyle.copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                 ),
               ),
             ],

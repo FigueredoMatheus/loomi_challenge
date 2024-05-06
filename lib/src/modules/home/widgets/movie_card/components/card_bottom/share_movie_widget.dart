@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -34,7 +34,11 @@ class _MovieCardBottomShareMovieWidgetState
           ),
           Text(
             'Gift to someone?',
-            style: MyAppKColors.movieCardBottomButton(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  color: MyThemes.get().kWhiteColor.withOpacity(0.45),
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
         ],
       ),

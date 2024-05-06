@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class MyAppThemes extends GetxService {
   ThemeData getLightTheme() {
@@ -11,26 +11,26 @@ class MyAppThemes extends GetxService {
       textTheme: GoogleFonts.epilogueTextTheme().copyWith(
         displayLarge: TextStyle(
           fontSize: 26,
-          color: MyAppKColors.kWhiteColor,
+          color: MyThemes.get().kWhiteColor,
           fontWeight: FontWeight.w700,
         ),
         displayMedium: TextStyle(
           fontSize: 24,
-          color: MyAppKColors.kWhiteColor,
+          color: MyThemes.get().kWhiteColor,
           fontWeight: FontWeight.w600,
         ),
         titleLarge: TextStyle(
           fontSize: 16,
-          color: MyAppKColors.kWhiteColor,
+          color: MyThemes.get().kWhiteColor,
           fontWeight: FontWeight.w700,
         ),
-        bodyMedium: TextStyle(fontSize: 14, color: MyAppKColors.kWhiteColor),
+        bodyMedium: TextStyle(fontSize: 14, color: MyThemes.get().kWhiteColor),
         bodySmall: TextStyle(
-          color: MyAppKColors.kWhiteColor.withOpacity(0.40),
+          color: MyThemes.get().kWhiteColor.withOpacity(0.40),
           fontSize: 15,
         ),
       ),
-      scaffoldBackgroundColor: MyAppKColors.kVeryDarkGrayColor,
+      scaffoldBackgroundColor: MyThemes.get().kVeryDarkGrayColor,
       appBarTheme: AppBarTheme(
         color: Colors.transparent,
         elevation: 0,
@@ -50,13 +50,13 @@ class MyAppThemes extends GetxService {
             fontWeight: FontWeight.w600,
           )),
           backgroundColor: MaterialStateProperty.resolveWith((states) {
-            return MyAppKColors.kLightPurpleColor.withOpacity(0.2);
+            return MyThemes.get().kLightPurpleColor.withOpacity(0.2);
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(7.33),
                   side: BorderSide(
-                    color: MyAppKColors.kPurpleColor,
+                    color: MyThemes.get().kPurpleColor,
                     width: 0.92,
                   ))),
         ),
@@ -68,7 +68,7 @@ class MyAppThemes extends GetxService {
         errorBorder: _getLightThemeTextFieldBorder(),
         enabledBorder: _getLightThemeTextFieldBorder(),
         labelStyle: GoogleFonts.epilogue(
-          color: MyAppKColors.kWhiteColor.withOpacity(0.40),
+          color: MyThemes.get().kWhiteColor.withOpacity(0.40),
           fontSize: 15,
         ),
       ),
@@ -79,7 +79,7 @@ class MyAppThemes extends GetxService {
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(9)),
       borderSide: BorderSide(
-        color: MyAppKColors.kFormFieldBorderColor,
+        color: MyThemes.get().kFormFieldBorderColor,
       ),
     );
   }

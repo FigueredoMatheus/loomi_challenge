@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 Future<dynamic>? openModalBottomSheet({
   required String title,
@@ -17,7 +16,7 @@ Future<dynamic>? openModalBottomSheet({
       ),
     ),
     clipBehavior: Clip.antiAliasWithSaveLayer,
-    backgroundColor: MyAppKColors.kVeryDarkGrayColor,
+    backgroundColor: MyThemes.get().kVeryDarkGrayColor,
     builder: (context) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
@@ -29,7 +28,7 @@ Future<dynamic>? openModalBottomSheet({
                   onTap: () => Get.back(),
                   child: Icon(
                     Icons.arrow_back_ios,
-                    color: MyAppKColors.kPurpleColor,
+                    color: MyThemes.get().kPurpleColor,
                   ),
                 ),
                 Spacer(),
@@ -37,7 +36,9 @@ Future<dynamic>? openModalBottomSheet({
                   alignment: Alignment.center,
                   child: Text(
                     title,
-                    style: MyAppKColors.modalBottomSheetTitle(),
+                    style: MyThemes.get().epilogueStyle.copyWith(
+                          fontSize: 16,
+                        ),
                   ),
                 ),
                 Spacer(),

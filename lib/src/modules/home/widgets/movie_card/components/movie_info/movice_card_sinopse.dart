@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class MovieCardSinopse extends StatelessWidget {
   final String sinopse;
@@ -12,7 +12,10 @@ class MovieCardSinopse extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 0.0),
       child: Text(
         sinopse,
-        style: MyAppKColors.movieCardSinopse(),
+        style: MyThemes.get().epilogueStyle.copyWith(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
       ),
     );
   }
