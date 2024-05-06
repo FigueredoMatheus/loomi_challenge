@@ -136,4 +136,20 @@ class MyAppKColors {
       fontWeight: FontWeight.w600,
     );
   }
+
+  static TextStyle userSettingsProfileNamefollowUp() {
+    return GoogleFonts.epilogue(
+      fontSize: 14,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle userSettingsProfileName() {
+    return GoogleFonts.epilogue(
+      fontSize: 26,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w700,
+    );
+  }
 }
