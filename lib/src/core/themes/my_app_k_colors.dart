@@ -28,6 +28,14 @@ class MyAppKColors {
   static const kUserProfileImgeBgColorL = Color(0xFFF7931A);
   static const kUserProfileImgeBgColorS = Color(0xFFD9507A);
 
+  static TextStyle subscriprionSectionTitle() {
+    return GoogleFonts.epilogue(
+      fontSize: 18,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w600,
+    );
+  }
+
   static TextStyle title1() {
     return GoogleFonts.epilogue(
       fontSize: 18,
@@ -167,6 +175,30 @@ class MyAppKColors {
     return GoogleFonts.epilogue(
       fontSize: 16,
       color: kWhiteColor,
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle subscriptionCardTitle() {
+    return GoogleFonts.epilogue(
+      fontSize: 16,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle subscriptionCardSubtitle() {
+    return GoogleFonts.epilogue(
+      fontSize: 12,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle subscriptionCardTextButton() {
+    return GoogleFonts.epilogue(
+      fontSize: 12,
+      color: kPurpleColor,
       fontWeight: FontWeight.w400,
     );
   }
