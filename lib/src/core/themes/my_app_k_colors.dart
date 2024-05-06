@@ -11,6 +11,7 @@ class MyAppKColors {
   static const kDarkGrayColor = Color(0xFF555252);
   static const kSilverGrayColor = Color(0xFFBBBBBB);
   static const kGainsboroGrayColor = Color(0xFFD9D9D9);
+  static const kOutlinedButtonTextColor = Color(0xFFD9DADE);
 
   static const kOffWhiteColor = Color(0xFFF4F4F4);
   static const kWhiteColor = Color(0xFFFFFFFF);
@@ -28,7 +29,7 @@ class MyAppKColors {
   static TextStyle title1() {
     return GoogleFonts.epilogue(
       fontSize: 18,
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontWeight: FontWeight.w700,
     );
   }
@@ -36,7 +37,7 @@ class MyAppKColors {
   static TextStyle title2() {
     return GoogleFonts.epilogue(
       fontSize: 14,
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontWeight: FontWeight.w700,
     );
   }
@@ -44,21 +45,21 @@ class MyAppKColors {
   static TextStyle title3() {
     return GoogleFonts.epilogue(
       fontSize: 12,
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontWeight: FontWeight.w700,
     );
   }
 
   static TextStyle subtitle1() {
     return GoogleFonts.montserrat(
-      color: MyAppKColors.kWhiteColor.withOpacity(0.45),
+      color: kWhiteColor.withOpacity(0.45),
       fontSize: 14,
     );
   }
 
   static TextStyle subtitle2() {
     return GoogleFonts.outfit(
-      color: MyAppKColors.kDarkGrayColor,
+      color: kDarkGrayColor,
       fontSize: 12,
       fontWeight: FontWeight.w500,
     );
@@ -66,7 +67,7 @@ class MyAppKColors {
 
   static TextStyle subtitle3() {
     return GoogleFonts.outfit(
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontSize: 10,
       fontWeight: FontWeight.w400,
     );
@@ -74,7 +75,7 @@ class MyAppKColors {
 
   static TextStyle movieCardGenre() {
     return GoogleFonts.epilogue(
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontSize: 15,
       fontWeight: FontWeight.w600,
     );
@@ -82,7 +83,7 @@ class MyAppKColors {
 
   static TextStyle movieCardTitle() {
     return GoogleFonts.epilogue(
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontSize: 32,
       fontWeight: FontWeight.w600,
     );
@@ -91,7 +92,7 @@ class MyAppKColors {
   static TextStyle movieCardSinopse() {
     return GoogleFonts.epilogue(
       fontSize: 14,
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontWeight: FontWeight.w400,
     );
   }
@@ -99,7 +100,7 @@ class MyAppKColors {
   static TextStyle movieCardMostRecentComment() {
     return GoogleFonts.epilogue(
       fontSize: 12,
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontWeight: FontWeight.w400,
     );
   }
@@ -107,7 +108,7 @@ class MyAppKColors {
   static TextStyle movieCardNumberOfComments() {
     return GoogleFonts.epilogue(
       fontSize: 12,
-      color: MyAppKColors.kWhiteColor,
+      color: kWhiteColor,
       fontWeight: FontWeight.w600,
     );
   }
@@ -115,7 +116,7 @@ class MyAppKColors {
   static TextStyle movieCardBottomButton() {
     return GoogleFonts.epilogue(
       fontSize: 10,
-      color: MyAppKColors.kWhiteColor.withOpacity(0.45),
+      color: kWhiteColor.withOpacity(0.45),
       fontWeight: FontWeight.w400,
     );
   }
@@ -123,7 +124,7 @@ class MyAppKColors {
   static TextStyle movieCardBottomExpiresDateLabel() {
     return GoogleFonts.epilogue(
       fontSize: 12,
-      color: MyAppKColors.kWhiteColor.withOpacity(0.45),
+      color: kWhiteColor.withOpacity(0.45),
       fontWeight: FontWeight.w400,
     );
   }
@@ -131,7 +132,7 @@ class MyAppKColors {
   static TextStyle movieCardBottomExpiresDate() {
     return GoogleFonts.epilogue(
       fontSize: 14,
-      color: MyAppKColors.kPurpleColor,
+      color: kPurpleColor,
       fontWeight: FontWeight.w600,
     );
   }
