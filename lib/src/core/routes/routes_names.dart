@@ -7,4 +7,5 @@ class RoutesNames {
   static const homePageView = '/home-page-view';
   static const userSettingsPageView = '/user-settings-page-view';
   static const changeUserPasswordPageView = '/change-user-password-page-view';
+  static const editProfilePageView = '/edit-profile-page-view';
 }

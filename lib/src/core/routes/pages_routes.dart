@@ -5,6 +5,7 @@ import 'package:loomi_challenge/src/modules/account/forgot_password/view/forgot_
 import 'package:loomi_challenge/src/modules/account/forgot_password/view/success_on_send_email_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/login/view/login_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/view/change_password_page_view.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/view/edit_profile_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/view/user_settings_page_view.dart';
 import 'package:loomi_challenge/src/modules/home/view/home_page_view.dart';
 
@@ -37,6 +38,10 @@ class PagesRoutes {
     GetPage(
       name: RoutesNames.changeUserPasswordPageView,
       page: () => const ChangeUserPasswordPageView(),
+    ),
+    GetPage(
+      name: RoutesNames.editProfilePageView,
+      page: () => const EditProfilePageView(),
     ),
   ];
 }
