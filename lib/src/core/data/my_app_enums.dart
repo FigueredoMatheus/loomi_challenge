@@ -17,3 +17,5 @@ enum SignInMethod { google, emailPass }
 enum CustomOutlinedButtonType { logout, editProfile }
 
 enum CustomButtonTileType { changePassword, deleteAccount }
+
+enum UserSettingSectionType { subscription, history }
