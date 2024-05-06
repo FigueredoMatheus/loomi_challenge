@@ -35,7 +35,8 @@ class ChangeUserPasswordPageViewForms extends StatelessWidget {
             textFormFieldType: TextFormFieldType.password,
           ),
           Spacer(),
-          CustomElevatedButton(label: 'Update Password', onPressed: () {})
+          CustomElevatedButton(label: 'Update Password', onPressed: () {}),
+          const SizedBox(height: 30),
         ],
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/delete_acc_modal_body.dart';
 
@@ -86,9 +88,7 @@ class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
     }
   }
 
-  changePasswordOnTap() {
-    print('CHANGE PASSWORD BUTTON TAPPED');
-  }
+  changePasswordOnTap() => Get.toNamed(RoutesNames.changeUserPasswordPageView);
 
   deleteAccountOnTap() {
     openModalBottomSheet(
