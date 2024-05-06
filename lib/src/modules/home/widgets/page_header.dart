@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/auth_service.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/circle_avatar_profile_image.dart';
+import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
 import 'package:provider/provider.dart';
 
 class HomePageViewHeader extends StatelessWidget {

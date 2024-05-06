@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/circle_avatar_profile_image.dart';
+import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
 
 class MovieCardComments extends StatelessWidget {
   final MovieModel movie;
