@@ -10,7 +10,7 @@ class UserModel {
   String? name;
   String? image;
 
-  bool get hasImage => image != null;
+  bool get hasImage => image != null && image!.isNotEmpty;
 
   UserModel({
     required this.name,
