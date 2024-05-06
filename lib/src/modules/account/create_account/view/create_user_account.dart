@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/view/pages/first_page.dart';
@@ -33,10 +34,10 @@ class _CreateUserAccountPageViewState extends State<CreateUserAccountPageView> {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + 30,
-            bottom: 20,
-            left: 20,
-            right: 20,
+            top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
+            bottom: pageViewDefaultPadding,
+            left: pageViewDefaultPadding,
+            right: pageViewDefaultPadding,
           ),
           child: PageView(
             controller: pageViewController,

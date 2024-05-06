@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
+import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/page_info_text.dart';
 import 'package:loomi_challenge/src/modules/account/forgot_password/widgets/forms.dart';
@@ -22,10 +23,10 @@ class _ForgotPasswordPageViewState extends State<ForgotPasswordPageView> {
         body: Center(
           child: Padding(
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 30,
-              bottom: 20,
-              left: 20,
-              right: 20,
+              top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
+              bottom: pageViewDefaultPadding,
+              left: pageViewDefaultPadding,
+              right: pageViewDefaultPadding,
             ),
             child: Column(
               children: [
