@@ -19,3 +19,7 @@ enum CustomOutlinedButtonType { logout, editProfile }
 enum CustomButtonTileType { changePassword, deleteAccount }
 
 enum UserSettingSectionType { subscription, history }
+
+enum CustomPageViewHeaderType { userSettings, changePassword, editProfile }
+
+enum CustomPageViewTitleType { changePassword, editProfile }
