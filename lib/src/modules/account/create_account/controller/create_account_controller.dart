@@ -5,8 +5,10 @@ import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/services/auth_service.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/repositories/firebase_database_repository/firebase_database_repository.dart';
+import 'package:provider/provider.dart';
 
 class CreateUserAccountController {
   final authRepository = AuthRepository();
@@ -160,7 +162,7 @@ class CreateUserAccountController {
       }
     }
 
-    print(' -- UserData: $userData');
+    Provider.of<AuthService>(Get.context!, listen: false).initUser(userData);
 
     Get.offAllNamed(RoutesNames.HomePageView);
   }
