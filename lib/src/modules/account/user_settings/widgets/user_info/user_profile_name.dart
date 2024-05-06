@@ -18,7 +18,7 @@ class UserSettingsPageViewProfileInfoName extends StatelessWidget {
         ),
         const SizedBox(height: 3),
         Text(
-          user.name,
+          user.name!,
           style: MyAppKColors.userSettingsProfileName(),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

@@ -9,6 +9,9 @@ class UserSettingsPageViewCustomHeaderBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Get.back(),
+      overlayColor: MaterialStateProperty.resolveWith((states) {
+        return Colors.transparent;
+      }),
       child: Icon(
         Icons.arrow_back_ios,
         color: MyAppKColors.kPurpleColor,
