@@ -9,12 +9,15 @@ class UserSettingsPageViewUserProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatarProfileImage(user: user, containerSize: 110),
-        const SizedBox(width: 10),
-        Expanded(child: UserSettingsPageViewProfileInfoName()),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: 30),
+      child: Row(
+        children: [
+          CircleAvatarProfileImage(user: user, containerSize: 110),
+          const SizedBox(width: 10),
+          Expanded(child: UserSettingsPageViewProfileInfoName()),
+        ],
+      ),
     );
   }
 }
