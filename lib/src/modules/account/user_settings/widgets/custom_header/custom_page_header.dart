@@ -7,12 +7,15 @@ class UserSettingsPageViewCustomHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        UserSettingsPageViewCustomHeaderBackButton(),
-        UserSettingsPageViewCustomHeaderEditProfileButton(),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          UserSettingsPageViewCustomHeaderBackButton(),
+          UserSettingsPageViewCustomHeaderEditProfileButton(),
+        ],
+      ),
     );
   }
 }
