@@ -15,6 +15,8 @@ class MyAppKColors {
 
   static const kdarkShadeBlue = Color(0xFF33333F);
 
+  static const kdarkShadeOliveGreen = Color(0xFF574F3E);
+
   static const kOffWhiteColor = Color(0xFFF4F4F4);
   static const kWhiteColor = Color(0xFFFFFFFF);
 
