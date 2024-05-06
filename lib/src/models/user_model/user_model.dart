@@ -6,9 +6,9 @@ part 'user_model.g.dart';
 class UserModel {
   @JsonKey(name: 'user_id')
   final String? id;
-  final String name;
   final String email;
-  final String? image;
+  String name;
+  String? image;
 
   bool get hasImage => image != null;
 
@@ -18,6 +18,14 @@ class UserModel {
     this.id,
     this.image,
   });
+
+  setName(String name) {
+    this.name = name;
+  }
+
+  setImage(String? image) {
+    this.image = image;
+  }
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
