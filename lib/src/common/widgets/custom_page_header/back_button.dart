@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
 
-class UserSettingsPageViewCustomHeaderBackButton extends StatelessWidget {
-  const UserSettingsPageViewCustomHeaderBackButton({super.key});
+class CustomPageViewHeaderBackButton extends StatelessWidget {
+  const CustomPageViewHeaderBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {
