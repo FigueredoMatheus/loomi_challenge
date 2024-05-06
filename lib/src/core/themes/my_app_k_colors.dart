@@ -52,6 +52,14 @@ class MyAppKColors {
     );
   }
 
+  static TextStyle modalBottomSheetTitle() {
+    return GoogleFonts.epilogue(
+      fontSize: 16,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w700,
+    );
+  }
+
   static TextStyle subtitle1() {
     return GoogleFonts.montserrat(
       color: kWhiteColor.withOpacity(0.45),
