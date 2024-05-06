@@ -41,7 +41,10 @@ class CircleAvatarProfileImage extends StatelessWidget {
             ? Container()
             : Text(
                 user.name![0].toUpperCase(),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: containerSize * 0.40,
+                ),
               ),
       ),
     );
