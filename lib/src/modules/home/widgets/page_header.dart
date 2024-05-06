@@ -23,13 +23,14 @@ class HomePageViewHeader extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            child: Center(
-              child: MyAppIcon(),
-            ),
+            child: Center(child: MyAppIcon()),
           ),
           Positioned(
             right: 0,
-            child: CircleAvatarProfileImage(user: loggedUser),
+            child: CircleAvatarProfileImage(
+              user: loggedUser,
+              isFromHomePageViewHeader: true,
+            ),
           ),
         ],
       ),
