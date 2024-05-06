@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loomi_challenge/src/models/user_model/user_model.dart';
 
 class AuthService {
@@ -10,5 +11,11 @@ class AuthService {
 
   initUser(Map<String, dynamic> json) {
     user = UserModel.fromJson(json);
+  }
+
+  Future<void> logout() async {
+    await _auth.signOut();
+    await GoogleSignIn().signOut();
+    user.onLogout();
   }
 }

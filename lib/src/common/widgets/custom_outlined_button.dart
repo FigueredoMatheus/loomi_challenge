@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/services/auth_service.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
+import 'package:provider/provider.dart';
 
-class CustomOutlinedButton extends StatelessWidget {
+class CustomOutlinedButton extends StatefulWidget {
   final CustomOutlinedButtonType buttonType;
 
   const CustomOutlinedButton({super.key, required this.buttonType});
 
+  @override
+  State<CustomOutlinedButton> createState() => _CustomOutlinedButtonState();
+}
+
+class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -36,7 +46,7 @@ class CustomOutlinedButton extends StatelessWidget {
   }
 
   onPressed() {
-    switch (buttonType) {
+    switch (widget.buttonType) {
       case CustomOutlinedButtonType.editProfile:
         return editProfileOnTap();
       case CustomOutlinedButtonType.logout:
@@ -45,8 +55,10 @@ class CustomOutlinedButton extends StatelessWidget {
     }
   }
 
-  logoutOnTap() {
-    print('--- LOGOUT ON TAP');
+  logoutOnTap() async {
+    loadingDialog();
+    await Provider.of<AuthService>(context, listen: false).logout();
+    Get.offAllNamed(RoutesNames.loginPageView);
   }
 
   editProfileOnTap() {
@@ -54,7 +66,7 @@ class CustomOutlinedButton extends StatelessWidget {
   }
 
   Color getButtonColor() {
-    switch (buttonType) {
+    switch (widget.buttonType) {
       case CustomOutlinedButtonType.editProfile:
         return MyAppKColors.kPurpleColor;
       case CustomOutlinedButtonType.logout:
@@ -64,7 +76,7 @@ class CustomOutlinedButton extends StatelessWidget {
   }
 
   String getButtonText() {
-    switch (buttonType) {
+    switch (widget.buttonType) {
       case CustomOutlinedButtonType.editProfile:
         return 'Edit Profile';
       case CustomOutlinedButtonType.logout:

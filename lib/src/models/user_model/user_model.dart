@@ -5,9 +5,9 @@ part 'user_model.g.dart';
 @JsonSerializable()
 class UserModel {
   @JsonKey(name: 'user_id')
-  final String? id;
-  final String email;
-  String name;
+  String? id;
+  String? email;
+  String? name;
   String? image;
 
   bool get hasImage => image != null;
@@ -25,6 +25,13 @@ class UserModel {
 
   setImage(String? image) {
     this.image = image;
+  }
+
+  onLogout() {
+    id = null;
+    email = null;
+    name = null;
+    image = null;
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
