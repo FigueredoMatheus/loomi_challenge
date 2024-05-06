@@ -15,3 +15,5 @@ enum RateMovieOptions { like, dislike, superLike }
 enum SignInMethod { google, emailPass }
 
 enum CustomOutlinedButtonType { logout, editProfile }
+
+enum CustomButtonTileType { changePassword, deleteAccount }
