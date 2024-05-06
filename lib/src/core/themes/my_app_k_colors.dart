@@ -13,6 +13,8 @@ class MyAppKColors {
   static const kGainsboroGrayColor = Color(0xFFD9D9D9);
   static const kOutlinedButtonTextColor = Color(0xFFD9DADE);
 
+  static const kdarkShadeBlue = Color(0xFF33333F);
+
   static const kOffWhiteColor = Color(0xFFF4F4F4);
   static const kWhiteColor = Color(0xFFFFFFFF);
 
@@ -150,6 +152,14 @@ class MyAppKColors {
       fontSize: 26,
       color: kWhiteColor,
       fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle userSettingsCustomButtonTile() {
+    return GoogleFonts.epilogue(
+      fontSize: 16,
+      color: kWhiteColor,
+      fontWeight: FontWeight.w400,
     );
   }
 }
