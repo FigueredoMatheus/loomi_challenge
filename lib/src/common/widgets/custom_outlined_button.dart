@@ -16,7 +16,7 @@ class CustomOutlinedButton extends StatelessWidget {
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(GoogleFonts.epilogue(
           fontSize: 14,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           color: getButtonColor(),
         )),
         backgroundColor: MaterialStateProperty.resolveWith((states) {
