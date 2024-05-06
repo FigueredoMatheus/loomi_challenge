@@ -13,3 +13,5 @@ enum CustomRichTextType { signUp, signIn }
 enum RateMovieOptions { like, dislike, superLike }
 
 enum SignInMethod { google, emailPass }
+
+enum CustomOutlinedButtonType { logout, editProfile }
