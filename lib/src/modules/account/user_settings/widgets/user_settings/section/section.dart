@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/section/history/history_list.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/section/subscription/subscription_card.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/section/section_title.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/section/history/history_list.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/section/subscription/subscription_card.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/section/section_title.dart';
 
 class UserSettingsPageViewSubscriptionSection extends StatelessWidget {
   final UserSettingSectionType sectionType;

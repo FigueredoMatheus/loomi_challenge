@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_outlined_button.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/button_tile/gruped_custom_button_tile.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/custom_header/custom_page_header.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/section/grouped_section.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_info/user_profile_info.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/button_tile/gruped_custom_button_tile.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/custom_header/custom_page_header.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/section/grouped_section.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/user_info/user_profile_info.dart';
 
 class UserSettingsPageView extends StatelessWidget {
   const UserSettingsPageView({super.key});
