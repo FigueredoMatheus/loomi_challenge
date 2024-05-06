@@ -13,7 +13,7 @@ class UserSettingsPageViewUserProfileInfo extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 30),
       child: Row(
         children: [
-          CircleAvatarProfileImage(user: user, containerSize: 110),
+          CircleAvatarProfileImage(user: user, containerSize: 100),
           const SizedBox(width: 10),
           Expanded(child: UserSettingsPageViewProfileInfoName()),
         ],

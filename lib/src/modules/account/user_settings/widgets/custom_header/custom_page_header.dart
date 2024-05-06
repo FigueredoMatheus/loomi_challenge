@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/common/widgets/custom_outlined_button.dart';
+import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/widgets/custom_header/back_button.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/custom_header/edit_profile_button.dart';
 
 class UserSettingsPageViewCustomHeader extends StatelessWidget {
   const UserSettingsPageViewCustomHeader({super.key});
@@ -13,7 +14,8 @@ class UserSettingsPageViewCustomHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           UserSettingsPageViewCustomHeaderBackButton(),
-          UserSettingsPageViewCustomHeaderEditProfileButton(),
+          CustomOutlinedButton(
+              buttonType: CustomOutlinedButtonType.editProfile),
         ],
       ),
     );

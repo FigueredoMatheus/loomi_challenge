@@ -165,7 +165,7 @@ class MyAppKColors {
 
   static TextStyle userSettingsProfileName() {
     return GoogleFonts.epilogue(
-      fontSize: 26,
+      fontSize: 24,
       color: kWhiteColor,
       fontWeight: FontWeight.w700,
     );

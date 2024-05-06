@@ -12,13 +12,15 @@ class CustomOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(getButtonText()),
-      style: ButtonStyle(
-        textStyle: MaterialStateProperty.all(GoogleFonts.epilogue(
+      child: Text(
+        getButtonText(),
+        style: GoogleFonts.epilogue(
           fontSize: 14,
           fontWeight: FontWeight.w500,
           color: getButtonColor(),
-        )),
+        ),
+      ),
+      style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith((states) {
           return Colors.transparent;
         }),
