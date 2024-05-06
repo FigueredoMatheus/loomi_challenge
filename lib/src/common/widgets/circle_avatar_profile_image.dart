@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_k_colors.dart';
@@ -32,13 +33,16 @@ class CircleAvatarProfileImage extends StatelessWidget {
         decoration: BoxDecoration(
           color: getContainerBgColor(),
           shape: BoxShape.circle,
-          image: user.hasImage
-              ? DecorationImage(image: NetworkImage(user.image!))
-              : null,
         ),
         alignment: Alignment.center,
         child: user.hasImage
-            ? Container()
+            ? CustomShowImageWidget(
+                imagePath: user.image!,
+                bottomLeftRadius: containerSize,
+                bottomRightRadius: containerSize,
+                topLeftRadius: containerSize,
+                topRightRadius: containerSize,
+              )
             : Text(
                 user.name![0].toUpperCase(),
                 style: TextStyle(
