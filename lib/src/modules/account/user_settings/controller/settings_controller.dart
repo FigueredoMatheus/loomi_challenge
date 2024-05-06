@@ -9,6 +9,8 @@ class SettingsController {
     setImage(json['image']);
   }
 
+  onUpdate() {}
+
   setName(String? text) {
     name = text;
   }
