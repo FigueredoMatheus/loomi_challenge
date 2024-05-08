@@ -34,21 +34,20 @@ class CreateUserAccountController {
   }
 
   signUpAccount(SignInMethod signInMethod) async {
-    final validatorMessage =
-        TextFieldValidatorsHelper().validadeRegisterUserFields(
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      name: name,
+    final message = TextFieldValidatorsHelper().validateFields(
+      email: email ?? '',
+      password: password ?? '',
+      confirmPassword: confirmPassword ?? '',
+      name: name ?? '',
+      isCreateAccount: true,
     );
 
-    if (validatorMessage != null) {
-      MyAppSnackBar(message: validatorMessage, snackBarType: SnackBarType.fail)
-        ..show();
+    if (message != null) {
+      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
       return;
     }
 
-    AuthService().signUpAccount(toJson());
+    AuthService().signUpAccountService(toJson());
   }
 
   nextPage() {

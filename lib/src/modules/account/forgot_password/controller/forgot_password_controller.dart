@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 
 class ForgotPasswordController {
@@ -49,13 +48,13 @@ class ForgotPasswordController {
   }
 
   String? validatorFields() {
-    String? message;
+    // String? message;
 
-    message = TextFieldValidatorsHelper.emailValidator(email);
+    // message = TextFieldValidatorsHelper.emailValidator(email);
 
-    if (message != null) {
-      return message;
-    }
+    // if (message != null) {
+    //   return message;
+    // }
 
     return null;
   }

@@ -11,7 +11,26 @@ import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository
 import 'package:provider/provider.dart';
 
 class AuthService {
-  signUpAccount(Map<String, dynamic> data) async {
+  signInUserService(Map<String, dynamic> credentials) async {
+    loadingDialog();
+
+    try {
+      final response = await getIt<AuthRepository>().loginUser(credentials);
+
+      Provider.of<AuthService>(Get.context!, listen: false)
+          .initUser(response.userEntity.toJson());
+
+      print('--- user: ${user.toJson()}');
+      Get.offAllNamed(RoutesNames.homePageView);
+    } on DioException catch (exception) {
+      Get.back();
+      final exceptionModel = DioExceptionHelper().getException(exception);
+
+      exceptionWarning(exceptionModel);
+    }
+  }
+
+  signUpAccountService(Map<String, dynamic> data) async {
     loadingDialog();
 
     try {
@@ -19,6 +38,8 @@ class AuthService {
 
       Provider.of<AuthService>(Get.context!, listen: false)
           .initUser(response.userEntity.toJson());
+
+      print('--- user: ${user.toJson()}');
 
       Get.offAllNamed(RoutesNames.homePageView);
     } on DioException catch (exception) {

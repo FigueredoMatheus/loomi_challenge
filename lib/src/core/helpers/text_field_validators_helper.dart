@@ -1,45 +1,50 @@
 import 'package:email_validator/email_validator.dart';
 
 class TextFieldValidatorsHelper {
-  String? validadeRegisterUserFields({
-    required String? email,
-    required String? password,
-    required String? confirmPassword,
-    required String? name,
+  String? validateFields({
+    String? email,
+    String? password,
+    String? confirmPassword,
+    String? name,
+    bool isCreateAccount = false,
   }) {
     String? message;
 
-    message = emailValidator(email);
-
-    if (message != null) {
-      return message;
+    if (email != null) {
+      message = _emailValidator(email);
+      if (message != null) {
+        return message;
+      }
     }
 
-    message = passwordValidator(password);
-
-    if (message != null) {
-      return message;
+    if (password != null) {
+      message = _passwordValidator(
+        password,
+        isCreateAccount: isCreateAccount,
+      );
+      if (message != null) {
+        return message;
+      }
     }
 
-    message = TextFieldValidatorsHelper.confirmPasswordValidator(
-      confirmPassword,
-      password!,
-    );
-
-    if (message != null) {
-      return message;
+    if (confirmPassword != null) {
+      message = _confirmPasswordValidator(confirmPassword, password!);
+      if (message != null) {
+        return message;
+      }
     }
 
-    message = TextFieldValidatorsHelper.nameValidator(name);
-
-    if (message != null) {
-      return message;
+    if (name != null) {
+      message = _nameValidator(name);
+      if (message != null) {
+        return message;
+      }
     }
 
     return null;
   }
 
-  static String? emailValidator(String? text) {
+  static String? _emailValidator(String? text) {
     if (text == null || text.isEmpty) {
       return 'Email is required ';
     }
@@ -52,21 +57,24 @@ class TextFieldValidatorsHelper {
     return null;
   }
 
-  static String? passwordValidator(String? text) {
+  static String? _passwordValidator(
+    String? text, {
+    required bool isCreateAccount,
+  }) {
     if (text == null || text.isEmpty) {
       return 'Password is required';
     }
 
     final bool isValid = text.length >= 8;
 
-    if (!isValid) {
+    if (!isValid && isCreateAccount) {
       return 'Password too short';
     }
 
     return null;
   }
 
-  static String? confirmPasswordValidator(String? text, String password) {
+  static String? _confirmPasswordValidator(String? text, String password) {
     if (text == null || text.isEmpty) {
       return 'Confirm your password for security.';
     }
@@ -80,7 +88,7 @@ class TextFieldValidatorsHelper {
     return null;
   }
 
-  static String? nameValidator(String? text) {
+  static String? _nameValidator(String? text) {
     if (text == null || text.isEmpty) {
       return 'Name is required';
     }

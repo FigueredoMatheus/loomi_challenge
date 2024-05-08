@@ -50,6 +50,35 @@ class _AuthRepository implements AuthRepository {
   }
 
   @override
+  Future<UserRegisterResponse> loginUser(
+      Map<String, dynamic> credentials) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(credentials);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UserRegisterResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/auth/local',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UserRegisterResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<dynamic> googleSignIn() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
