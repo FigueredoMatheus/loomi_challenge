@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
@@ -54,8 +53,8 @@ class AuthService {
   }
 
   Future<void> logout() async {
-    await _auth.signOut();
-    await GoogleSignIn().signOut();
     user.onLogout();
+    loadingDialog();
+    Get.offAllNamed(RoutesNames.loginPageView);
   }
 }

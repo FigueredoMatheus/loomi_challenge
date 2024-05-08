@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/auth_service.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:provider/provider.dart';
 
 class CustomOutlinedButton extends StatefulWidget {
   final CustomOutlinedButtonType buttonType;
@@ -55,11 +53,7 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
     }
   }
 
-  logoutOnTap() async {
-    loadingDialog();
-    await Provider.of<AuthService>(context, listen: false).logout();
-    Get.offAllNamed(RoutesNames.loginPageView);
-  }
+  logoutOnTap() => AuthService().logout();
 
   editProfileOnTap() => Get.toNamed(RoutesNames.editProfilePageView);
 
