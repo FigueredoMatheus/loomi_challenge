@@ -25,7 +25,7 @@ class AuthService {
     } on DioException catch (exception) {
       Get.back();
 
-      final exceptionModel = DioExceptionHelper().getException(exception.type);
+      final exceptionModel = DioExceptionHelper().getException(exception);
 
       exceptionWarning(exceptionModel);
     }
