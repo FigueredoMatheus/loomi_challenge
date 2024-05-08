@@ -1,29 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:loomi_challenge/src/core/helpers/handle_firebase_exceptions_helper.dart';
+import 'package:dio/dio.dart' hide Headers;
+import 'package:loomi_challenge/src/models/response/user_response/user_register_response.dart';
+import 'package:retrofit/retrofit.dart';
 
-part 'create_account_email_pass.dart';
-part 'login_use_email_pass.dart';
-part 'send_password_reset_email.dart';
-part 'google_sign_in.dart';
+part 'auth_repository.g.dart';
 
-class AuthRepository {
-  Future<Map<String, dynamic>> createUserEmailPass({
-    required String email,
-    required String password,
-  }) async =>
-      implCreateUserEmailPass(email: email, password: password);
+@RestApi(baseUrl: 'https://untold-strapi.api.stage.loomi.com.br/api')
+abstract class AuthRepository {
+  factory AuthRepository(Dio dio, {String baseUrl}) = _AuthRepository;
 
-  Future<Map<String, dynamic>> loginUserEmailPass({
-    required String email,
-    required String password,
-  }) async =>
-      implLoginUserEmailPass(email: email, password: password);
-
-  Future<Map<String, dynamic>> sendPasswordResetEmail({
-    required String email,
-  }) async =>
-      implSendPasswordResetEmail(email: email);
-
-  Future<UserCredential> googleSignIn() async => implGoogleSignIn();
+  @POST('/auth/local/register')
+  Future<UserRegisterResponse> registerUser(
+      @Body() Map<String, dynamic> userData);
 }
