@@ -4,15 +4,12 @@ import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
-import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 
 class ForgotPasswordController {
-  final authRepository = AuthRepository();
   String? email;
 
-  Future<Map<String, dynamic>> _SendPasswordResetEmail() {
-    final sendEmailResponse =
-        authRepository.sendPasswordResetEmail(email: email!);
+  Future<Map<String, dynamic>> _SendPasswordResetEmail() async {
+    final sendEmailResponse = <String, dynamic>{}; // TODO
 
     return sendEmailResponse;
   }

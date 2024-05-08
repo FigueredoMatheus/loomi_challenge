@@ -31,6 +31,18 @@ class AuthService {
     }
   }
 
+  googleSignInService() async {
+    try {
+      final response = await getIt<AuthRepository>().googleSignIn();
+
+      print('--- Response: $response');
+    } on DioException catch (exception) {
+      final exceptionModel = DioExceptionHelper().getException(exception);
+
+      exceptionWarning(exceptionModel);
+    }
+  }
+
   static final _auth = FirebaseAuth.instance;
 
   bool get isUserLoggedIn => _auth.currentUser != null;
@@ -46,22 +58,4 @@ class AuthService {
     await GoogleSignIn().signOut();
     user.onLogout();
   }
-  /*
-
-  Future<UserCredential> implGoogleSignIn() async {
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
-
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
-
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
-
-
-  */
 }

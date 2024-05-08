@@ -5,20 +5,18 @@ import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/auth_service.dart';
-import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/repositories/firebase_database_repository/firebase_database_repository.dart';
 import 'package:provider/provider.dart';
 
 class LoginController {
-  final authRepository = AuthRepository();
   final firebaseDatabaseRepository = FirebaseDatabaseRepository();
 
   String? email;
   String? password;
 
   Future<Map<String, dynamic>> _loginUser() async {
-    final responseLoginUser = await authRepository.loginUserEmailPass(
-        email: email ?? '', password: password ?? '');
+    final responseLoginUser = <String, dynamic>{}; // TODO
+
     if (!responseLoginUser['success']) {
       return responseLoginUser;
     }

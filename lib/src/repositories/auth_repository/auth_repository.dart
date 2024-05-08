@@ -11,4 +11,7 @@ abstract class AuthRepository {
   @POST('/auth/local/register')
   Future<UserRegisterResponse> registerUser(
       @Body() Map<String, dynamic> userData);
+
+  @GET('/connect/google')
+  Future googleSignIn();
 }
