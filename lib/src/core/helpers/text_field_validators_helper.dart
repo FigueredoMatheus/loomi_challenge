@@ -1,6 +1,44 @@
 import 'package:email_validator/email_validator.dart';
 
 class TextFieldValidatorsHelper {
+  String? validadeRegisterUserFeilds({
+    required String? email,
+    required String? password,
+    required String? confirmPassword,
+    required String? name,
+  }) {
+    String? message;
+
+    message = emailValidator(email);
+
+    if (message != null) {
+      return message;
+    }
+
+    message = passwordValidator(password);
+
+    if (message != null) {
+      return message;
+    }
+
+    message = TextFieldValidatorsHelper.confirmPasswordValidator(
+      confirmPassword,
+      password!,
+    );
+
+    if (message != null) {
+      return message;
+    }
+
+    message = TextFieldValidatorsHelper.nameValidator(name);
+
+    if (message != null) {
+      return message;
+    }
+
+    return null;
+  }
+
   static String? emailValidator(String? text) {
     if (text == null || text.isEmpty) {
       return 'Email is required ';
