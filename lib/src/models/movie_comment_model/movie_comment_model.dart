@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:loomi_challenge/src/models/user_model/user_model.dart';
+import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
 part 'movie_comment_model.g.dart';
 
@@ -7,7 +7,7 @@ part 'movie_comment_model.g.dart';
 class MovieCommentModel {
   String? id;
   final String comment;
-  final UserModel user;
+  final UserEntity user;
   @JsonKey(name: 'create_at')
   final DateTime createAt;
   final int replies;

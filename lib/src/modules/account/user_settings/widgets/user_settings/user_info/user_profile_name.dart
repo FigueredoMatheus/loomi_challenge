@@ -23,7 +23,7 @@ class UserSettingsPageViewProfileInfoName extends StatelessWidget {
         ),
         const SizedBox(height: 3),
         Text(
-          loggedUser.name!,
+          loggedUser.username,
           style: MyThemes.get().epilogueStyle.copyWith(
                 color: MyThemes.get().kWhiteColor,
                 fontSize: 24,

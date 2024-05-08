@@ -1,16 +1,18 @@
 import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
 import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
-import 'package:loomi_challenge/src/models/user_model/user_model.dart';
+import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
-final user = UserModel.fromJson({
-  'name': 'Matheus Figueredo',
+final user = UserEntity.fromJson({
+  'username': 'Matheus Figueredo',
   'email': 'matheus@gmail.com',
+  'confirmed': false,
   'image': 'https://randomuser.me/api/portraits/men/35.jpg',
 });
 
-final user1 = UserModel.fromJson({
+final user1 = UserEntity.fromJson({
   'name': 'Carlos Jose',
   'email': 'matheus@gmail.com',
+  'confirmed': false,
   'image': '',
 });
 
@@ -18,8 +20,9 @@ final movieComment = MovieCommentModel.fromJson({
   'comment':
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
   'user': <String, dynamic>{
-    'name': 'Matheus Figueredo',
+    'username': 'Matheus Figueredo',
     'email': 'matheus@gmail.com',
+    'confirmed': false,
     'image': 'https://randomuser.me/api/portraits/men/35.jpg',
   },
   'create_at': DateTime.now().toString(),
@@ -37,8 +40,9 @@ final movie = MovieModel.fromJson({
       'comment':
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
       'user': {
-        'name': 'Matheus Figueredo',
+        'username': 'Matheus Figueredo',
         'email': 'matheus@gmail.com',
+        'confirmed': false,
         'image': 'https://randomuser.me/api/portraits/men/35.jpg',
       },
       'create_at': DateTime.now().toString(),

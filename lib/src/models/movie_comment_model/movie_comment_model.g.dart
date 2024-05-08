@@ -9,7 +9,7 @@ part of 'movie_comment_model.dart';
 MovieCommentModel _$MovieCommentModelFromJson(Map<String, dynamic> json) =>
     MovieCommentModel(
       comment: json['comment'] as String,
-      user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      user: UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       createAt: DateTime.parse(json['create_at'] as String),
       replies: (json['replies'] as num).toInt(),
     )..id = json['id'] as String?;

@@ -4,10 +4,10 @@ import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/user_model/user_model.dart';
+import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
 class CircleAvatarProfileImage extends StatefulWidget {
-  final UserModel user;
+  final UserEntity user;
   final double containerSize;
   final bool isFromHomePageViewHeader;
 
@@ -50,7 +50,7 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
                 topRightRadius: widget.containerSize,
               )
             : Text(
-                widget.user.name![0].toUpperCase(),
+                widget.user.username[0].toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: widget.containerSize * 0.40,
@@ -61,7 +61,7 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
   }
 
   Color getContainerBgColor() {
-    switch (widget.user.name![0].toUpperCase()) {
+    switch (widget.user.username[0].toUpperCase()) {
       case 'J':
         return MyThemes.get().kUserProfileImgeBgColorJ;
       case 'L':
