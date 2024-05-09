@@ -1,5 +1,5 @@
+import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
-import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
 import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
 final user = UserEntity.fromJson({
@@ -29,12 +29,12 @@ final movieComment = MovieCommentModel.fromJson({
   'replies': 10,
 });
 
-final movie = MovieModel.fromJson({
+final movie = MovieEntity.fromJson({
   'title': 'Barbie',
-  'sinopse':
+  'synopsis':
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-  'genre': ['Musical'],
-  'expires_date': DateTime.now().toString(),
+  'genre': 'Musical',
+  'end_date': DateTime.now().toString(),
   'comments': [
     <String, dynamic>{
       'comment':

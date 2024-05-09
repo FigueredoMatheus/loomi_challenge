@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MovieCardBottomShareMovieWidget extends StatefulWidget {
-  final MovieModel movie;
+  final MovieEntity movie;
   const MovieCardBottomShareMovieWidget({super.key, required this.movie});
 
   @override

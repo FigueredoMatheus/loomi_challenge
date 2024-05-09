@@ -1,28 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movie_model.dart';
+part of 'movie_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
+MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       title: json['title'] as String,
-      sinopse: json['sinopse'] as String,
-      genreList:
-          (json['genre'] as List<dynamic>).map((e) => e as String).toList(),
-      expiresDate: DateTime.parse(json['expires_date'] as String),
+      endDate: DateTime.parse(json['end_date'] as String),
+      genre: json['genre'] as String,
+      id: json['id'] as String?,
+      synopsis: json['synopsis'] as String,
       comments: (json['comments'] as List<dynamic>)
           .map((e) => MovieCommentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-    )..id = json['id'] as String?;
+    );
 
-Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
+Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'sinopse': instance.sinopse,
-      'genre': instance.genreList,
-      'expires_date': instance.expiresDate.toIso8601String(),
+      'synopsis': instance.synopsis,
+      'genre': instance.genre,
+      'end_date': instance.endDate.toIso8601String(),
       'comments': instance.comments,
     };

@@ -1,17 +1,16 @@
 import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'movie_model.g.dart';
+part 'movie_entity.g.dart';
 
 @JsonSerializable()
-class MovieModel {
+class MovieEntity {
   String? id;
   final String title;
-  final String sinopse;
-  @JsonKey(name: 'genre')
-  final List<String> genreList;
-  @JsonKey(name: 'expires_date')
-  final DateTime expiresDate;
+  final String synopsis;
+  final String genre;
+  @JsonKey(name: 'end_date')
+  final DateTime endDate;
   final List<MovieCommentModel> comments;
 
   int get numberOfComments => comments.length;
@@ -20,16 +19,17 @@ class MovieModel {
       comments.reduce((value, element) =>
           value.createAt.isAfter(element.createAt) ? value : element);
 
-  MovieModel({
+  MovieEntity({
     required this.title,
-    required this.sinopse,
-    required this.genreList,
-    required this.expiresDate,
+    required this.endDate,
+    required this.genre,
+    required this.id,
+    required this.synopsis,
     required this.comments,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) =>
-      _$MovieModelFromJson(json);
+  factory MovieEntity.fromJson(Map<String, dynamic> json) =>
+      _$MovieEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MovieModelToJson(this);
+  Map<String, dynamic> toJson() => _$MovieEntityToJson(this);
 }

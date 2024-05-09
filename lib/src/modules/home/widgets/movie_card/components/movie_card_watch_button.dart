@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
-import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 
 class MovieCardWatchButton extends StatelessWidget {
-  final MovieModel movie;
+  final MovieEntity movie;
 
   const MovieCardWatchButton({super.key, required this.movie});
 
@@ -12,7 +12,7 @@ class MovieCardWatchButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0, bottom: 20),
       child: Align(
-        child: CustomElevatedButton(label: 'Watch', onPressed: () {}),
+        child: CustomElevatedButton(label: 'Watch', onPressed: () async {}),
         alignment: Alignment.center,
       ),
     );

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/utils/extensions/date_extension.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 
 class MovieCardBottomMovieExpiresDate extends StatelessWidget {
-  final MovieModel movie;
+  final MovieEntity movie;
 
   const MovieCardBottomMovieExpiresDate({super.key, required this.movie});
 
@@ -20,7 +20,7 @@ class MovieCardBottomMovieExpiresDate extends StatelessWidget {
             ),
         children: [
           TextSpan(
-            text: movie.expiresDate.monthDayYearFormt(),
+            text: movie.endDate.monthDayYearFormt(),
             style: MyThemes.get().epilogueStyle.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,

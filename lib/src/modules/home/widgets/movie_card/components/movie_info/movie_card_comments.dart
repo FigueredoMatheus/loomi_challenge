@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
 
 class MovieCardComments extends StatelessWidget {
-  final MovieModel movie;
+  final MovieEntity movie;
 
   const MovieCardComments({super.key, required this.movie});
 

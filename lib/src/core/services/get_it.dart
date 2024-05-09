@@ -5,6 +5,7 @@ import 'package:loomi_challenge/src/modules/account/forgot_password/controller/f
 import 'package:loomi_challenge/src/modules/account/login/controller/login_controller.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
+import 'package:loomi_challenge/src/repositories/movie_repository/movie_repository.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -14,6 +15,11 @@ void setupGetItClasses() {
   getIt.registerLazySingleton(() => ForgotPasswordController());
   getIt.registerLazySingleton(() => SettingsController());
   getIt.registerLazySingleton(() => AuthRepository(Dio(BaseOptions(
+        contentType: 'application/json',
+        connectTimeout: Duration(seconds: 10),
+        receiveTimeout: Duration(seconds: 10),
+      ))));
+  getIt.registerLazySingleton(() => MovieRepository(Dio(BaseOptions(
         contentType: 'application/json',
         connectTimeout: Duration(seconds: 10),
         receiveTimeout: Duration(seconds: 10),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/movie_model/movie_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/custom_rate_pop_up_menu.dart';
 
 class MovieCardBottomRateMovieWidget extends StatefulWidget {
-  final MovieModel movie;
+  final MovieEntity movie;
 
   const MovieCardBottomRateMovieWidget({super.key, required this.movie});
 
