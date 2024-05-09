@@ -12,15 +12,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  bloc: ^8.1.4
   cached_network_image: ^3.3.1
   cloud_firestore: ^4.15.8
   custom_pop_up_menu: ^1.2.4
   dio: ^5.4.3+1
   email_validator: ^2.1.17
+  equatable: ^2.0.5
   file_picker: 8.0.0+1
   firebase_auth: ^4.17.8
   firebase_core: ^2.27.0
   firebase_storage: ^11.7.4
+  flutter_bloc: ^8.1.5
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
   get_it: ^7.6.7
