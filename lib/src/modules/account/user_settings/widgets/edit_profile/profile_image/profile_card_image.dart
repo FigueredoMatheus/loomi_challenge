@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
-import 'package:loomi_challenge/src/core/data/temp_file.dart';
+import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
+import 'package:provider/provider.dart';
 
 class EditProfilePageViewCustomProfileCardImage extends StatelessWidget {
   const EditProfilePageViewCustomProfileCardImage({super.key});
@@ -13,6 +14,8 @@ class EditProfilePageViewCustomProfileCardImage extends StatelessWidget {
     final imageContainerSize = containerSize * 0.95;
     final cameraIconContainerSize = containerSize * 0.40;
     final cameraIconSize = containerSize * 0.80;
+
+    final user = Provider.of<UserProvider>(context).user;
     return Container(
       width: containerSize,
       height: containerSize,
