@@ -34,6 +34,10 @@ final movie = MovieEntity.fromJson({
   'synopsis':
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
   'genre': 'Musical',
+  'stream_link':
+      "https://github.com/ItaloDias-stack/demo-videos/blob/main/9th_may_compressed.mp4?raw=true",
+  'poster_image':
+      'https://untold-strapi-stage.s3.amazonaws.com/profile_picutre_102f6bdde5.jpg',
   'end_date': DateTime.now().toString(),
   'comments': [
     <String, dynamic>{

@@ -11,9 +11,15 @@ class MovieEntity {
   final String genre;
   @JsonKey(name: 'end_date')
   final DateTime endDate;
+  @JsonKey(name: 'stream_link')
+  final String streamLink;
+  @JsonKey(name: 'poster_image')
+  final String posterImage;
   final List<MovieCommentModel> comments;
 
   int get numberOfComments => comments.length;
+
+  bool get hasComment => comments.isNotEmpty;
 
   MovieCommentModel get mostRecenteComment =>
       comments.reduce((value, element) =>
@@ -25,6 +31,8 @@ class MovieEntity {
     required this.genre,
     required this.id,
     required this.synopsis,
+    required this.posterImage,
+    required this.streamLink,
     required this.comments,
   });
 

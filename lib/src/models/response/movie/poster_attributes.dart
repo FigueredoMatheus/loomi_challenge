@@ -8,14 +8,16 @@ class PosterAttributesResponse {
   final double size;
   final double height;
   final double width;
-  final String url;
+  @JsonKey(name: 'url')
+  final String posterImage;
 
-  PosterAttributesResponse(
-      {required this.ext,
-      required this.size,
-      required this.height,
-      required this.width,
-      required this.url});
+  PosterAttributesResponse({
+    required this.ext,
+    required this.size,
+    required this.height,
+    required this.width,
+    required this.posterImage,
+  });
 
   factory PosterAttributesResponse.fromJson(Map<String, dynamic> json) =>
       _$PosterAttributesResponseFromJson(json);

@@ -13,7 +13,7 @@ PosterAttributesResponse _$PosterAttributesResponseFromJson(
       size: (json['size'] as num).toDouble(),
       height: (json['height'] as num).toDouble(),
       width: (json['width'] as num).toDouble(),
-      url: json['url'] as String,
+      posterImage: json['url'] as String,
     );
 
 Map<String, dynamic> _$PosterAttributesResponseToJson(
@@ -23,5 +23,5 @@ Map<String, dynamic> _$PosterAttributesResponseToJson(
       'size': instance.size,
       'height': instance.height,
       'width': instance.width,
-      'url': instance.url,
+      'url': instance.posterImage,
     };

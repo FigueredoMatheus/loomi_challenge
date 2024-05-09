@@ -12,6 +12,8 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       genre: json['genre'] as String,
       id: json['id'] as String?,
       synopsis: json['synopsis'] as String,
+      posterImage: json['poster_image'] as String,
+      streamLink: json['stream_link'] as String,
       comments: (json['comments'] as List<dynamic>)
           .map((e) => MovieCommentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -24,5 +26,7 @@ Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
       'synopsis': instance.synopsis,
       'genre': instance.genre,
       'end_date': instance.endDate.toIso8601String(),
+      'stream_link': instance.streamLink,
+      'poster_image': instance.posterImage,
       'comments': instance.comments,
     };

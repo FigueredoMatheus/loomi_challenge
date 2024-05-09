@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/helpers/extensions/on_string_extension.dart';
-import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class CustomShowImageWidget extends StatelessWidget {
   final String imagePath;
@@ -37,27 +34,12 @@ class CustomShowImageWidget extends StatelessWidget {
   }
 
   CachedNetworkImage showNetworkImage() {
-    return CachedNetworkImage(
-      imageUrl: imagePath,
-      progressIndicatorBuilder: (context, url, downloadProgress) {
-        return SizedBox(
-          height: 10,
-          width: 10,
-          child: Center(
-            child: CircularProgressIndicator(
-              value: downloadProgress.progress,
-              strokeWidth: 1,
-              color: MyThemes.get().kPurpleColor,
-            ),
-          ),
-        );
-      },
-    );
+    return CachedNetworkImage(imageUrl: imagePath);
   }
 
   Image showFileImage() {
-    return Image.file(
-      File(imagePath),
+    return Image.asset(
+      imagePath,
       fit: BoxFit.cover,
     );
   }

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/card_bottom/card_bottom.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/movie_info/movice_card_sinopse.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/movie_info/movie_card_comments.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/movie_info/movie_card_genre.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/movie_info/movie_card_title.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/movie_card_watch_button.dart';
-import 'package:loomi_challenge/src/modules/home/widgets/movie_card/components/switcher_movie_media.dart';
+import 'package:loomi_challenge/src/modules/home/bloc/bloc/home_page_bloc.dart';
+import 'package:loomi_challenge/src/modules/home/widgets/movie_body.dart';
 
-class HomePageViewMovieCard extends StatelessWidget {
-  final MovieEntity movie;
+class HomePageViewMovieCard extends StatefulWidget {
+  const HomePageViewMovieCard({super.key});
 
-  const HomePageViewMovieCard({super.key, required this.movie});
+  @override
+  State<HomePageViewMovieCard> createState() => _HomePageViewMovieCardState();
+}
+
+class _HomePageViewMovieCardState extends State<HomePageViewMovieCard> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomePageBloc>().add(LoadMovieEvent(movieId: 1));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,31 +45,24 @@ class HomePageViewMovieCard extends StatelessWidget {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(22),
               ),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  MovieCardSwitcherMovieMedia(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            MovieCardGenre(genre: movie.genre),
-                            MovieCardTitle(title: movie.title),
-                            MovieCardSynopse(synopsis: movie.synopsis),
-                            MovieCardComments(movie: movie),
-                            MovieCardWatchButton(movie: movie),
-                          ],
-                        ),
-                      ),
-                      MovieCardBottom(movie: movie),
-                    ],
-                  ),
-                ],
+              child: BlocBuilder<HomePageBloc, HomePageState>(
+                builder: (context, state) {
+                  if (state is LoadingMovieState) {
+                    return HomePageViewMovieCardBody();
+                  }
+
+                  if (state is SuccessOnLoadingMovieState) {
+                    return HomePageViewMovieCardBody(movie: state.movie);
+                  }
+
+                  if (state is FailOnLoadingMovieState) {
+                    return Center(
+                      child: Text(state.exception.title),
+                    );
+                  }
+
+                  return Container();
+                },
               ),
             ),
           ),
