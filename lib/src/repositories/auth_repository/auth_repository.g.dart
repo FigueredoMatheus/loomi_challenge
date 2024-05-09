@@ -47,15 +47,14 @@ class _AuthRepository implements AuthRepository {
   }
 
   @override
-  Future<UserRegisterResponse> registerUser(
-      Map<String, dynamic> userData) async {
+  Future<UserResponse> registerUser(Map<String, dynamic> userData) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(userData);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserRegisterResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UserResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -71,20 +70,19 @@ class _AuthRepository implements AuthRepository {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UserRegisterResponse.fromJson(_result.data!);
+    final value = UserResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<UserRegisterResponse> loginUser(
-      Map<String, dynamic> credentials) async {
+  Future<UserResponse> loginUser(Map<String, dynamic> credentials) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(credentials);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserRegisterResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UserResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -100,7 +98,7 @@ class _AuthRepository implements AuthRepository {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UserRegisterResponse.fromJson(_result.data!);
+    final value = UserResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -119,6 +117,37 @@ class _AuthRepository implements AuthRepository {
         .compose(
           _dio.options,
           '/auth/forgot-password',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data;
+    return value;
+  }
+
+  @override
+  Future<dynamic> changeUserPassword(
+    String authToken,
+    Map<String, dynamic> data,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': authToken};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/auth/change-password',
           queryParameters: queryParameters,
           data: _data,
         )

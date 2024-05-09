@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart' hide Headers;
-import 'package:loomi_challenge/src/models/response/user_response/user_register_response.dart';
+import 'package:loomi_challenge/src/models/response/user_response/user_response.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,13 +13,17 @@ abstract class AuthRepository {
   Future googleSignIn();
 
   @POST('/auth/local/register')
-  Future<UserRegisterResponse> registerUser(
-      @Body() Map<String, dynamic> userData);
+  Future<UserResponse> registerUser(@Body() Map<String, dynamic> userData);
 
   @POST('/auth/local')
-  Future<UserRegisterResponse> loginUser(
-      @Body() Map<String, dynamic> credentials);
+  Future<UserResponse> loginUser(@Body() Map<String, dynamic> credentials);
 
   @POST('/auth/forgot-password')
   Future forgotUserPassword(@Body() Map<String, dynamic> credentials);
+
+  @POST('/auth/change-password')
+  Future changeUserPassword(
+    @Header('Authorization') String authToken,
+    @Body() Map<String, dynamic> data,
+  );
 }

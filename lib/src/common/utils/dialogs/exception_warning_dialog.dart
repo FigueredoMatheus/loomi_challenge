@@ -8,9 +8,9 @@ exceptionWarning(DioExceptionModel exception) {
     title: exception.title,
     middleText: exception.message,
     backgroundColor: MyThemes.get().kVeryDarkGrayColor,
-    titleStyle: MyThemes.get().epilogueStyle.copyWith(fontSize: 14),
+    titleStyle: MyThemes.get().epilogueStyle.copyWith(fontSize: 16),
     middleTextStyle: MyThemes.get().montserratStyle.copyWith(
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: FontWeight.w400,
         color: MyThemes.get().kWhiteColor.withOpacity(0.45)),
     titlePadding: const EdgeInsets.only(top: 15),

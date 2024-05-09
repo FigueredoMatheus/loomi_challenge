@@ -1,21 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
-part 'user_register_response.g.dart';
+part 'user_response.g.dart';
 
 @JsonSerializable()
-class UserRegisterResponse {
+class UserResponse {
+  @JsonKey(name: 'jwt')
   String jwt;
   @JsonKey(name: 'user')
   UserEntity userEntity;
 
-  UserRegisterResponse({
+  UserResponse({
     required this.userEntity,
     required this.jwt,
   });
 
-  factory UserRegisterResponse.fromJson(Map<String, dynamic> json) =>
-      _$UserRegisterResponseFromJson(json);
+  factory UserResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserRegisterResponseToJson(this);
+  Map<String, dynamic> toJson() => _$UserResponseToJson(this);
 }

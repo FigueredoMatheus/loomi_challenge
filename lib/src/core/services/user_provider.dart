@@ -14,8 +14,9 @@ class UserProvider extends ChangeNotifier {
 
   Map<String, dynamic> get userData => user.toJson();
 
-  initUser(Map<String, dynamic> data) {
+  initUser(Map<String, dynamic> data, String jwt) {
     user = UserEntity.fromJson(data);
+    user.setJwt(jwt);
   }
 
   setUsername(String text) {

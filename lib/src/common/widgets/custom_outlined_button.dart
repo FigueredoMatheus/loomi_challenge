@@ -55,7 +55,7 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   }
 
   logoutOnTap() {
-    Provider.of<UserProvider>(context).logout();
+    Provider.of<UserProvider>(context, listen: false).logout();
     Get.offAllNamed(RoutesNames.loginPageView);
   }
 

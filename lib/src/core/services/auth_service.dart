@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/alert_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
@@ -16,8 +17,10 @@ class AuthService {
     try {
       final response = await getIt<AuthRepository>().loginUser(credentials);
 
-      Provider.of<UserProvider>(Get.context!, listen: false)
-          .initUser(response.userEntity.toJson());
+      Provider.of<UserProvider>(Get.context!, listen: false).initUser(
+        response.userEntity.toJson(),
+        response.jwt,
+      );
 
       Get.offAllNamed(RoutesNames.homePageView);
     } on DioException catch (exception) {
@@ -34,8 +37,10 @@ class AuthService {
     try {
       final response = await getIt<AuthRepository>().registerUser(data);
 
-      Provider.of<UserProvider>(Get.context!, listen: false)
-          .initUser(response.userEntity.toJson());
+      Provider.of<UserProvider>(Get.context!, listen: false).initUser(
+        response.userEntity.toJson(),
+        response.jwt,
+      );
 
       Get.offAllNamed(RoutesNames.homePageView);
     } on DioException catch (exception) {
@@ -61,6 +66,33 @@ class AuthService {
 
       exceptionWarning(exceptionModel);
     }
+  }
+
+  Future<bool> changeUserPasswordService(Map<String, dynamic> data) async {
+    loadingDialog();
+    print('--- data: $data');
+    print('--- _authToken: ${_authToken()}');
+    try {
+      await getIt<AuthRepository>().changeUserPassword(_authToken(), data);
+
+      Get.back();
+
+      alertDialog(title: 'password changed successfully');
+      return true;
+    } on DioException catch (exception) {
+      Get.back();
+
+      final exceptionModel = DioExceptionHelper().getException(exception);
+
+      exceptionWarning(exceptionModel);
+      return false;
+    }
+  }
+
+  String _authToken() {
+    final jwt = Provider.of<UserProvider>(Get.context!, listen: false).jwt;
+
+    return 'Bearer ' + jwt;
   }
 
   googleSignInService() async {

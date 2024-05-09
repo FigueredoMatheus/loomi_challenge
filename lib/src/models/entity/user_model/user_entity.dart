@@ -4,16 +4,24 @@ part 'user_entity.g.dart';
 
 @JsonSerializable()
 class UserEntity {
+  final String provider;
+
   String? jwt;
+
   int? id;
+
   String? image;
+
   String email;
+
   String username;
+
   bool confirmed;
 
   bool get hasImage => image != null && image!.isNotEmpty;
 
   UserEntity({
+    required this.provider,
     required this.username,
     required this.email,
     required this.confirmed,
@@ -21,6 +29,10 @@ class UserEntity {
     this.image,
     this.jwt,
   });
+
+  setJwt(String? value) {
+    this.jwt = value;
+  }
 
   setName(String name) {
     this.username = name;
