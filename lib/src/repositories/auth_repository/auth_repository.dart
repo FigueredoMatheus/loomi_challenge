@@ -9,6 +9,9 @@ part 'auth_repository.g.dart';
 abstract class AuthRepository {
   factory AuthRepository(Dio dio, {String baseUrl}) = _AuthRepository;
 
+  @GET('/connect/google')
+  Future googleSignIn();
+
   @POST('/auth/local/register')
   Future<UserRegisterResponse> registerUser(
       @Body() Map<String, dynamic> userData);
@@ -17,6 +20,6 @@ abstract class AuthRepository {
   Future<UserRegisterResponse> loginUser(
       @Body() Map<String, dynamic> credentials);
 
-  @GET('/connect/google')
-  Future googleSignIn();
+  @POST('/auth/forgot-password')
+  Future forgotUserPassword(@Body() Map<String, dynamic> credentials);
 }

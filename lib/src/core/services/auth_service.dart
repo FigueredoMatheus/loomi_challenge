@@ -20,7 +20,6 @@ class AuthService {
       Provider.of<AuthService>(Get.context!, listen: false)
           .initUser(response.userEntity.toJson());
 
-      print('--- user: ${user.toJson()}');
       Get.offAllNamed(RoutesNames.homePageView);
     } on DioException catch (exception) {
       Get.back();
@@ -42,6 +41,22 @@ class AuthService {
       print('--- user: ${user.toJson()}');
 
       Get.offAllNamed(RoutesNames.homePageView);
+    } on DioException catch (exception) {
+      Get.back();
+
+      final exceptionModel = DioExceptionHelper().getException(exception);
+
+      exceptionWarning(exceptionModel);
+    }
+  }
+
+  forgotUserPasswordService(Map<String, dynamic> data) async {
+    loadingDialog();
+
+    try {
+      await getIt<AuthRepository>().forgotUserPassword(data);
+
+      Get.offAllNamed(RoutesNames.successOnSendResentEmailPageView);
     } on DioException catch (exception) {
       Get.back();
 

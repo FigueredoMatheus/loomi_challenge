@@ -16,6 +16,6 @@ void setupGetItClasses() {
   getIt.registerLazySingleton(() => AuthRepository(Dio(BaseOptions(
         contentType: 'application/json',
         connectTimeout: Duration(seconds: 10),
-        receiveTimeout: Duration(seconds: 3),
+        receiveTimeout: Duration(seconds: 10),
       ))));
 }

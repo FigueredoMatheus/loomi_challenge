@@ -1,62 +1,27 @@
-import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:loomi_challenge/src/core/services/auth_service.dart';
 
 class ForgotPasswordController {
   String? email;
 
-  Future<Map<String, dynamic>> _SendPasswordResetEmail() async {
-    final sendEmailResponse = <String, dynamic>{}; // TODO
-
-    return sendEmailResponse;
-  }
-
   sendEmailButtonOnTap() async {
-    final validatorMessage = validatorFields();
+    final message =
+        TextFieldValidatorsHelper().validateFields(email: email ?? '');
 
-    MyAppSnackBar(
-      message: validatorMessage,
-      snackBarType: SnackBarType.fail,
-    )..show();
-
-    if (validatorMessage != null) return;
-
-    loadingDialog();
-
-    final sendEmailResponse = await _SendPasswordResetEmail();
-
-    Get.back();
-
-    final bool success = sendEmailResponse['success'];
-
-    if (success) {
-      Get.toNamed(RoutesNames.successOnSendResentEmailPageView);
-    } else {
-      final String message = sendEmailResponse['message'];
-
-      MyAppSnackBar(
-        message: message,
-        snackBarType: success ? SnackBarType.success : SnackBarType.fail,
-      )..show();
+    if (message != null) {
+      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
+      return;
     }
+
+    final data = {'email': email};
+
+    AuthService().forgotUserPasswordService(data);
   }
 
   setEmail(String? text) {
     this.email = text;
-  }
-
-  String? validatorFields() {
-    // String? message;
-
-    // message = TextFieldValidatorsHelper.emailValidator(email);
-
-    // if (message != null) {
-    //   return message;
-    // }
-
-    return null;
   }
 
   dispose() {
