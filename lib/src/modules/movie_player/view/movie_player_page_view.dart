@@ -62,28 +62,33 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          fit: StackFit.expand,
-          children: [
-            MoviePlayer(),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: MoviePlayerGroupedTopOverlays(),
-            ),
-            Positioned(
-              child: MoviePlayerGroupedMiddleOverlays(),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: MoviePlayerGroupedBottomOverlay(),
-            ),
-          ],
+      child: GestureDetector(
+        onDoubleTap: () {
+          getIt<MoviePlayerController>().toggleOverlaysView();
+        },
+        child: Scaffold(
+          body: Stack(
+            alignment: Alignment.bottomCenter,
+            fit: StackFit.expand,
+            children: [
+              MoviePlayer(),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: MoviePlayerGroupedTopOverlays(),
+              ),
+              Positioned(
+                child: MoviePlayerGroupedMiddleOverlays(),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: MoviePlayerGroupedBottomOverlay(),
+              ),
+            ],
+          ),
         ),
       ),
     );

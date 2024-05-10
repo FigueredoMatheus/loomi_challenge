@@ -1,9 +1,27 @@
+import 'dart:async';
+
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:video_player/video_player.dart';
+import 'package:mobx/mobx.dart';
 
-class MoviePlayerController {
+part 'movie_player_controller.g.dart';
+
+class MoviePlayerController = _MoviePlayerController
+    with _$MoviePlayerController;
+
+abstract class _MoviePlayerController with Store {
   late MovieEntity movie;
   late VideoPlayerController playerController;
+
+  Timer? timer;
+
+  @observable
+  bool hideOverlays = false;
+
+  @action
+  toggleOverlaysView() {
+    hideOverlays = !hideOverlays;
+  }
 
   double get videoHeight => playerController.value.size.height;
   double get videoWidth => playerController.value.size.height;
@@ -24,8 +42,9 @@ class MoviePlayerController {
         Duration(seconds: playerController.value.position.inSeconds + 15),
       );
 
-  playPauseButton() =>
-      isMoviePlaying ? playerController.pause() : playerController.play();
+  playPauseButton() {
+    isMoviePlaying ? playerController.pause() : playerController.play();
+  }
 
   initialize({
     required MovieEntity movie,
