@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/core/data/temp_file.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
@@ -62,8 +63,7 @@ class MovieCardComments extends StatelessWidget {
   Widget userImage(bool isLoading) {
     return isLoading
         ? CustomLoadingShimmerStyle(width: 20, height: 20, bottomPadding: 8)
-        : CircleAvatarProfileImage(
-            user: movie!.mostRecenteComment.user, containerSize: 35);
+        : CircleAvatarProfileImage(user: user, containerSize: 35);
   }
 
   Widget comment(bool isLoading) {

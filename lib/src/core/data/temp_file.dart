@@ -1,11 +1,12 @@
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
-import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
 final user = UserEntity.fromJson({
   'username': 'Matheus Figueredo',
   'email': 'matheus@gmail.com',
-  'confirmed': false,
+  'confirmed': true,
+  'provider': 'local',
   'image': 'https://randomuser.me/api/portraits/men/35.jpg',
 });
 
@@ -16,7 +17,7 @@ final user1 = UserEntity.fromJson({
   'image': '',
 });
 
-final movieComment = MovieCommentModel.fromJson({
+final movieComment = MovieCommentEntity.fromJson({
   'comment':
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
   'user': <String, dynamic>{

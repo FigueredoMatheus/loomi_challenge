@@ -1,4 +1,4 @@
-import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_entity.g.dart';
@@ -15,13 +15,13 @@ class MovieEntity {
   final String streamLink;
   @JsonKey(name: 'poster_image')
   final String posterImage;
-  final List<MovieCommentModel> comments;
+  final List<MovieCommentEntity> comments;
 
   int get numberOfComments => comments.length;
 
   bool get hasComment => comments.isNotEmpty;
 
-  MovieCommentModel get mostRecenteComment =>
+  MovieCommentEntity get mostRecenteComment =>
       comments.reduce((value, element) =>
           value.createAt.isAfter(element.createAt) ? value : element);
 
