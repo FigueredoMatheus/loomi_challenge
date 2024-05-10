@@ -19,7 +19,7 @@ class CreateUserAccountFirstPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          MyAppIcon(),
+          MyAppIcon(showText: true),
           const SizedBox(height: 15),
           CustomRichText(richTextType: CustomRichTextType.signIn),
           const SizedBox(height: 40),

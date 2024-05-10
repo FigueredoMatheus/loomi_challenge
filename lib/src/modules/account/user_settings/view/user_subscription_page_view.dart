@@ -24,7 +24,7 @@ class UserSubscriptionPageView extends StatelessWidget {
             children: [
               UserSubscriptionPageViewAppBar(),
               const SizedBox(height: 20),
-              MyAppIcon(),
+              MyAppIcon(showText: true),
               const SizedBox(height: 40),
               UserSubscriptionPageviewSubscriptionBenefits(),
               Spacer(),
