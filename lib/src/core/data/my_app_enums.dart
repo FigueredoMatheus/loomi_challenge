@@ -27,3 +27,5 @@ enum CustomPageViewTitleType { changePassword, editProfile }
 enum MoviePlayerSubtitlesAudioCommentsOverlayType { subtitlesAudio, comments }
 
 enum SubtitleAudioModalColumnType { subtitles, audio }
+
+enum CustomModalBodyType { deleteAccount, terminatePlan }

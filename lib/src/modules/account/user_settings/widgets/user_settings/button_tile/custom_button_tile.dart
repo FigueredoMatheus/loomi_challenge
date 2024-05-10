@@ -5,7 +5,7 @@ import 'package:loomi_challenge/src/common/utils/modal/open_modal_bottom_sheet.d
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/widgets/user_settings/delete_acc_modal_body.dart';
+import 'package:loomi_challenge/src/common/widgets/custom_modal_body.dart';
 
 class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
   final CustomButtonTileType buttonTileType;
@@ -95,6 +95,10 @@ class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
 
   deleteAccountOnTap() {
     openModalBottomSheet(
-        title: 'Warning', child: UserSettingsDeleteAccountModalBottomBody());
+      title: 'Warning',
+      child: CustomModalBody(
+        type: CustomModalBodyType.deleteAccount,
+      ),
+    );
   }
 }

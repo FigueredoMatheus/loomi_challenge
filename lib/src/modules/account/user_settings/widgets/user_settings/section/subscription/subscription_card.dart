@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 class UserSettingsPageViewSubscriptionSectionCard extends StatefulWidget {
@@ -13,16 +15,19 @@ class _UserSettingsPageViewSubscriptionSectionCardState
     extends State<UserSettingsPageViewSubscriptionSectionCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-      decoration: BoxDecoration(
-        color: MyThemes.get().kdarkShadeBlue.withOpacity(0.9),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [leadingWidget(), titleWidget(), Spacer(), textButton()],
+    return InkWell(
+      onTap: () => Get.toNamed(RoutesNames.userSettingsPageView),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+        decoration: BoxDecoration(
+          color: MyThemes.get().kdarkShadeBlue.withOpacity(0.9),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [leadingWidget(), titleWidget(), Spacer(), textButton()],
+        ),
       ),
     );
   }

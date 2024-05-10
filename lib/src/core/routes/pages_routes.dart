@@ -8,6 +8,7 @@ import 'package:loomi_challenge/src/modules/account/login/view/login_page_view.d
 import 'package:loomi_challenge/src/modules/account/user_settings/view/change_password_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/view/edit_profile_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/view/user_settings_page_view.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/view/user_subscription_page_view.dart';
 import 'package:loomi_challenge/src/modules/home/view/home_page_view.dart';
 import 'package:loomi_challenge/src/modules/movie_player/view/movie_player_page_view.dart';
 
@@ -44,6 +45,10 @@ class PagesRoutes {
     GetPage(
       name: RoutesNames.editProfilePageView,
       page: () => const EditProfilePageView(),
+    ),
+    GetPage(
+      name: RoutesNames.userSettingsPageView,
+      page: () => const UserSubscriptionPageView(),
     ),
     GetPage(
       name: RoutesNames.moviePlayerPageView,

@@ -9,5 +9,5 @@ class RoutesNames {
   static const changeUserPasswordPageView = '/change-user-password-page-view';
   static const editProfilePageView = '/edit-profile-page-view';
   static const moviePlayerPageView = '/movie-player-page-view';
-  //
+  static const userSubscriptionPageView = '/user-subscription-page-view';
 }
