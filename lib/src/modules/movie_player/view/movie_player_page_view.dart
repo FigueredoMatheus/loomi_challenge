@@ -47,6 +47,10 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
   void dispose() {
     playerController.dispose();
     getIt<MoviePlayerController>().onDispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.dispose();
   }
 
