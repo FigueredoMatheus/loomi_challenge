@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/movie_player.dart';
+import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/pause_play_video.dart';
 import 'package:video_player/video_player.dart';
 
 class MoviePlayerPageView extends StatefulWidget {
@@ -45,6 +46,7 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
         fit: StackFit.expand,
         children: [
           MoviePlayer(playerController: playerController),
+          PausePlayMovieWidget(playerController: playerController),
         ],
       ),
     );
