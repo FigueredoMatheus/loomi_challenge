@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/open_modal_bottom_sheet.dart';
+import 'package:loomi_challenge/src/common/utils/modal/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/common/widgets/edit_profile_image_info_text.dart';
 import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';

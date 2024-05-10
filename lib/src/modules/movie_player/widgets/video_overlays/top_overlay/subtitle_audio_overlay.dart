@@ -15,9 +15,7 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        showMovieSubtitleAudioModal();
-      },
+      onTap: getOnTap,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -59,5 +57,23 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
       default:
         return 'assets/icons/subtitle_audio_icon.svg';
     }
+  }
+
+  getOnTap() {
+    switch (type) {
+      case MoviePlayerSubtitlesAudioCommentsOverlayType.comments:
+        return CommentsOnTap();
+      case MoviePlayerSubtitlesAudioCommentsOverlayType.subtitlesAudio:
+      default:
+        return subtitleAudioOnTap();
+    }
+  }
+
+  subtitleAudioOnTap() {
+    showMovieSubtitleAudioModal();
+  }
+
+  CommentsOnTap() {
+    print('--- COMMENTS ON TAP');
   }
 }
