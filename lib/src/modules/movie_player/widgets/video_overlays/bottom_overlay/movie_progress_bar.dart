@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:video_player/video_player.dart';
 
 class MovieProgressBar extends StatelessWidget {
@@ -7,13 +8,12 @@ class MovieProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 10,
-      left: 0,
-      right: 0,
-      child: VideoProgressIndicator(
-        playerController,
-        allowScrubbing: true,
+    return VideoProgressIndicator(
+      playerController,
+      allowScrubbing: true,
+      colors: VideoProgressColors(
+        backgroundColor: Colors.white.withOpacity(0.33),
+        playedColor: MyThemes.get().kLightPurpleColor,
       ),
     );
   }

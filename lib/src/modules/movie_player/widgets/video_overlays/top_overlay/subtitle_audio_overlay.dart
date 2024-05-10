@@ -27,7 +27,7 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
         Text(
           getLabel(),
           style: MyThemes.get().epilogueStyle.copyWith(
-                fontSize: 12,
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
         ),

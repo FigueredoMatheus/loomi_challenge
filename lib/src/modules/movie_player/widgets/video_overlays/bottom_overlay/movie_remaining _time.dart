@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:video_player/video_player.dart';
 
 class MovieProgressTime extends StatefulWidget {
@@ -24,7 +25,13 @@ class _MovieProgressTimeState extends State<MovieProgressTime> {
       widget.playerController.value.duration.inSeconds,
     );
 
-    return Text('$movieProgressTime / $movieTotalDuration');
+    return Text(
+      '$movieProgressTime / $movieTotalDuration',
+      style: MyThemes.get().epilogueStyle.copyWith(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
+    );
   }
 
   String calculateTotalDuration(int hours, int minutes, int seconds) {
