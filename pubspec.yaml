@@ -24,6 +24,7 @@ dependencies:
   firebase_core: ^2.27.0
   firebase_storage: ^11.7.4
   flutter_bloc: ^8.1.5
+  flutter_launcher_icons: ^0.13.1
   flutter_mobx: ^2.2.1+1
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
@@ -54,6 +55,9 @@ dev_dependencies:
   build_runner: ^2.4.9
   json_serializable: ^6.8.0
   retrofit_generator: ^8.1.0
+flutter_icons:
+  android: true
+  image_path_android: "assets/icons/android_launcher_icon.png"
 
 flavorizr:
   flavors:
@@ -76,6 +80,7 @@ flavorizr:
         name: "Loomi Challenge"
       android:
         applicationId: "com.loomi.challenge"
+        icon: "assets/icons/android_launcher_icon.png"
       ios:
         bundleId: "com.loomi.challenge"
 
