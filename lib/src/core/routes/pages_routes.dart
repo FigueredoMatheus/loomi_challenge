@@ -47,7 +47,7 @@ class PagesRoutes {
       page: () => const EditProfilePageView(),
     ),
     GetPage(
-      name: RoutesNames.userSettingsPageView,
+      name: RoutesNames.userSubscriptionPageView,
       page: () => const UserSubscriptionPageView(),
     ),
     GetPage(

@@ -16,7 +16,10 @@ class _UserSettingsPageViewSubscriptionSectionCardState
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed(RoutesNames.userSettingsPageView),
+      onTap: () => Get.toNamed(RoutesNames.userSubscriptionPageView),
+      overlayColor: MaterialStateProperty.resolveWith((states) {
+        return Colors.transparent;
+      }),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
