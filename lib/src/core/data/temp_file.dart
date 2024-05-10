@@ -1,6 +1,6 @@
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
-import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
 
 final user = UserEntity.fromJson({
   'username': 'Matheus Figueredo',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
+import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
 class UserProvider extends ChangeNotifier {
   late UserEntity user;

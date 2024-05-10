@@ -4,7 +4,7 @@ import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
+import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
 class CircleAvatarProfileImage extends StatefulWidget {
   final UserEntity user;

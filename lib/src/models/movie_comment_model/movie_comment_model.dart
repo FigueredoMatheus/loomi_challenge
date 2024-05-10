@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:loomi_challenge/src/models/entity/user_model/user_entity.dart';
+import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
 part 'movie_comment_model.g.dart';
 
