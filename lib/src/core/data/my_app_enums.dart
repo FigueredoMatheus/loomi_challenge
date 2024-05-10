@@ -23,3 +23,5 @@ enum UserSettingSectionType { subscription, history }
 enum CustomPageViewHeaderType { userSettings, changePassword, editProfile }
 
 enum CustomPageViewTitleType { changePassword, editProfile }
+
+enum MoviePlayerSubtitlesAudioCommentsOverlayType { subtitlesAudio, comments }
