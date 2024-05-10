@@ -25,3 +25,5 @@ enum CustomPageViewHeaderType { userSettings, changePassword, editProfile }
 enum CustomPageViewTitleType { changePassword, editProfile }
 
 enum MoviePlayerSubtitlesAudioCommentsOverlayType { subtitlesAudio, comments }
+
+enum SubtitleAudioModalColumnType { subtitles, audio }

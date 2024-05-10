@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loomi_challenge/src/common/utils/modal/movie_subtitles_audio.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
@@ -13,25 +14,30 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          getIconPath(),
-          semanticsLabel: 'subtitle_audio_comments',
-          fit: BoxFit.scaleDown,
-          height: 30,
-          width: 30,
-        ),
-        const SizedBox(width: 5),
-        Text(
-          getLabel(),
-          style: MyThemes.get().epilogueStyle.copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-              ),
-        ),
-      ],
+    return InkWell(
+      onTap: () {
+        showMovieSubtitleAudioModal();
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SvgPicture.asset(
+            getIconPath(),
+            semanticsLabel: 'subtitle_audio_comments',
+            fit: BoxFit.scaleDown,
+            height: 30,
+            width: 30,
+          ),
+          const SizedBox(width: 5),
+          Text(
+            getLabel(),
+            style: MyThemes.get().epilogueStyle.copyWith(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
+        ],
+      ),
     );
   }
 
