@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/modules/movie_player/controller/movie_player_controller.dart';
 import 'package:video_player/video_player.dart';
 
 class MoviePlayer extends StatelessWidget {
-  final VideoPlayerController playerController;
-
-  const MoviePlayer({super.key, required this.playerController});
+  const MoviePlayer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return FittedBox(
       fit: BoxFit.cover,
       child: SizedBox(
-        height: playerController.value.size.height,
-        width: playerController.value.size.width,
+        height: getIt<MoviePlayerController>().videoHeight,
+        width: getIt<MoviePlayerController>().videoWidth,
         child: AspectRatio(
-          aspectRatio: playerController.value.aspectRatio,
-          child: VideoPlayer(playerController),
+          aspectRatio: getIt<MoviePlayerController>().videoAspectRatio,
+          child: VideoPlayer(getIt<MoviePlayerController>().playerController),
         ),
       ),
     );

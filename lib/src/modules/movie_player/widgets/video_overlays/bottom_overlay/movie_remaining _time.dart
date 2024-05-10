@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:video_player/video_player.dart';
+import 'package:loomi_challenge/src/modules/movie_player/controller/movie_player_controller.dart';
 
 class MovieProgressTime extends StatefulWidget {
-  final VideoPlayerController playerController;
-  const MovieProgressTime({super.key, required this.playerController});
+  const MovieProgressTime({super.key});
 
   @override
   State<MovieProgressTime> createState() => _MovieProgressTimeState();
@@ -13,16 +13,18 @@ class MovieProgressTime extends StatefulWidget {
 class _MovieProgressTimeState extends State<MovieProgressTime> {
   @override
   Widget build(BuildContext context) {
+    final controller = getIt<MoviePlayerController>();
+
     final movieProgressTime = calculateTotalDuration(
-      widget.playerController.value.position.inHours,
-      widget.playerController.value.position.inMinutes,
-      widget.playerController.value.position.inSeconds,
+      controller.movieCurrentPosition.inHours,
+      controller.movieCurrentPosition.inMinutes,
+      controller.movieCurrentPosition.inSeconds,
     );
 
     final movieTotalDuration = calculateTotalDuration(
-      widget.playerController.value.duration.inHours,
-      widget.playerController.value.duration.inMinutes,
-      widget.playerController.value.duration.inSeconds,
+      controller.movieTotalDuration.inHours,
+      controller.movieTotalDuration.inMinutes,
+      controller.movieTotalDuration.inSeconds,
     );
 
     return Text(
