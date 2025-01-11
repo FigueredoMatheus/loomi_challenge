@@ -12,11 +12,13 @@ import 'package:loomi_challenge/src/services/auth_services/auth_services_impl.da
 import 'package:provider/provider.dart';
 
 class AuthService implements AuthServicesImpl {
+  final _repository = getIt<AuthRepository>();
+
   signInUserService(Map<String, dynamic> credentials) async {
     loadingDialog();
 
     try {
-      final response = await getIt<AuthRepository>().loginUser(credentials);
+      final response = await _repository.loginUser(credentials);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
@@ -36,7 +38,7 @@ class AuthService implements AuthServicesImpl {
     loadingDialog();
 
     try {
-      final response = await getIt<AuthRepository>().registerUser(data);
+      final response = await _repository.registerUser(data);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
@@ -57,7 +59,7 @@ class AuthService implements AuthServicesImpl {
     loadingDialog();
 
     try {
-      await getIt<AuthRepository>().forgotUserPassword(data);
+      await _repository.forgotUserPassword(data);
 
       Get.offAllNamed(RoutesNames.successOnSendResentEmailPageView);
     } on DioException catch (exception) {
@@ -73,7 +75,7 @@ class AuthService implements AuthServicesImpl {
     loadingDialog();
 
     try {
-      await getIt<AuthRepository>().changeUserPassword(_authToken(), data);
+      await _repository.changeUserPassword(_authToken(), data);
 
       Get.back();
 

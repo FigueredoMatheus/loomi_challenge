@@ -60,13 +60,3 @@ class MovieEntity {
 
   Map<String, dynamic> toJson() => _$MovieEntityToJson(this);
 }
-
-/*
-
-  factory CommentResponse.fromJson(Map<String, dynamic> json) =>
-      _$CommentResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CommentResponseToJson(this);
-
-
-*/
