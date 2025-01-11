@@ -1,5 +1,6 @@
 import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:loomi_challenge/src/models/response/movie/movie_response.dart';
 
 part 'movie_entity.g.dart';
 
@@ -35,6 +36,20 @@ class MovieEntity {
     required this.streamLink,
     required this.comments,
   });
+
+  factory MovieEntity.fromResponse(MovieResponse response) {
+    return MovieEntity(
+      id: response.movieDataResponse.id.toString(),
+      title: response.movieDataResponse.attributes.name,
+      endDate: response.movieDataResponse.attributes.endDate,
+      genre: response.movieDataResponse.attributes.genre,
+      synopsis: response.movieDataResponse.attributes.synopsis,
+      posterImage: response.movieDataResponse.attributes.poster
+          .posterDataResponse.attributes.posterImage,
+      streamLink: response.movieDataResponse.attributes.streamLink,
+      comments: [],
+    );
+  }
 
   factory MovieEntity.fromJson(Map<String, dynamic> json) =>
       _$MovieEntityFromJson(json);
