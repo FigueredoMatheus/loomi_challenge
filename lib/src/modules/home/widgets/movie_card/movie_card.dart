@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/home/bloc/bloc/home_page_bloc.dart';
+import 'package:loomi_challenge/src/modules/home/bloc/home_bloc/home_page_bloc.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/movie_body.dart';
 
 class HomePageViewMovieCard extends StatefulWidget {

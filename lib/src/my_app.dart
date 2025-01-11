@@ -6,7 +6,7 @@ import 'package:loomi_challenge/src/core/routes/pages_routes.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_themes.dart';
-import 'package:loomi_challenge/src/modules/home/bloc/bloc/home_page_bloc.dart';
+import 'package:loomi_challenge/src/modules/home/bloc/home_bloc/home_page_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -8,9 +8,10 @@ import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
+import 'package:loomi_challenge/src/services/auth_services/auth_services_impl.dart';
 import 'package:provider/provider.dart';
 
-class AuthService {
+class AuthService implements AuthServicesImpl {
   signInUserService(Map<String, dynamic> credentials) async {
     loadingDialog();
 
@@ -70,8 +71,7 @@ class AuthService {
 
   Future<bool> changeUserPasswordService(Map<String, dynamic> data) async {
     loadingDialog();
-    print('--- data: $data');
-    print('--- _authToken: ${_authToken()}');
+
     try {
       await getIt<AuthRepository>().changeUserPassword(_authToken(), data);
 
@@ -89,21 +89,19 @@ class AuthService {
     }
   }
 
-  String _authToken() {
-    final jwt = Provider.of<UserProvider>(Get.context!, listen: false).jwt;
-
-    return 'Bearer ' + jwt;
-  }
-
   googleSignInService() async {
     try {
-      final response = await getIt<AuthRepository>().googleSignIn();
-
-      print('--- Response: $response');
+      await getIt<AuthRepository>().googleSignIn();
     } on DioException catch (exception) {
       final exceptionModel = DioExceptionHelper().getException(exception);
 
       exceptionWarning(exceptionModel);
     }
+  }
+
+  String _authToken() {
+    final jwt = Provider.of<UserProvider>(Get.context!, listen: false).jwt;
+
+    return 'Bearer ' + jwt;
   }
 }
