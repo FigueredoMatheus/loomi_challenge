@@ -14,10 +14,9 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       synopsis: json['synopsis'] as String,
       posterImage: json['poster_image'] as String,
       streamLink: json['stream_link'] as String,
-      comments: (json['comments'] as List<dynamic>)
-          .map((e) => MovieCommentModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+    )..comments = (json['comments'] as List<dynamic>)
+        .map((e) => MovieCommentEntity.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
     <String, dynamic>{

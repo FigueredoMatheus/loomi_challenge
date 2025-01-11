@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
-part 'movie_comment_model.g.dart';
+part 'movie_comment_entity.g.dart';
 
 @JsonSerializable()
-class MovieCommentModel {
+class MovieCommentEntity {
   String? id;
   final String comment;
   final UserEntity user;
@@ -12,15 +12,15 @@ class MovieCommentModel {
   final DateTime createAt;
   final int replies;
 
-  MovieCommentModel({
+  MovieCommentEntity({
     required this.comment,
     required this.user,
     required this.createAt,
     required this.replies,
   });
 
-  factory MovieCommentModel.fromJson(Map<String, dynamic> json) =>
-      _$MovieCommentModelFromJson(json);
+  factory MovieCommentEntity.fromJson(Map<String, dynamic> json) =>
+      _$MovieCommentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MovieCommentModelToJson(this);
+  Map<String, dynamic> toJson() => _$MovieCommentEntityToJson(this);
 }

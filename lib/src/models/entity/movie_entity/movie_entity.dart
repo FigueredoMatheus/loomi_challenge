@@ -1,4 +1,4 @@
-import 'package:loomi_challenge/src/models/movie_comment_model/movie_comment_model.dart';
+import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/response/movie/movie_response.dart';
 
@@ -16,13 +16,14 @@ class MovieEntity {
   final String streamLink;
   @JsonKey(name: 'poster_image')
   final String posterImage;
-  final List<MovieCommentModel> comments;
+
+  late List<MovieCommentEntity> comments;
 
   int get numberOfComments => comments.length;
 
   bool get hasComment => comments.isNotEmpty;
 
-  MovieCommentModel get mostRecenteComment =>
+  MovieCommentEntity get mostRecenteComment =>
       comments.reduce((value, element) =>
           value.createAt.isAfter(element.createAt) ? value : element);
 
@@ -34,8 +35,12 @@ class MovieEntity {
     required this.synopsis,
     required this.posterImage,
     required this.streamLink,
-    required this.comments,
   });
+
+  setComments(List<MovieCommentEntity> comments) {
+    this.comments = [];
+    this.comments.addAll(comments);
+  }
 
   factory MovieEntity.fromResponse(MovieResponse response) {
     return MovieEntity(
@@ -47,7 +52,6 @@ class MovieEntity {
       posterImage: response.movieDataResponse.attributes.poster
           .posterDataResponse.attributes.posterImage,
       streamLink: response.movieDataResponse.attributes.streamLink,
-      comments: [],
     );
   }
 
@@ -56,3 +60,13 @@ class MovieEntity {
 
   Map<String, dynamic> toJson() => _$MovieEntityToJson(this);
 }
+
+/*
+
+  factory CommentResponse.fromJson(Map<String, dynamic> json) =>
+      _$CommentResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentResponseToJson(this);
+
+
+*/
