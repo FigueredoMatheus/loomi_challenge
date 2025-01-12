@@ -15,43 +15,43 @@ import 'package:loomi_challenge/src/modules/movie_player/view/movie_player_page_
 class PagesRoutes {
   static List<GetPage> pages = [
     GetPage(
-      name: RoutesNames.loginPageView,
+      name: RoutesNames.LOGIN_PAGE_VIEW,
       page: () => const LoginPageView(),
     ),
     GetPage(
-      name: RoutesNames.forgotPasswordPageView,
+      name: RoutesNames.FORGOT_PASSWORD_PAGE_VIEW,
       page: () => const ForgotPasswordPageView(),
     ),
     GetPage(
-      name: RoutesNames.successOnSendResentEmailPageView,
+      name: RoutesNames.SUCCES_ON_SEND_RESENT_EMAIL_PAGE_VIEW,
       page: () => const SucccessOnSendEmailPageView(),
     ),
     GetPage(
-      name: RoutesNames.createAccountPageView,
+      name: RoutesNames.CREATE_ACCOUNT_PAGE_VIEW,
       page: () => const CreateUserAccountPageView(),
     ),
     GetPage(
-      name: RoutesNames.homePageView,
+      name: RoutesNames.HOME_PAGE_VIEW,
       page: () => const HomePageViewModel(),
     ),
     GetPage(
-      name: RoutesNames.userSettingsPageView,
+      name: RoutesNames.USER_SETTINGS_PAGE_VIEW,
       page: () => const UserSettingsPageView(),
     ),
     GetPage(
-      name: RoutesNames.changeUserPasswordPageView,
+      name: RoutesNames.CHANGE_USER_PASSWORD_PAGE_VIEW,
       page: () => const ChangeUserPasswordPageView(),
     ),
     GetPage(
-      name: RoutesNames.editProfilePageView,
+      name: RoutesNames.EDIT_PROFILE_PAGE_VIEW,
       page: () => const EditProfilePageView(),
     ),
     GetPage(
-      name: RoutesNames.userSubscriptionPageView,
+      name: RoutesNames.USER_SUBSCRIPTION_PAGE_VIEW,
       page: () => const UserSubscriptionPageView(),
     ),
     GetPage(
-      name: RoutesNames.moviePlayerPageView,
+      name: RoutesNames.MOVIE_PLAYER_PAGE_VIEW,
       page: () {
         final MovieEntity movie = Get.arguments;
         return MoviePlayerPageView(movie: movie);

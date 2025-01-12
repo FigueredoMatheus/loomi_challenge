@@ -43,7 +43,7 @@ class _SucccessOnSendEmailPageViewState
                 Spacer(),
                 CustomElevatedButton(
                   label: 'Login',
-                  onPressed: () => Get.offAllNamed(RoutesNames.loginPageView),
+                  onPressed: () => Get.offAllNamed(RoutesNames.LOGIN_PAGE_VIEW),
                 ),
               ],
             ),

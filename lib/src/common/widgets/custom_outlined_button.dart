@@ -56,10 +56,10 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
 
   logoutOnTap() {
     Provider.of<UserProvider>(context, listen: false).logout();
-    Get.offAllNamed(RoutesNames.loginPageView);
+    Get.offAllNamed(RoutesNames.LOGIN_PAGE_VIEW);
   }
 
-  editProfileOnTap() => Get.toNamed(RoutesNames.editProfilePageView);
+  editProfileOnTap() => Get.toNamed(RoutesNames.EDIT_PROFILE_PAGE_VIEW);
 
   Color getButtonColor() {
     switch (widget.buttonType) {

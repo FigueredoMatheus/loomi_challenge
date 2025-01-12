@@ -25,7 +25,7 @@ class AuthService implements AuthServicesImpl {
         response.jwt,
       );
 
-      Get.offAllNamed(RoutesNames.homePageView);
+      Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
     } on DioException catch (exception) {
       Get.back();
       final exceptionModel = DioExceptionHelper().getException(exception);
@@ -45,7 +45,7 @@ class AuthService implements AuthServicesImpl {
         response.jwt,
       );
 
-      Get.offAllNamed(RoutesNames.homePageView);
+      Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
     } on DioException catch (exception) {
       Get.back();
 
@@ -61,7 +61,7 @@ class AuthService implements AuthServicesImpl {
     try {
       await _repository.forgotUserPassword(data);
 
-      Get.offAllNamed(RoutesNames.successOnSendResentEmailPageView);
+      Get.offAllNamed(RoutesNames.SUCCES_ON_SEND_RESENT_EMAIL_PAGE_VIEW);
     } on DioException catch (exception) {
       Get.back();
 

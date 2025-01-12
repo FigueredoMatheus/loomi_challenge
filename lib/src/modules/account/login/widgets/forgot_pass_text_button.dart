@@ -11,7 +11,7 @@ class LoginPageForgotPasswordTextButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-          onPressed: () => Get.toNamed(RoutesNames.forgotPasswordPageView),
+          onPressed: () => Get.toNamed(RoutesNames.FORGOT_PASSWORD_PAGE_VIEW),
           child: Text('Forgot password?'),
         ),
       ],

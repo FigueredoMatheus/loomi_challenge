@@ -28,7 +28,7 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.isFromHomePageViewHeader
-          ? () => Get.toNamed(RoutesNames.userSettingsPageView)
+          ? () => Get.toNamed(RoutesNames.USER_SETTINGS_PAGE_VIEW)
           : null,
       overlayColor: MaterialStateProperty.resolveWith((states) {
         return Colors.transparent;

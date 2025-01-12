@@ -24,7 +24,7 @@ class MovieCardWatchButton extends StatelessWidget {
             : CustomElevatedButton(
                 label: 'Watch',
                 onPressed: () => Get.toNamed(
-                  RoutesNames.moviePlayerPageView,
+                  RoutesNames.MOVIE_PLAYER_PAGE_VIEW,
                   arguments: movie,
                 ),
               ),

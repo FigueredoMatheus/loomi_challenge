@@ -66,7 +66,7 @@ class CustomRichText extends StatelessWidget {
     }
   }
 
-  signInOnTap() => Get.toNamed(RoutesNames.loginPageView);
+  signInOnTap() => Get.toNamed(RoutesNames.LOGIN_PAGE_VIEW);
 
-  signUpOnTap() => Get.toNamed(RoutesNames.createAccountPageView);
+  signUpOnTap() => Get.toNamed(RoutesNames.CREATE_ACCOUNT_PAGE_VIEW);
 }

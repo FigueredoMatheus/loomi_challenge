@@ -91,7 +91,8 @@ class UserSettingsPageViewCustomButtonTile extends StatelessWidget {
     }
   }
 
-  changePasswordOnTap() => Get.toNamed(RoutesNames.changeUserPasswordPageView);
+  changePasswordOnTap() =>
+      Get.toNamed(RoutesNames.CHANGE_USER_PASSWORD_PAGE_VIEW);
 
   deleteAccountOnTap() {
     openModalBottomSheet(

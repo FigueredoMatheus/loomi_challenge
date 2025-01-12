@@ -31,7 +31,7 @@ class _HomePageViewMovieCardState extends State<HomePageViewMovieCard> {
               'Now Showing',
               style: MyThemes.get().epilogueStyle,
             ),
-          ), // TODO implement correct fonts
+          ),
           Expanded(
             child: Container(
               width: double.infinity,
