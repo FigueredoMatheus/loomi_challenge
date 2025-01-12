@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:loomi_challenge/src/modules/comment/widgets/page_header.dart';
 
 class MovieCommentsPageView extends StatefulWidget {
   final MovieEntity movie;
@@ -23,7 +24,9 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
           bottom: pageViewDefaultPadding,
         ),
         child: Column(
-          children: [],
+          children: [
+            MovieCommentsPageHeader(movie: widget.movie),
+          ],
         ),
       ),
     );
