@@ -6,7 +6,7 @@ part 'movie_entity.g.dart';
 
 @JsonSerializable()
 class MovieEntity {
-  String? id;
+  int? id;
   final String title;
   final String synopsis;
   final String genre;
@@ -44,7 +44,7 @@ class MovieEntity {
 
   factory MovieEntity.fromResponse(MovieResponse response) {
     return MovieEntity(
-      id: response.movieDataResponse.id.toString(),
+      id: response.movieDataResponse.id,
       title: response.movieDataResponse.attributes.name,
       endDate: response.movieDataResponse.attributes.endDate,
       genre: response.movieDataResponse.attributes.genre,

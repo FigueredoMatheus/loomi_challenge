@@ -10,7 +10,7 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       title: json['title'] as String,
       endDate: DateTime.parse(json['end_date'] as String),
       genre: json['genre'] as String,
-      id: json['id'] as String?,
+      id: (json['id'] as num?)?.toInt(),
       synopsis: json['synopsis'] as String,
       posterImage: json['poster_image'] as String,
       streamLink: json['stream_link'] as String,

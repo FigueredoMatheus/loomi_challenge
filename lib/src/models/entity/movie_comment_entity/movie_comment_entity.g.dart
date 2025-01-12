@@ -8,7 +8,7 @@ part of 'movie_comment_entity.dart';
 
 MovieCommentEntity _$MovieCommentEntityFromJson(Map<String, dynamic> json) =>
     MovieCommentEntity(
-      comment: json['comment'] as String,
+      commentText: json['comment_text'] as String,
       user: UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       createAt: DateTime.parse(json['create_at'] as String),
       replies: (json['replies'] as num).toInt(),
@@ -17,7 +17,7 @@ MovieCommentEntity _$MovieCommentEntityFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MovieCommentEntityToJson(MovieCommentEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'comment': instance.comment,
+      'comment_text': instance.commentText,
       'user': instance.user,
       'create_at': instance.createAt.toIso8601String(),
       'replies': instance.replies,

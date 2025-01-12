@@ -23,6 +23,7 @@ final movieComment = MovieCommentEntity.fromJson({
     'username': 'Matheus Figueredo',
     'email': 'matheus@gmail.com',
     'confirmed': false,
+    'provider': '',
     'image': 'https://randomuser.me/api/portraits/men/35.jpg',
   },
   'create_at': DateTime.now().toString(),
