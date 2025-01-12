@@ -9,6 +9,7 @@ import 'package:loomi_challenge/src/modules/account/user_settings/view/change_pa
 import 'package:loomi_challenge/src/modules/account/user_settings/view/edit_profile_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/view/user_settings_page_view.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/view/user_subscription_page_view.dart';
+import 'package:loomi_challenge/src/modules/comment/view/movie_comments_page_view.dart';
 import 'package:loomi_challenge/src/modules/home/view/home_page_view.dart';
 import 'package:loomi_challenge/src/modules/movie_player/view/movie_player_page_view.dart';
 
@@ -55,6 +56,13 @@ class PagesRoutes {
       page: () {
         final MovieEntity movie = Get.arguments;
         return MoviePlayerPageView(movie: movie);
+      },
+    ),
+    GetPage(
+      name: RoutesNames.MOVIE_COMMENTS_PAGE_VIEW,
+      page: () {
+        final MovieEntity movie = Get.arguments;
+        return MovieCommentsPageView(movie: movie);
       },
     ),
   ];

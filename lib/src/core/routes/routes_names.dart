@@ -11,4 +11,5 @@ class RoutesNames {
   static const EDIT_PROFILE_PAGE_VIEW = '/edit-profile-page-view';
   static const MOVIE_PLAYER_PAGE_VIEW = '/movie-player-page-view';
   static const USER_SUBSCRIPTION_PAGE_VIEW = '/user-subscription-page-view';
+  static const MOVIE_COMMENTS_PAGE_VIEW = '/mobie-comments-page-view';
 }

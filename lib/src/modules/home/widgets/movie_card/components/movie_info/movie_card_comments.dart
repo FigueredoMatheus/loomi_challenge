@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
@@ -20,7 +22,12 @@ class _MovieCardCommentsState extends State<MovieCardComments> {
   Widget build(BuildContext context) {
     isLoading = widget.movie == null;
     return InkWell(
-      onTap: () {},
+      onTap: isLoading
+          ? null
+          : () => Get.toNamed(
+                RoutesNames.MOVIE_COMMENTS_PAGE_VIEW,
+                arguments: widget.movie,
+              ),
       child: Padding(
         padding: const EdgeInsets.only(top: 20.0),
         child: Column(
