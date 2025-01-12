@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/modal/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/common/widgets/edit_profile_image_info_text.dart';
-import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
+import 'package:loomi_challenge/src/common/widgets/images_widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
@@ -54,10 +54,8 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
           child: controller.hasImage
               ? CustomShowImageWidget(
                   imagePath: controller.profileImage.value,
-                  bottomLeftRadius: 34,
-                  bottomRightRadius: 34,
-                  topLeftRadius: 34,
-                  topRightRadius: 34,
+                  radius: 34,
+                  size: 116,
                 )
               : SvgPicture.asset(
                   'assets/icons/camera_icon.svg',

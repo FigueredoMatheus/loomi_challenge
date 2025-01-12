@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
+import 'package:loomi_challenge/src/common/widgets/images_widgets/circle_avatar_profile_image.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:provider/provider.dart';

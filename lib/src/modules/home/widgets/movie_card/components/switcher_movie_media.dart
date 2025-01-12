@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
+import 'package:loomi_challenge/src/common/widgets/images_widgets/show_image_widget.dart';
+import 'package:loomi_challenge/src/core/data/temp_file.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 
 class MovieCardSwitcherMovieMedia extends StatefulWidget {
@@ -51,10 +52,8 @@ class _MovieCardSwitcherMovieMediaState
       Container(
         key: Key('1'),
         child: CustomShowImageWidget(
-          bottomLeftRadius: 22,
-          bottomRightRadius: 22,
-          topLeftRadius: 22,
-          topRightRadius: 22,
+          radius: 22,
+          size: MediaQuery.of(context).size.width,
           imagePath: widget.movie!.posterImage,
         ),
       ),

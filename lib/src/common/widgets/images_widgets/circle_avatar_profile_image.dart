@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/widgets/show_image_widget.dart';
+import 'package:loomi_challenge/src/common/widgets/images_widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
@@ -33,30 +33,31 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
       overlayColor: MaterialStateProperty.resolveWith((states) {
         return Colors.transparent;
       }),
-      child: Container(
-        height: widget.containerSize,
-        width: widget.containerSize,
-        decoration: BoxDecoration(
-          color: getContainerBgColor(),
-          shape: BoxShape.circle,
-        ),
-        alignment: Alignment.center,
-        child: widget.user.hasImage
-            ? CustomShowImageWidget(
-                imagePath: widget.user.image!,
-                bottomLeftRadius: widget.containerSize,
-                bottomRightRadius: widget.containerSize,
-                topLeftRadius: widget.containerSize,
-                topRightRadius: widget.containerSize,
-              )
-            : Text(
-                widget.user.username[0].toUpperCase(),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: widget.containerSize * 0.40,
+      child: widget.user.hasImage
+          ? CustomShowImageWidget(
+              imagePath: widget.user.image!,
+              size: widget.containerSize,
+              radius: widget.containerSize,
+            )
+          : Container(
+              height: widget.containerSize,
+              width: widget.containerSize,
+              decoration: BoxDecoration(
+                color: getContainerBgColor(),
+                shape: BoxShape.circle,
+              ),
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Text(
+                  widget.user.username[0].toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: widget.containerSize * 0.45,
+                  ),
                 ),
               ),
-      ),
+            ),
     );
   }
 

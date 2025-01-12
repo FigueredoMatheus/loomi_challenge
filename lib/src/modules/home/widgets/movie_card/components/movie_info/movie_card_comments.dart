@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
-import 'package:loomi_challenge/src/common/widgets/circle_avatar_profile_image.dart';
+import 'package:loomi_challenge/src/common/widgets/images_widgets/circle_avatar_profile_image.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/custon_loading_shimmer_style.dart';
 
 class MovieCardComments extends StatefulWidget {
@@ -41,7 +41,11 @@ class _MovieCardCommentsState extends State<MovieCardComments> {
             ),
             const SizedBox(height: 5),
             Row(
-              children: [userImage(), const SizedBox(width: 8), comment()],
+              children: [
+                userImage(),
+                const SizedBox(width: 8),
+                comment(),
+              ],
             ),
           ],
         ),
