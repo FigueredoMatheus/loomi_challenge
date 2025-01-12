@@ -7,11 +7,14 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Get.back(),
-      child: Icon(
-        Icons.arrow_back_ios,
-        color: MyThemes.get().kPurpleColor,
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: InkWell(
+        onTap: () => Get.back(),
+        child: Icon(
+          Icons.arrow_back_ios,
+          color: MyThemes.get().kPurpleColor,
+        ),
       ),
     );
   }

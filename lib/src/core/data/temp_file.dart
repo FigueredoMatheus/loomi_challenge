@@ -44,10 +44,89 @@ final movie = MovieEntity.fromJson({
     <String, dynamic>{
       'comment':
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-      'user': {
+      'user': <String, dynamic>{
         'username': 'Matheus Figueredo',
         'email': 'matheus@gmail.com',
         'confirmed': false,
+        'provider': '',
+        'image': 'https://randomuser.me/api/portraits/men/35.jpg',
+      },
+      'create_at': DateTime.now().toString(),
+      'replies': 10,
+    },
+    <String, dynamic>{
+      'comment':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+      'user': <String, dynamic>{
+        'username': 'Matheus Figueredo',
+        'email': 'matheus@gmail.com',
+        'confirmed': false,
+        'provider': '',
+        'image': 'https://randomuser.me/api/portraits/men/35.jpg',
+      },
+      'create_at': DateTime.now().toString(),
+      'replies': 10,
+    },
+    <String, dynamic>{
+      'comment':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+      'user': <String, dynamic>{
+        'username': 'Matheus Figueredo',
+        'email': 'matheus@gmail.com',
+        'confirmed': false,
+        'provider': '',
+        'image': 'https://randomuser.me/api/portraits/men/35.jpg',
+      },
+      'create_at': DateTime.now().toString(),
+      'replies': 10,
+    },
+    <String, dynamic>{
+      'comment':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+      'user': <String, dynamic>{
+        'username': 'Matheus Figueredo',
+        'email': 'matheus@gmail.com',
+        'confirmed': false,
+        'provider': '',
+        'image': 'https://randomuser.me/api/portraits/men/35.jpg',
+      },
+      'create_at': DateTime.now().toString(),
+      'replies': 10,
+    },
+    <String, dynamic>{
+      'comment':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+      'user': <String, dynamic>{
+        'username': 'Matheus Figueredo',
+        'email': 'matheus@gmail.com',
+        'confirmed': false,
+        'provider': '',
+        'image': 'https://randomuser.me/api/portraits/men/35.jpg',
+      },
+      'create_at': DateTime.now().toString(),
+      'replies': 10,
+    },
+    <String, dynamic>{
+      'comment':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+      'user': <String, dynamic>{
+        'username': 'Matheus Figueredo',
+        'email': 'matheus@gmail.com',
+        'confirmed': false,
+        'provider': '',
+        'image': 'https://randomuser.me/api/portraits/men/35.jpg',
+      },
+      'create_at': DateTime.now().toString(),
+      'replies': 10,
+    },
+    <String, dynamic>{
+      'comment':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+      'user': <String, dynamic>{
+        'username': 'Matheus Figueredo',
+        'email': 'matheus@gmail.com',
+        'confirmed': false,
+        'provider': '',
         'image': 'https://randomuser.me/api/portraits/men/35.jpg',
       },
       'create_at': DateTime.now().toString(),

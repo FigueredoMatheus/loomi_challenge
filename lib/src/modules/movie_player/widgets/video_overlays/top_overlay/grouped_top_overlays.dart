@@ -27,7 +27,6 @@ class MoviePlayerGroupedTopOverlays extends StatelessWidget {
                     Row(
                       children: [
                         CustomBackButton(),
-                        const SizedBox(width: 10),
                         MoviePlayerMovieTitleOverlay(),
                       ],
                     ),
