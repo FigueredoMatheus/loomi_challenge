@@ -20,6 +20,9 @@ class CommentRepository {
             .toList(),
       );
 
+      commentsResponse
+          .sort((a, b) => b.comment.createAt.compareTo(a.comment.createAt));
+
       return {
         'success': true,
         'comments_response': commentsResponse,
