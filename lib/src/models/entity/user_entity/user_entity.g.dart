@@ -11,6 +11,7 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       username: json['username'] as String,
       email: json['email'] as String,
       confirmed: json['confirmed'] as bool,
+      blocked: json['blocked'] as bool,
       id: (json['id'] as num?)?.toInt(),
       image: json['image'] as String?,
       jwt: json['jwt'] as String?,
@@ -25,4 +26,5 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
       'email': instance.email,
       'username': instance.username,
       'confirmed': instance.confirmed,
+      'blocked': instance.blocked,
     };

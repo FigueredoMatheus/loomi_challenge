@@ -12,6 +12,7 @@ MovieCommentEntity _$MovieCommentEntityFromJson(Map<String, dynamic> json) =>
       user: UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       createAt: DateTime.parse(json['create_at'] as String),
       replies: (json['replies'] as num).toInt(),
+      movieId: (json['movie_id'] as num).toInt(),
     )..id = json['id'] as String?;
 
 Map<String, dynamic> _$MovieCommentEntityToJson(MovieCommentEntity instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$MovieCommentEntityToJson(MovieCommentEntity instance) =>
       'user': instance.user,
       'create_at': instance.createAt.toIso8601String(),
       'replies': instance.replies,
+      'movie_id': instance.movieId,
     };

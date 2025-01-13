@@ -56,6 +56,7 @@ abstract class _CommentStore with Store {
       user: user,
       createAt: DateTime.now(),
       replies: 0,
+      movieId: this.movie.id!,
     );
 
     comments.insert(0, comment);

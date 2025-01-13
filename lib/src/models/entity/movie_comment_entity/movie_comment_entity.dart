@@ -13,12 +13,15 @@ class MovieCommentEntity {
   @JsonKey(name: 'create_at')
   final DateTime createAt;
   final int replies;
+  @JsonKey(name: 'movie_id')
+  final int movieId;
 
   MovieCommentEntity({
     required this.commentText,
     required this.user,
     required this.createAt,
     required this.replies,
+    required this.movieId,
   });
 
   factory MovieCommentEntity.fromCommentResponse(
@@ -28,6 +31,7 @@ class MovieCommentEntity {
       user: commentResponse.comment.user,
       createAt: commentResponse.comment.createAt,
       replies: commentResponse.comment.replies,
+      movieId: commentResponse.comment.movieId,
     );
   }
 

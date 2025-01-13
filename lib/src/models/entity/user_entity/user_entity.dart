@@ -18,6 +18,8 @@ class UserEntity {
 
   bool confirmed;
 
+  bool blocked;
+
   bool get hasImage => image != null && image!.isNotEmpty;
 
   UserEntity({
@@ -25,6 +27,7 @@ class UserEntity {
     required this.username,
     required this.email,
     required this.confirmed,
+    required this.blocked,
     this.id,
     this.image,
     this.jwt,

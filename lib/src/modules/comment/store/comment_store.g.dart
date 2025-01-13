@@ -94,7 +94,7 @@ mixin _$CommentStore on _CommentStore, Store {
       AsyncAction('_CommentStore.addComment', context: context);
 
   @override
-  Future addComment(String commentText, UserEntity user) {
+  Future<dynamic> addComment(String commentText, UserEntity user) {
     return _$addCommentAsyncAction
         .run(() => super.addComment(commentText, user));
   }
