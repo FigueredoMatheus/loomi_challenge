@@ -7,6 +7,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextFormFieldType textFormFieldType;
   final String label;
   final String? initalValue;
+  final TextEditingController? controller;
 
   const CustomTextFormField({
     super.key,
@@ -14,6 +15,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.label,
     required this.textFormFieldType,
     this.initalValue,
+    this.controller,
   });
 
   @override
@@ -28,9 +30,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(
-      text: widget.initalValue,
-    );
+    textController = widget.controller != null
+        ? widget.controller!
+        : TextEditingController();
+
+    textController.text = widget.initalValue ?? '';
 
     isPasswordField = widget.textFormFieldType == TextFormFieldType.password ||
         widget.textFormFieldType == TextFormFieldType.confirmPassword;
