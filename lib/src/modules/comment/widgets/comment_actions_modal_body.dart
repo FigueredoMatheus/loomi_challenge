@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
+import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:provider/provider.dart';
 
 class CommentActionsModalBody extends StatefulWidget {
@@ -18,12 +20,14 @@ class CommentActionsModalBody extends StatefulWidget {
 
 class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
   late bool isCurrentUserComment;
+  late CommentStore commentStore;
 
   @override
   void initState() {
     super.initState();
     isCurrentUserComment = widget.comment.user.id ==
         Provider.of<UserProvider>(context, listen: false).userId;
+    commentStore = getIt<CommentStore>();
   }
 
   @override
@@ -51,7 +55,7 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
         : Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: InkWell(
-              onTap: () {},
+              onTap: () => btnActionOnTap(actionType),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -102,6 +106,21 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
       case CommectActionType.report:
       default:
         return 'Report';
+    }
+  }
+
+  btnActionOnTap(CommectActionType actionType) {
+    switch (actionType) {
+      case CommectActionType.delete:
+        commentStore.onDeleteComment();
+        break;
+      case CommectActionType.edit:
+        commentStore.onEditComment();
+        break;
+      case CommectActionType.report:
+      default:
+        commentStore.onReportComment();
+        break;
     }
   }
 

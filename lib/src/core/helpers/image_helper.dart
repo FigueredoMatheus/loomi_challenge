@@ -18,13 +18,6 @@ class ImageHelper {
         imagePath = await _getImageFromGallery();
     }
     return imagePath;
-
-    // if (imagePath != null) {
-    //   final String? imgCropped = await _croppImage(imagePath);
-    //   return imgCropped;
-    // } else {
-    //   return null;
-    // }
   }
 
   Future<String?> _getImageFromGallery() async {

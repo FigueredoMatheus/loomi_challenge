@@ -134,8 +134,6 @@ class _ChooseUserProfileImageModalBodyState
 
     if (selectedImagePath == null) return;
 
-    print('---selectedImagePath: $selectedImagePath');
-
     controller.setProfileImage(selectedImagePath);
   }
 }

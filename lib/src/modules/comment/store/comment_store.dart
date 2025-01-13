@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/random_string_generator.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
@@ -81,6 +82,25 @@ abstract class _CommentStore with Store {
     });
 
     isSendingComment = false;
+  }
+
+  @action
+  onEditComment() {
+    print('--- EDIT');
+  }
+
+  @action
+  onDeleteComment() {
+    print('--- Delete');
+  }
+
+  @action
+  onReportComment() {
+    Get.back();
+    MyAppSnackBar(
+      message: 'Comment has been reported successfully.',
+      snackBarType: SnackBarType.success,
+    ).show();
   }
 
   @action
