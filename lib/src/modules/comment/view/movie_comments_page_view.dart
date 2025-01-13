@@ -26,7 +26,7 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
     super.initState();
     commentStore = getIt<CommentStore>();
 
-    commentStore.setMovie(widget.movie);
+    commentStore.init(widget.movie);
 
     commentStore.loadMovieComments();
   }

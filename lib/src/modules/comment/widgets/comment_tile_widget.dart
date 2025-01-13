@@ -97,7 +97,7 @@ class _CommentTileWidgetState extends State<CommentTileWidget> {
                 color: MyThemes.get().kPurpleColor,
               ),
               Text(
-                'View 12 replies',
+                'View ${widget.comment.replies} replies',
                 style: MyThemes.get().epilogueStyle.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,

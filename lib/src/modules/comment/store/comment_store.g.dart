@@ -50,6 +50,22 @@ mixin _$CommentStore on _CommentStore, Store {
     });
   }
 
+  late final _$isSendingCommentAtom =
+      Atom(name: '_CommentStore.isSendingComment', context: context);
+
+  @override
+  bool get isSendingComment {
+    _$isSendingCommentAtom.reportRead();
+    return super.isSendingComment;
+  }
+
+  @override
+  set isSendingComment(bool value) {
+    _$isSendingCommentAtom.reportWrite(value, super.isSendingComment, () {
+      super.isSendingComment = value;
+    });
+  }
+
   late final _$commentsAtom =
       Atom(name: '_CommentStore.comments', context: context);
 
@@ -74,18 +90,13 @@ mixin _$CommentStore on _CommentStore, Store {
     return _$loadMovieCommentsAsyncAction.run(() => super.loadMovieComments());
   }
 
-  late final _$_CommentStoreActionController =
-      ActionController(name: '_CommentStore', context: context);
+  late final _$addCommentAsyncAction =
+      AsyncAction('_CommentStore.addComment', context: context);
 
   @override
-  void addComment(MovieCommentEntity comment) {
-    final _$actionInfo = _$_CommentStoreActionController.startAction(
-        name: '_CommentStore.addComment');
-    try {
-      return super.addComment(comment);
-    } finally {
-      _$_CommentStoreActionController.endAction(_$actionInfo);
-    }
+  Future addComment(String commentText, UserEntity user) {
+    return _$addCommentAsyncAction
+        .run(() => super.addComment(commentText, user));
   }
 
   @override
@@ -93,6 +104,7 @@ mixin _$CommentStore on _CommentStore, Store {
     return '''
 errorMessage: ${errorMessage},
 isLoadingMovieComments: ${isLoadingMovieComments},
+isSendingComment: ${isSendingComment},
 comments: ${comments},
 commentsCount: ${commentsCount}
     ''';

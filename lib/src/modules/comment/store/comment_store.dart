@@ -1,5 +1,6 @@
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 import 'package:loomi_challenge/src/models/response/comment/comment_response.dart';
 import 'package:loomi_challenge/src/services/comments_services/comments_services.dart';
 import 'package:mobx/mobx.dart';
@@ -18,6 +19,9 @@ abstract class _CommentStore with Store {
 
   @observable
   bool isLoadingMovieComments = false;
+
+  @observable
+  bool isSendingComment = false;
 
   @observable
   ObservableList<MovieCommentEntity> comments =
@@ -44,11 +48,22 @@ abstract class _CommentStore with Store {
   }
 
   @action
-  void addComment(MovieCommentEntity comment) {
-    comments.add(comment);
+  Future addComment(String commentText, UserEntity user) async {
+    isSendingComment = true;
+
+    final comment = MovieCommentEntity(
+      commentText: commentText,
+      user: user,
+      createAt: DateTime.now(),
+      replies: 0,
+    );
+
+    comments.insert(0, comment);
+
+    isSendingComment = false;
   }
 
-  setMovie(MovieEntity movie) {
+  init(MovieEntity movie) {
     this.movie = movie;
   }
 

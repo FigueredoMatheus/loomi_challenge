@@ -3,8 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/common/widgets/images_widgets/circle_avatar_profile_image.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
+import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:provider/provider.dart';
 
 class CommentTextField extends StatefulWidget {
@@ -13,17 +15,35 @@ class CommentTextField extends StatefulWidget {
 }
 
 class _CommentTextFieldState extends State<CommentTextField> {
-  bool _showSendIcon = false;
+  final TextEditingController textController = TextEditingController();
+  late CommentStore commentStore;
 
-  void _onTextChanged(String text) {
+  @override
+  void initState() {
+    super.initState();
+    commentStore = getIt<CommentStore>();
+  }
+
+  bool showSendIcon = false;
+
+  onTextChanged(String text) {
     setState(() {
-      _showSendIcon = text.isNotEmpty;
+      showSendIcon = text.isNotEmpty;
+    });
+  }
+
+  onSendComment() {
+    setState(() {
+      showSendIcon = false;
+
+      textController.clear();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final loggedUser = Provider.of<UserProvider>(context).user;
+
     return Container(
       padding: const EdgeInsets.only(top: 13),
       decoration: BoxDecoration(
@@ -42,7 +62,8 @@ class _CommentTextFieldState extends State<CommentTextField> {
           const SizedBox(width: 10),
           Expanded(
             child: CustomTextFormField(
-              onChanged: _onTextChanged,
+              controller: textController,
+              onChanged: onTextChanged,
               label: 'Add a reply...',
               textFormFieldType: TextFormFieldType.text,
             ),
@@ -60,10 +81,11 @@ class _CommentTextFieldState extends State<CommentTextField> {
                 child: child,
               );
             },
-            child: _showSendIcon
+            child: showSendIcon
                 ? InkWell(
                     onTap: () {
-                      print('--- Send Comment');
+                      commentStore.addComment(textController.text, loggedUser);
+                      onSendComment();
                     },
                     child: SvgPicture.asset(
                       'assets/icons/send_comment_icon.svg',

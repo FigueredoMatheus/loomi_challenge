@@ -8,6 +8,8 @@ class UserProvider extends ChangeNotifier {
 
   String get email => user.email;
 
+  String? get image => user.image;
+
   String get jwt => user.jwt!;
 
   bool get isUserLoggedIn => user.jwt != null;
