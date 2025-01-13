@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/common/widgets/images_widgets/custom_file_image.dart';
 import 'package:loomi_challenge/src/common/widgets/images_widgets/custom_network_image.dart';
-import 'package:loomi_challenge/src/core/helpers/extensions/on_string_extension.dart';
+import 'package:loomi_challenge/src/common/utils/extensions/on_string_extension.dart';
 
 class CustomShowImageWidget extends StatelessWidget {
   final String imagePath;

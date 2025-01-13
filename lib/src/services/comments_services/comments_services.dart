@@ -5,6 +5,6 @@ class CommentsServices implements CommentsServicesImpl {
   final _repository = CommentRepository();
 
   @override
-  Future<Map<String, dynamic>> getMovieComment(int movieId) =>
+  Future<Map<String, dynamic>> getMovieComments(int movieId) =>
       _repository.getMovieComments(movieId);
 }

@@ -28,7 +28,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       final movie = MovieEntity.fromResponse(response);
 
       final commentsResponse =
-          await commentsServices.getMovieComment(movie.id!);
+          await commentsServices.getMovieComments(movie.id!);
 
       movie.setComments(getComments(commentsResponse));
 

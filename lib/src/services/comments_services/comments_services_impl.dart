@@ -1,3 +1,3 @@
 abstract class CommentsServicesImpl {
-  Future<Map<String, dynamic>> getMovieComment(int movidId);
+  Future<Map<String, dynamic>> getMovieComments(int movidId);
 }
