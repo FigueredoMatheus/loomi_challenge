@@ -1,4 +1,4 @@
-enum TextFormFieldType { password, confirmPassword, email, name }
+enum TextFormFieldType { password, confirmPassword, email, name, text }
 
 enum SocialMediaType { google, apple }
 

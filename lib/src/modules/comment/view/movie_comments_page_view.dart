@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:loomi_challenge/src/modules/comment/widgets/comment_field_widget.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comments_list.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/page_header.dart';
 
@@ -27,7 +28,8 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
         child: Column(
           children: [
             MovieCommentsPageHeader(movie: widget.movie),
-            CommentsListWidget(movie: widget.movie)
+            CommentsListWidget(movie: widget.movie),
+            CommentFieldWidget(movie: widget.movie),
           ],
         ),
       ),
