@@ -1,3 +1,4 @@
+import 'package:loomi_challenge/src/common/utils/random_string_generator.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
@@ -52,6 +53,7 @@ abstract class _CommentStore with Store {
     isSendingComment = true;
 
     final comment = MovieCommentEntity(
+      id: generateRandomStringBasedOnDateTime(),
       commentText: commentText,
       user: user,
       createAt: DateTime.now(),
@@ -60,6 +62,8 @@ abstract class _CommentStore with Store {
     );
 
     comments.insert(0, comment);
+
+    commentsServices.postComment(comment);
 
     isSendingComment = false;
   }

@@ -17,6 +17,7 @@ class MovieCommentEntity {
   final int movieId;
 
   MovieCommentEntity({
+    this.id,
     required this.commentText,
     required this.user,
     required this.createAt,
@@ -27,12 +28,17 @@ class MovieCommentEntity {
   factory MovieCommentEntity.fromCommentResponse(
       CommentResponse commentResponse) {
     return MovieCommentEntity(
+      id: commentResponse.comment.id,
       commentText: commentResponse.comment.commentText,
       user: commentResponse.comment.user,
       createAt: commentResponse.comment.createAt,
       replies: commentResponse.comment.replies,
       movieId: commentResponse.comment.movieId,
     );
+  }
+
+  setId(String id) {
+    this.id = id;
   }
 
   factory MovieCommentEntity.fromJson(Map<String, dynamic> json) =>
