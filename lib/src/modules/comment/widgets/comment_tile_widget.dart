@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/extensions/date_extension.dart';
 import 'package:loomi_challenge/src/common/utils/modal/open_modal_bottom_sheet.dart';
 import 'package:loomi_challenge/src/common/widgets/images_widgets/circle_avatar_profile_image.dart';
-import 'package:loomi_challenge/src/core/helpers/extensions/on_datetime_extension.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comment_actions_modal_body.dart';
