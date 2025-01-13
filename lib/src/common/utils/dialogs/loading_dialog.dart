@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/flavors/flavors.dart';
+import 'package:loomi_challenge/src/common/widgets/custom_loading_widget.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
 loadingDialog({String? title}) {
@@ -17,21 +18,7 @@ loadingDialog({String? title}) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                height: 50,
-                width: 50,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: MyThemes.get().kVeryDarkGrayColor,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: CircularProgressIndicator(
-                    color: MyThemes.get().kPurpleColor,
-                  ),
-                ),
-              ),
+              CustomLoadingWidget(),
               if (hasTitle) SizedBox(height: 10),
               if (hasTitle)
                 Text(
