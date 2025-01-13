@@ -23,6 +23,9 @@ abstract class _CommentStore with Store {
   ObservableList<MovieCommentEntity> comments =
       ObservableList<MovieCommentEntity>();
 
+  @computed
+  int get commentsCount => comments.length;
+
   @action
   loadMovieComments() async {
     isLoadingMovieComments = true;
@@ -38,6 +41,11 @@ abstract class _CommentStore with Store {
     }
 
     isLoadingMovieComments = false;
+  }
+
+  @action
+  void addComment(MovieCommentEntity comment) {
+    comments.add(comment);
   }
 
   setMovie(MovieEntity movie) {

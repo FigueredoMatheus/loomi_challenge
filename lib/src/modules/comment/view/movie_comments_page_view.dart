@@ -5,7 +5,7 @@ import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
-import 'package:loomi_challenge/src/modules/comment/widgets/comment_field_widget.dart';
+import 'package:loomi_challenge/src/modules/comment/widgets/comment_text_field.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comments_list.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/page_header.dart';
 
@@ -47,9 +47,9 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
                   ? Center(child: CustomLoadingWidget())
                   : Column(
                       children: [
-                        MovieCommentsPageHeader(movie: widget.movie),
-                        CommentsListWidget(movie: widget.movie),
-                        CommentFieldWidget(movie: widget.movie),
+                        MovieCommentsPageHeader(),
+                        CommentsListWidget(),
+                        CommentTextField(),
                       ],
                     );
             },

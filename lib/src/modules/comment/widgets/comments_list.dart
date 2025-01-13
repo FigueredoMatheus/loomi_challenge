@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comment_tile_widget.dart';
 
-class CommentsListWidget extends StatelessWidget {
-  final MovieEntity movie;
+class CommentsListWidget extends StatefulWidget {
+  const CommentsListWidget({super.key});
 
-  const CommentsListWidget({super.key, required this.movie});
+  @override
+  State<CommentsListWidget> createState() => _CommentsListWidgetState();
+}
+
+class _CommentsListWidgetState extends State<CommentsListWidget> {
+  late CommentStore commentStore;
+
+  @override
+  void initState() {
+    super.initState();
+    commentStore = getIt<CommentStore>();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView(
-        padding: const EdgeInsets.only(top: 20),
-        children: List.generate(movie.numberOfComments, (index) {
-          final comment = movie.comments[index];
+      child: Observer(
+        builder: (context) {
+          return ListView(
+            padding: const EdgeInsets.only(top: 20),
+            children: List.generate(commentStore.commentsCount, (index) {
+              final comment = commentStore.comments[index];
 
-          return CommentTileWidget(comment: comment);
-        }),
+              return CommentTileWidget(comment: comment);
+            }),
+          );
+        },
       ),
     );
   }
