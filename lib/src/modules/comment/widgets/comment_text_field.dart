@@ -58,7 +58,7 @@ class _CommentTextFieldState extends State<CommentTextField> {
                   child: SvgPicture.asset(
                     'assets/icons/send_comment_icon.svg',
                     semanticsLabel: 'Send Comment',
-                    fit: BoxFit.scaleDown,
+                    width: 27,
                   ),
                 )
               : SizedBox.shrink(
