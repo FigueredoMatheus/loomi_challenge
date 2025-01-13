@@ -27,7 +27,9 @@ class CommentRepository {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getFirebaseException(e);
 
-      return CommentResponse.onError(null, exceptionMessage);
+      final message = 'Fail on load movie comments.\n$exceptionMessage';
+
+      return CommentResponse.onError(null, message);
     }
   }
 
@@ -70,6 +72,27 @@ class CommentRepository {
           HandleFirebaseExceptionsHelper.getFirebaseException(e);
 
       return CommentResponse.onError(null, exceptionMessage);
+    }
+  }
+
+  Future<CommentResponse> editComment(
+    MovieCommentEntity comment,
+    String newCommentText,
+  ) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(commentCollection)
+          .doc('movie-${comment.movieId}')
+          .collection('comments')
+          .doc(comment.id)
+          .update({'comment_text': newCommentText});
+
+      return CommentResponse.onSuccess(comment);
+    } on FirebaseException catch (e) {
+      final exceptionMessage =
+          HandleFirebaseExceptionsHelper.getFirebaseException(e);
+
+      return CommentResponse.onError(comment, exceptionMessage);
     }
   }
 }

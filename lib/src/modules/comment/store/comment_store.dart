@@ -58,6 +58,28 @@ abstract class _CommentStore with Store {
   editMovieComment(String commentText) {
     cancelEditMode();
 
+    commentsServices
+        .editComment(commentToBeEdited, commentText)
+        .then((response) {
+      if (!response.success) {
+        updateCommentText(
+          commentId: response.data.id!,
+          text: response.data.commentText,
+        );
+        Get.closeAllSnackbars();
+
+        MyAppSnackBar(
+          message: response.message,
+          snackBarType: SnackBarType.fail,
+        ).show();
+      }
+    });
+
+    MyAppSnackBar(
+      message: 'Comment has been edited successfully.',
+      snackBarType: SnackBarType.success,
+    ).show();
+
     updateCommentText(commentId: commentToBeEdited.id!, text: commentText);
   }
 
