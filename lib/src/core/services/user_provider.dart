@@ -4,6 +4,8 @@ import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 class UserProvider extends ChangeNotifier {
   late UserEntity user;
 
+  int get userId => user.id!;
+
   String get username => user.username;
 
   String get email => user.email;

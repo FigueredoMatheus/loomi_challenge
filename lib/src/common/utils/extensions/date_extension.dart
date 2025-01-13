@@ -29,7 +29,9 @@ extension DateTimeExtesions on DateTime {
       } else if (difference.inMinutes >= 1) {
         return '${difference.inMinutes} minute${difference.inMinutes > 1 ? 's' : ''} ago';
       } else {
-        return '${difference.inSeconds} second${difference.inSeconds > 1 ? 's' : ''} ago';
+        return difference.inSeconds == 0
+            ? 'now'
+            : '${difference.inSeconds} second${difference.inSeconds > 1 ? 's' : ''} ago';
       }
     }
   }

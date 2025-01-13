@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
+import 'package:provider/provider.dart';
 
 class CommentActionsModalBody extends StatefulWidget {
   final MovieCommentEntity comment;
@@ -20,7 +22,8 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
   @override
   void initState() {
     super.initState();
-    isCurrentUserComment = false;
+    isCurrentUserComment = widget.comment.user.id ==
+        Provider.of<UserProvider>(context, listen: false).userId;
   }
 
   @override
@@ -41,7 +44,7 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
 
   Widget actionBtn(CommectActionType actionType) {
     final isReportAction = actionType == CommectActionType.report;
-    final showComment = isCurrentUserComment ? isReportAction : true;
+    final showComment = isCurrentUserComment ? true : isReportAction;
 
     return !showComment
         ? Container()

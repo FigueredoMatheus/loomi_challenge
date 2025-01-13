@@ -120,3 +120,20 @@ class _CommentTileWidgetState extends State<CommentTileWidget> {
     );
   }
 }
+/*
+
+    Row(
+            children: [
+              CustomLoadingWidget(loadingSize: 30),
+              Text(
+                'Enviando...',
+                style: MyThemes.get().epilogueStyle.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: MyThemes.get().kDarkGrayColor,
+                    ),
+              ),
+            ],
+          ),
+
+*/
