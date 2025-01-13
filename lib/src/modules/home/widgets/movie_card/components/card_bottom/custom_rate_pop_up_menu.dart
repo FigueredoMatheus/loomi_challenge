@@ -68,10 +68,8 @@ class _CustomRatePopUpMenuWidgetState extends State<CustomRatePopUpMenuWidget> {
           SvgPicture.asset(
             getRateOptionIconPath(rateOption),
             semanticsLabel: 'rateIcon',
-            fit: BoxFit.scaleDown,
-            height: 30,
-            width: 30,
           ),
+          const SizedBox(height: 5),
           Text(
             getRateOptionLabel(rateOption),
             style: MyThemes.get().epilogueStyle.copyWith(
