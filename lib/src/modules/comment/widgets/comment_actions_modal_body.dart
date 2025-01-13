@@ -52,27 +52,17 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
 
     return !showComment
         ? Container()
-        : Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: InkWell(
-              onTap: () => btnActionOnTap(actionType),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  getActionIcon(actionType),
-                  const SizedBox(width: 15),
-                  Text(
-                    getActionBtnText(actionType),
-                    style: MyThemes.get().robotoStyle.copyWith(
-                          fontSize: 16,
-                          color: isReportAction
-                              ? MyThemes.get().kPurpleColor
-                              : MyThemes.get().kWhiteColor,
-                        ),
-                  )
-                ],
-              ),
+        : TextButton.icon(
+            onPressed: () => btnActionOnTap(actionType),
+            icon: getActionIcon(actionType),
+            label: Text(
+              getActionBtnText(actionType),
+              style: MyThemes.get().robotoStyle.copyWith(
+                    fontSize: 16,
+                    color: isReportAction
+                        ? MyThemes.get().kPurpleColor
+                        : MyThemes.get().kWhiteColor,
+                  ),
             ),
           );
   }
@@ -112,14 +102,14 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
   btnActionOnTap(CommectActionType actionType) {
     switch (actionType) {
       case CommectActionType.delete:
-        commentStore.onDeleteComment();
+        commentStore.onDeleteComment(widget.comment);
         break;
       case CommectActionType.edit:
-        commentStore.onEditComment();
+        commentStore.onEditComment(widget.comment);
         break;
       case CommectActionType.report:
       default:
-        commentStore.onReportComment();
+        commentStore.onReportComment(widget.comment);
         break;
     }
   }

@@ -52,4 +52,24 @@ class CommentRepository {
       return CommentResponse.onError(null, exceptionMessage);
     }
   }
+
+  Future<CommentResponse> deleteMovieComment(MovieCommentEntity comment) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(commentCollection)
+          .doc('movie-${comment.movieId}')
+          .collection('comments')
+          .doc(comment.id)
+          .delete();
+
+      final commentResponse = CommentResponse.onSuccess(comment);
+
+      return commentResponse;
+    } on FirebaseException catch (e) {
+      final exceptionMessage =
+          HandleFirebaseExceptionsHelper.getFirebaseException(e);
+
+      return CommentResponse.onError(null, exceptionMessage);
+    }
+  }
 }

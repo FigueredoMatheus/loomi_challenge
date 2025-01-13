@@ -4,4 +4,5 @@ import 'package:loomi_challenge/src/models/response/comment/comment_response.dar
 abstract class CommentsServicesImpl {
   Future<CommentResponse> getMovieComments(int movidId);
   Future<CommentResponse> postComment(MovieCommentEntity comment);
+  Future<CommentResponse> deleteComment(MovieCommentEntity comment);
 }

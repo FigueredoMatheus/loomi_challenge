@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/confirmation_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/random_string_generator.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
@@ -70,7 +71,7 @@ abstract class _CommentStore with Store {
       movieId: this.movie.id!,
     );
 
-    comments.insert(0, comment);
+    insertComment(comment);
 
     commentsServices.postComment(comment).then((response) {
       if (!response.success) {
@@ -85,17 +86,42 @@ abstract class _CommentStore with Store {
   }
 
   @action
-  onEditComment() {
+  onEditComment(MovieCommentEntity comment) {
     print('--- EDIT');
   }
 
   @action
-  onDeleteComment() {
-    print('--- Delete');
+  onDeleteComment(MovieCommentEntity comment) async {
+    final confirmationResult = await confirmationAlertDialog(
+        title: 'Do you want to delete this comment?');
+
+    if (confirmationResult == null || confirmationResult == 0) return;
+
+    Get.back();
+
+    commentsServices.deleteComment(comment).then((response) {
+      if (!response.success) {
+        Get.closeAllSnackbars();
+
+        insertComment(comment);
+
+        MyAppSnackBar(
+          message: response.message,
+          snackBarType: SnackBarType.fail,
+        ).show();
+      }
+    });
+
+    MyAppSnackBar(
+      message: 'Comment has been deleted successfully.',
+      snackBarType: SnackBarType.success,
+    ).show();
+
+    removeComment(comment.id!);
   }
 
   @action
-  onReportComment() {
+  onReportComment(MovieCommentEntity comment) {
     Get.back();
     MyAppSnackBar(
       message: 'Comment has been reported successfully.',
@@ -104,7 +130,13 @@ abstract class _CommentStore with Store {
   }
 
   @action
-  removeComment(int commentId) {
+  insertComment(MovieCommentEntity comment) {
+    comments.add(comment);
+    comments.sort((a, b) => b.createAt.compareTo(a.createAt));
+  }
+
+  @action
+  removeComment(String commentId) {
     comments.removeWhere((element) => element.id! == commentId);
   }
 }

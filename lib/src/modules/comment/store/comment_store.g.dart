@@ -105,11 +105,42 @@ mixin _$CommentStore on _CommentStore, Store {
         .run(() => super.addComment(commentText, user));
   }
 
+  late final _$onDeleteCommentAsyncAction =
+      AsyncAction('_CommentStore.onDeleteComment', context: context);
+
+  @override
+  Future onDeleteComment(MovieCommentEntity comment) {
+    return _$onDeleteCommentAsyncAction
+        .run(() => super.onDeleteComment(comment));
+  }
+
   late final _$_CommentStoreActionController =
       ActionController(name: '_CommentStore', context: context);
 
   @override
-  dynamic removeComment(int commentId) {
+  dynamic onEditComment(MovieCommentEntity comment) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.onEditComment');
+    try {
+      return super.onEditComment(comment);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic onReportComment(MovieCommentEntity comment) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.onReportComment');
+    try {
+      return super.onReportComment(comment);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removeComment(String commentId) {
     final _$actionInfo = _$_CommentStoreActionController.startAction(
         name: '_CommentStore.removeComment');
     try {

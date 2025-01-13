@@ -13,4 +13,8 @@ class CommentsServices implements CommentsServicesImpl {
   @override
   Future<CommentResponse> postComment(MovieCommentEntity comment) =>
       _repository.postMovieComment(comment);
+
+  @override
+  Future<CommentResponse> deleteComment(MovieCommentEntity comment) =>
+      _repository.deleteMovieComment(comment);
 }
