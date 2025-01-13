@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 
-class SubtitleAudioCloseModalButton extends StatelessWidget {
-  const SubtitleAudioCloseModalButton({super.key});
+class CustomCloseButton extends StatelessWidget {
+  final Function()? onTap;
+
+  const CustomCloseButton({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class SubtitleAudioCloseModalButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-          onPressed: () => Get.back(),
+          onPressed: onTap != null ? onTap : () => Get.back(),
           child: Text(
             'Close',
             style: MyThemes.get().epilogueStyle.copyWith(
@@ -20,7 +22,7 @@ class SubtitleAudioCloseModalButton extends StatelessWidget {
                   color: MyThemes.get().kPurpleColor,
                 ),
           ),
-        )
+        ),
       ],
     );
   }
