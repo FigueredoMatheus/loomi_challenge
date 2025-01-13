@@ -6,7 +6,7 @@ import 'package:loomi_challenge/src/models/response/comment/comment_response.dar
 class CommentRepository {
   final commentCollection = 'movie-comments';
 
-  Future<Map<String, dynamic>> getMovieComments(int movieId) async {
+  Future<CommentResponse> getMovieComments(int movieId) async {
     try {
       final response = await FirebaseFirestore.instance
           .collection(commentCollection)
@@ -15,33 +15,23 @@ class CommentRepository {
           .get();
 
       final docs = response.docs;
-      final List<CommentResponse> commentsResponse = [];
+      final List<MovieCommentEntity> comments = [];
 
-      commentsResponse.addAll(
-        docs
-            .map((doc) => CommentResponse.fromJson({'data': doc.data()}))
-            .toList(),
-      );
+      comments.addAll(
+          docs.map((doc) => MovieCommentEntity.fromJson(doc.data())).toList());
 
-      commentsResponse
-          .sort((a, b) => b.comment.createAt.compareTo(a.comment.createAt));
+      comments.sort((a, b) => b.createAt.compareTo(a.createAt));
 
-      return {
-        'success': true,
-        'comments_response': commentsResponse,
-      };
+      return CommentResponse.onSuccess(comments);
     } on FirebaseException catch (e) {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getFirebaseException(e);
 
-      return {
-        'success': false,
-        'message': 'Fail on get comments data\n$exceptionMessage',
-      };
+      return CommentResponse.onError(null, exceptionMessage);
     }
   }
 
-  Future<Map<String, dynamic>> postMovieComment(
+  Future<CommentResponse> postMovieComment(
     MovieCommentEntity comment,
   ) async {
     try {
@@ -52,21 +42,14 @@ class CommentRepository {
           .doc(comment.id)
           .set(comment.toJson());
 
-      final commentResponse =
-          CommentResponse.fromJson({'data': comment.toJson()});
+      final commentResponse = CommentResponse.onSuccess(comment);
 
-      return {
-        'success': true,
-        'comment_response': commentResponse,
-      };
+      return commentResponse;
     } on FirebaseException catch (e) {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getFirebaseException(e);
 
-      return {
-        'success': false,
-        'message': 'Fail on get comments data\n$exceptionMessage',
-      };
+      return CommentResponse.onError(null, exceptionMessage);
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_loading_widget.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
@@ -45,13 +46,20 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
             builder: (context) {
               return commentStore.isLoadingMovieComments
                   ? Center(child: CustomLoadingWidget())
-                  : Column(
-                      children: [
-                        MovieCommentsPageHeader(),
-                        CommentsListWidget(),
-                        CommentTextField(),
-                      ],
-                    );
+                  : commentStore.hasError
+                      ? Center(
+                          child: Text(
+                            commentStore.errorMessage!,
+                            style: Get.textTheme.titleLarge,
+                          ),
+                        )
+                      : Column(
+                          children: [
+                            MovieCommentsPageHeader(),
+                            CommentsListWidget(),
+                            CommentTextField(),
+                          ],
+                        );
             },
           )),
     );

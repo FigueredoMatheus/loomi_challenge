@@ -3,9 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
 import 'package:loomi_challenge/src/models/dio_exception_model.dart';
-import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
-import 'package:loomi_challenge/src/models/response/comment/comment_response.dart';
 import 'package:loomi_challenge/src/services/comments_services/comments_services.dart';
 import 'package:loomi_challenge/src/services/movie_service/movie_services.dart';
 
@@ -30,7 +28,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       final commentsResponse =
           await commentsServices.getMovieComments(movie.id!);
 
-      movie.setComments(getComments(commentsResponse));
+      movie.setComments(commentsResponse.data);
 
       emit(SuccessOnLoadingMovieState(movie: movie));
     } on DioException catch (dioException) {
@@ -38,22 +36,5 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
       emit(FailOnLoadingMovieState(exception: exception));
     }
-  }
-
-  List<MovieCommentEntity> getComments(Map<String, dynamic> response) {
-    final List<MovieCommentEntity> comments = [];
-
-    if (response['success']) {
-      List<CommentResponse> commentsResponse = response['comments_response'];
-
-      comments.addAll(
-        commentsResponse
-            .map((commentResponse) =>
-                MovieCommentEntity.fromCommentResponse(commentResponse))
-            .toList(),
-      );
-    }
-
-    return comments;
   }
 }

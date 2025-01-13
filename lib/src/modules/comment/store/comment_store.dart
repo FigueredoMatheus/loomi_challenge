@@ -1,8 +1,9 @@
 import 'package:loomi_challenge/src/common/utils/random_string_generator.dart';
+import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
+import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
-import 'package:loomi_challenge/src/models/response/comment/comment_response.dart';
 import 'package:loomi_challenge/src/services/comments_services/comments_services.dart';
 import 'package:mobx/mobx.dart';
 
@@ -16,7 +17,7 @@ abstract class _CommentStore with Store {
   late MovieEntity movie;
 
   @observable
-  String errorMessage = '';
+  String? errorMessage;
 
   @observable
   bool isLoadingMovieComments = false;
@@ -31,18 +32,25 @@ abstract class _CommentStore with Store {
   @computed
   int get commentsCount => comments.length;
 
+  @computed
+  bool get hasError => errorMessage != null;
+
+  init(MovieEntity movie) {
+    this.movie = movie;
+  }
+
   @action
   loadMovieComments() async {
     isLoadingMovieComments = true;
 
     final response = await commentsServices.getMovieComments(movie.id!);
 
-    if (response['success']) {
+    if (response.success) {
       comments.clear();
-      comments.addAll(_getComments(response));
+      comments.addAll(response.data);
       movie.setComments(comments);
     } else {
-      errorMessage = response['message'];
+      errorMessage = response.message;
     }
 
     isLoadingMovieComments = false;
@@ -63,27 +71,20 @@ abstract class _CommentStore with Store {
 
     comments.insert(0, comment);
 
-    commentsServices.postComment(comment);
+    commentsServices.postComment(comment).then((response) {
+      if (!response.success) {
+        MyAppSnackBar(
+                message: response.message, snackBarType: SnackBarType.fail)
+            .show();
+        removeComment(response.data.id);
+      }
+    });
 
     isSendingComment = false;
   }
 
-  init(MovieEntity movie) {
-    this.movie = movie;
-  }
-
-  List<MovieCommentEntity> _getComments(Map<String, dynamic> response) {
-    final List<MovieCommentEntity> comments = [];
-
-    List<CommentResponse> commentsResponse = response['comments_response'];
-
-    comments.addAll(
-      commentsResponse
-          .map((commentResponse) =>
-              MovieCommentEntity.fromCommentResponse(commentResponse))
-          .toList(),
-    );
-
-    return comments;
+  @action
+  removeComment(int commentId) {
+    comments.removeWhere((element) => element.id! == commentId);
   }
 }

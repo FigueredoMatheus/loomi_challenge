@@ -16,18 +16,24 @@ mixin _$CommentStore on _CommentStore, Store {
       (_$commentsCountComputed ??= Computed<int>(() => super.commentsCount,
               name: '_CommentStore.commentsCount'))
           .value;
+  Computed<bool>? _$hasErrorComputed;
+
+  @override
+  bool get hasError => (_$hasErrorComputed ??=
+          Computed<bool>(() => super.hasError, name: '_CommentStore.hasError'))
+      .value;
 
   late final _$errorMessageAtom =
       Atom(name: '_CommentStore.errorMessage', context: context);
 
   @override
-  String get errorMessage {
+  String? get errorMessage {
     _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
-  set errorMessage(String value) {
+  set errorMessage(String? value) {
     _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
     });
@@ -99,6 +105,20 @@ mixin _$CommentStore on _CommentStore, Store {
         .run(() => super.addComment(commentText, user));
   }
 
+  late final _$_CommentStoreActionController =
+      ActionController(name: '_CommentStore', context: context);
+
+  @override
+  dynamic removeComment(int commentId) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.removeComment');
+    try {
+      return super.removeComment(commentId);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
@@ -106,7 +126,8 @@ errorMessage: ${errorMessage},
 isLoadingMovieComments: ${isLoadingMovieComments},
 isSendingComment: ${isSendingComment},
 comments: ${comments},
-commentsCount: ${commentsCount}
+commentsCount: ${commentsCount},
+hasError: ${hasError}
     ''';
   }
 }

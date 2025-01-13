@@ -20,7 +20,7 @@ Map<String, dynamic> _$MovieCommentEntityToJson(MovieCommentEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'comment_text': instance.commentText,
-      'user': instance.user.toJson(),
+      'user': instance.user,
       'create_at': instance.createAt.toIso8601String(),
       'replies': instance.replies,
       'movie_id': instance.movieId,

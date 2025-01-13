@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
-import 'package:loomi_challenge/src/models/response/comment/comment_response.dart';
 
 part 'movie_comment_entity.g.dart';
 
@@ -25,18 +24,6 @@ class MovieCommentEntity {
     required this.movieId,
   });
 
-  factory MovieCommentEntity.fromCommentResponse(
-      CommentResponse commentResponse) {
-    return MovieCommentEntity(
-      id: commentResponse.comment.id,
-      commentText: commentResponse.comment.commentText,
-      user: commentResponse.comment.user,
-      createAt: commentResponse.comment.createAt,
-      replies: commentResponse.comment.replies,
-      movieId: commentResponse.comment.movieId,
-    );
-  }
-
   setId(String id) {
     this.id = id;
   }
@@ -44,5 +31,9 @@ class MovieCommentEntity {
   factory MovieCommentEntity.fromJson(Map<String, dynamic> json) =>
       _$MovieCommentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MovieCommentEntityToJson(this);
+  Map<String, dynamic> toJson() {
+    final json = _$MovieCommentEntityToJson(this);
+    json['user'] = user.toJson();
+    return json;
+  }
 }

@@ -1,17 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
-
-part 'comment_response.g.dart';
-
-@JsonSerializable()
 class CommentResponse {
-  @JsonKey(name: 'data')
-  MovieCommentEntity comment;
+  final bool success;
+  final String message;
+  final dynamic data;
 
-  CommentResponse({required this.comment});
+  CommentResponse({
+    required this.success,
+    required this.message,
+    required this.data,
+  });
 
-  factory CommentResponse.fromJson(Map<String, dynamic> json) =>
-      _$CommentResponseFromJson(json);
+  factory CommentResponse.onSuccess(dynamic data) {
+    return CommentResponse(
+      success: true,
+      message: '',
+      data: data,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$CommentResponseToJson(this);
+  factory CommentResponse.onError(dynamic data, String message) {
+    return CommentResponse(
+      success: false,
+      message: message,
+      data: data,
+    );
+  }
 }
