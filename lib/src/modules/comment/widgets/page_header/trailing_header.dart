@@ -60,7 +60,7 @@ class _CommentPageTrailingHeaderState extends State<CommentPageTrailingHeader> {
 
   Widget CommentPageTextCommentsInfo() {
     return Text(
-      '${commentStore.commentsCount} Comments',
+      commentStore.hasError ? '' : '${commentStore.commentsCount} Comments',
       style: MyThemes.get().epilogueStyle.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w600,
