@@ -7,7 +7,7 @@ part 'movie_comment_entity.g.dart';
 class MovieCommentEntity {
   String? id;
   @JsonKey(name: 'comment_text')
-  final String commentText;
+  String commentText;
   final UserEntity user;
   @JsonKey(name: 'create_at')
   final DateTime createAt;
@@ -26,6 +26,10 @@ class MovieCommentEntity {
 
   setId(String id) {
     this.id = id;
+  }
+
+  setCommentText(String text) {
+    this.commentText = text;
   }
 
   factory MovieCommentEntity.fromJson(Map<String, dynamic> json) =>

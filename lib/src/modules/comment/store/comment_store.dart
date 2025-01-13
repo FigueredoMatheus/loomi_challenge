@@ -18,6 +18,11 @@ abstract class _CommentStore with Store {
 
   late MovieEntity movie;
 
+  late MovieCommentEntity commentToBeEdited;
+
+  @observable
+  bool editCommentMode = false;
+
   @observable
   String? errorMessage;
 
@@ -39,6 +44,21 @@ abstract class _CommentStore with Store {
 
   init(MovieEntity movie) {
     this.movie = movie;
+  }
+
+  onSubmitCommentText(String commentText, UserEntity user) {
+    if (editCommentMode) {
+      editMovieComment(commentText);
+    } else {
+      addComment(commentText, user);
+    }
+  }
+
+  @action
+  editMovieComment(String commentText) {
+    cancelEditMode();
+
+    updateCommentText(commentId: commentToBeEdited.id!, text: commentText);
   }
 
   @action
@@ -87,7 +107,9 @@ abstract class _CommentStore with Store {
 
   @action
   onEditComment(MovieCommentEntity comment) {
-    print('--- EDIT');
+    Get.back();
+    commentToBeEdited = comment;
+    editCommentMode = true;
   }
 
   @action
@@ -130,6 +152,13 @@ abstract class _CommentStore with Store {
   }
 
   @action
+  updateCommentText({required String commentId, required String text}) {
+    comments
+        .firstWhere((element) => element.id == commentId)
+        .setCommentText(text);
+  }
+
+  @action
   insertComment(MovieCommentEntity comment) {
     comments.add(comment);
     comments.sort((a, b) => b.createAt.compareTo(a.createAt));
@@ -138,5 +167,15 @@ abstract class _CommentStore with Store {
   @action
   removeComment(String commentId) {
     comments.removeWhere((element) => element.id! == commentId);
+  }
+
+  @action
+  cancelEditMode() {
+    editCommentMode = false;
+  }
+
+  @action
+  onDispose() {
+    cancelEditMode();
   }
 }

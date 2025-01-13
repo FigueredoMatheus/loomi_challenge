@@ -8,7 +8,7 @@ import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart
 import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comment_text_field.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comments_list.dart';
-import 'package:loomi_challenge/src/modules/comment/widgets/page_header.dart';
+import 'package:loomi_challenge/src/modules/comment/widgets/page_header/page_header.dart';
 
 class MovieCommentsPageView extends StatefulWidget {
   final MovieEntity movie;
@@ -30,6 +30,12 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
     commentStore.init(widget.movie);
 
     commentStore.loadMovieComments();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    commentStore.onDispose();
   }
 
   @override

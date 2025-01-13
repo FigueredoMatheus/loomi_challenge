@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/common/widgets/images_widgets/circle_avatar_profile_image.dart';
@@ -16,6 +17,8 @@ class CommentTextField extends StatefulWidget {
 
 class _CommentTextFieldState extends State<CommentTextField> {
   final TextEditingController textController = TextEditingController();
+  bool isEditingInitialized = false;
+  bool shouldClearTextController = true;
   late CommentStore commentStore;
 
   @override
@@ -35,70 +38,90 @@ class _CommentTextFieldState extends State<CommentTextField> {
   onSendComment() {
     setState(() {
       showSendIcon = false;
-
       textController.clear();
     });
+  }
+
+  onChangeEditCommentMode() {
+    if (commentStore.editCommentMode && !isEditingInitialized) {
+      textController.text = commentStore.commentToBeEdited.commentText;
+      isEditingInitialized = true;
+      shouldClearTextController = true;
+    } else if (!commentStore.editCommentMode) {
+      if (shouldClearTextController) {
+        textController.clear();
+        shouldClearTextController = false;
+      }
+
+      isEditingInitialized = false;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final loggedUser = Provider.of<UserProvider>(context).user;
 
-    return Container(
-      padding: const EdgeInsets.only(top: 13),
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: MyThemes.get().kGainsboroGrayColor.withOpacity(0.2),
-          ),
-        ),
-      ),
-      child: Row(
-        children: [
-          CircleAvatarProfileImage(
-            user: loggedUser,
-            containerSize: 40,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: CustomTextFormField(
-              controller: textController,
-              onChanged: onTextChanged,
-              label: 'Add a reply...',
-              textFormFieldType: TextFormFieldType.text,
+    return Observer(builder: (context) {
+      onChangeEditCommentMode();
+
+      return Container(
+        padding: const EdgeInsets.only(top: 13),
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: MyThemes.get().kGainsboroGrayColor.withOpacity(0.2),
             ),
           ),
-          SizedBox(width: 8),
-          AnimatedSwitcher(
-            duration: Duration(milliseconds: 300),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              final slideAnimation = Tween<Offset>(
-                begin: Offset(1.0, 0.0),
-                end: Offset(0.0, 0.0),
-              ).animate(animation);
-              return SlideTransition(
-                position: slideAnimation,
-                child: child,
-              );
-            },
-            child: showSendIcon
-                ? InkWell(
-                    onTap: () {
-                      commentStore.addComment(textController.text, loggedUser);
-                      onSendComment();
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/send_comment_icon.svg',
-                      semanticsLabel: 'Send Comment',
-                      width: 27,
+        ),
+        child: Row(
+          children: [
+            CircleAvatarProfileImage(user: loggedUser, containerSize: 40),
+            const SizedBox(width: 10),
+            Expanded(
+              child: CustomTextFormField(
+                controller: textController,
+                onChanged: onTextChanged,
+                label: 'Add a reply...',
+                textFormFieldType: TextFormFieldType.text,
+              ),
+            ),
+            SizedBox(width: 8),
+            AnimatedSwitcher(
+              duration: Duration(milliseconds: 300),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                final slideAnimation = Tween<Offset>(
+                  begin: Offset(1.0, 0.0),
+                  end: Offset(0.0, 0.0),
+                ).animate(animation);
+                return SlideTransition(
+                  position: slideAnimation,
+                  child: child,
+                );
+              },
+              child: showSendIcon
+                  ? InkWell(
+                      onTap: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        commentStore.onSubmitCommentText(
+                          textController.text,
+                          loggedUser,
+                        );
+
+                        onSendComment();
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/send_comment_icon.svg',
+                        semanticsLabel: 'Send Comment',
+                        width: 27,
+                      ),
+                    )
+                  : SizedBox.shrink(
+                      key: ValueKey('empty_space'),
                     ),
-                  )
-                : SizedBox.shrink(
-                    key: ValueKey('empty_space'),
-                  ),
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

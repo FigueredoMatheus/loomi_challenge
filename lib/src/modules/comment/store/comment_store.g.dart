@@ -23,6 +23,22 @@ mixin _$CommentStore on _CommentStore, Store {
           Computed<bool>(() => super.hasError, name: '_CommentStore.hasError'))
       .value;
 
+  late final _$editCommentModeAtom =
+      Atom(name: '_CommentStore.editCommentMode', context: context);
+
+  @override
+  bool get editCommentMode {
+    _$editCommentModeAtom.reportRead();
+    return super.editCommentMode;
+  }
+
+  @override
+  set editCommentMode(bool value) {
+    _$editCommentModeAtom.reportWrite(value, super.editCommentMode, () {
+      super.editCommentMode = value;
+    });
+  }
+
   late final _$errorMessageAtom =
       Atom(name: '_CommentStore.errorMessage', context: context);
 
@@ -118,6 +134,17 @@ mixin _$CommentStore on _CommentStore, Store {
       ActionController(name: '_CommentStore', context: context);
 
   @override
+  dynamic editMovieComment(String commentText) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.editMovieComment');
+    try {
+      return super.editMovieComment(commentText);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic onEditComment(MovieCommentEntity comment) {
     final _$actionInfo = _$_CommentStoreActionController.startAction(
         name: '_CommentStore.onEditComment');
@@ -140,6 +167,28 @@ mixin _$CommentStore on _CommentStore, Store {
   }
 
   @override
+  dynamic updateCommentText({required String commentId, required String text}) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.updateCommentText');
+    try {
+      return super.updateCommentText(commentId: commentId, text: text);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic insertComment(MovieCommentEntity comment) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.insertComment');
+    try {
+      return super.insertComment(comment);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic removeComment(String commentId) {
     final _$actionInfo = _$_CommentStoreActionController.startAction(
         name: '_CommentStore.removeComment');
@@ -151,8 +200,31 @@ mixin _$CommentStore on _CommentStore, Store {
   }
 
   @override
+  dynamic cancelEditMode() {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.cancelEditMode');
+    try {
+      return super.cancelEditMode();
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic onDispose() {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.onDispose');
+    try {
+      return super.onDispose();
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+editCommentMode: ${editCommentMode},
 errorMessage: ${errorMessage},
 isLoadingMovieComments: ${isLoadingMovieComments},
 isSendingComment: ${isSendingComment},
