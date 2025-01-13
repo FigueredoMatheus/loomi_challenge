@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:loomi_challenge/src/common/widgets/custom_loading_widget.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comment_field_widget.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/comments_list.dart';
 import 'package:loomi_challenge/src/modules/comment/widgets/page_header.dart';
@@ -15,24 +19,41 @@ class MovieCommentsPageView extends StatefulWidget {
 }
 
 class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
+  late CommentStore commentStore;
+
+  @override
+  void initState() {
+    super.initState();
+    commentStore = getIt<CommentStore>();
+
+    commentStore.setMovie(widget.movie);
+
+    commentStore.loadMovieComments();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
-          left: pageViewDefaultPadding,
-          right: pageViewDefaultPadding,
-          bottom: pageViewDefaultPadding,
-        ),
-        child: Column(
-          children: [
-            MovieCommentsPageHeader(movie: widget.movie),
-            CommentsListWidget(movie: widget.movie),
-            CommentFieldWidget(movie: widget.movie),
-          ],
-        ),
-      ),
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
+            left: pageViewDefaultPadding,
+            right: pageViewDefaultPadding,
+            bottom: pageViewDefaultPadding,
+          ),
+          child: Observer(
+            builder: (context) {
+              return commentStore.isLoadingMovieComments
+                  ? Center(child: CustomLoadingWidget())
+                  : Column(
+                      children: [
+                        MovieCommentsPageHeader(movie: widget.movie),
+                        CommentsListWidget(movie: widget.movie),
+                        CommentFieldWidget(movie: widget.movie),
+                      ],
+                    );
+            },
+          )),
     );
   }
 }
