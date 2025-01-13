@@ -32,10 +32,12 @@ abstract class MyThemes {
   String get epilogueFamily => typography.epilogueFamily;
   String get montserratFamily => typography.montserratFamily;
   String get outfitFamily => typography.outfitFamily;
+  String get robotoFamily => typography.robotoFamily;
 
   TextStyle get epilogueStyle => typography.epilogueStyle;
   TextStyle get montserratStyle => typography.montserratStyle;
   TextStyle get outfitStyle => typography.outfitStyle;
+  TextStyle get robotoStyle => typography.robotoStyle;
 
   Typography get typography => ThemeTypography(this);
 }
@@ -68,16 +70,26 @@ abstract class Typography {
   String get epilogueFamily;
   String get montserratFamily;
   String get outfitFamily;
+  String get robotoFamily;
 
   TextStyle get epilogueStyle;
   TextStyle get montserratStyle;
   TextStyle get outfitStyle;
+  TextStyle get robotoStyle;
 }
 
 class ThemeTypography extends Typography {
   ThemeTypography(this.theme);
 
   final MyThemes theme;
+
+  String get robotoFamily => 'roboto';
+  TextStyle get robotoStyle => TextStyle(
+        fontFamily: robotoFamily,
+        fontSize: 14,
+        color: theme.kWhiteColor,
+        fontWeight: FontWeight.w500,
+      );
 
   String get epilogueFamily => 'epilogue';
   TextStyle get epilogueStyle => TextStyle(
