@@ -27,7 +27,8 @@ class _CommentTitleTileState extends State<CommentTitleTile> {
         ),
         const SizedBox(height: 5),
         Text(
-          widget.comment.createAt.toCustomCommentDateFormat(),
+          widget.comment.createAt.toCustomCommentDateFormat() +
+              '${widget.comment.isCommentEdited ? '(Edited)' : ''}',
           style: MyThemes.get().epilogueStyle.copyWith(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,

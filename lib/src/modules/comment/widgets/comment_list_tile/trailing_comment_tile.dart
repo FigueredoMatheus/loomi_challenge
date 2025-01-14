@@ -28,7 +28,9 @@ class _TrailingCommentTileState extends State<TrailingCommentTile> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        return commentStore.editCommentMode
+        return commentStore.editCommentMode ||
+                (!widget.comment.isCommentEdited &&
+                    !widget.comment.isCommentSent)
             ? Container(width: 1)
             : InkWell(
                 onTap: () {
