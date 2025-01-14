@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
@@ -34,12 +33,22 @@ class _CommentPageErrorWidgetState extends State<CommentPageErrorWidget> {
       children: [
         MovieCommentsPageHeader(),
         Expanded(
-          child: Center(
-            child: Text(
-              commentStore.errorMessage!,
-              style: Get.textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                commentStore.errorMessage!,
+                style: Get.textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: ElevatedButton(
+                  onPressed: commentStore.loadMovieComments,
+                  child: Text('Try Again'),
+                ),
+              ),
+            ],
           ),
         ),
       ],
