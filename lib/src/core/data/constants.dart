@@ -4,4 +4,6 @@ class ApplicationConstants {
   static const double HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT = 50;
 
   static const int QUERY_COMMENTS_LIMIT = 5;
+
+  static double MOVIE_PLAYER_COMMENTS_WIDTH_FACTOR = 0.40;
 }
