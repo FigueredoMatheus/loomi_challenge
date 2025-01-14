@@ -66,7 +66,6 @@ abstract class _CommentStore with Store {
           commentId: response.data.id!,
           text: response.data.commentText,
         );
-        Get.closeAllSnackbars();
 
         MyAppSnackBar(
           message: response.message,
@@ -74,11 +73,6 @@ abstract class _CommentStore with Store {
         ).show();
       }
     });
-
-    MyAppSnackBar(
-      message: 'Comment has been edited successfully.',
-      snackBarType: SnackBarType.success,
-    ).show();
 
     updateCommentText(commentId: commentToBeEdited.id!, text: commentText);
   }
@@ -146,8 +140,6 @@ abstract class _CommentStore with Store {
 
     commentsServices.deleteComment(comment).then((response) {
       if (!response.success) {
-        Get.closeAllSnackbars();
-
         insertComment(comment);
 
         MyAppSnackBar(
@@ -156,11 +148,6 @@ abstract class _CommentStore with Store {
         ).show();
       }
     });
-
-    MyAppSnackBar(
-      message: 'Comment has been deleted successfully.',
-      snackBarType: SnackBarType.success,
-    ).show();
 
     removeComment(comment.id!);
   }
@@ -179,6 +166,16 @@ abstract class _CommentStore with Store {
     comments
         .firstWhere((element) => element.id == commentId)
         .setCommentText(text);
+  }
+
+  @action
+  updateCommentStatus({
+    required MovieCommentEntity comment,
+    required CommentStatus status,
+  }) {
+    comments
+        .firstWhere((element) => element.id == comment.id)
+        .setCommentStatus(status);
   }
 
   @action

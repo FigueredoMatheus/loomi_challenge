@@ -178,6 +178,18 @@ mixin _$CommentStore on _CommentStore, Store {
   }
 
   @override
+  dynamic updateCommentStatus(
+      {required MovieCommentEntity comment, required CommentStatus status}) {
+    final _$actionInfo = _$_CommentStoreActionController.startAction(
+        name: '_CommentStore.updateCommentStatus');
+    try {
+      return super.updateCommentStatus(comment: comment, status: status);
+    } finally {
+      _$_CommentStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic insertComment(MovieCommentEntity comment) {
     final _$actionInfo = _$_CommentStoreActionController.startAction(
         name: '_CommentStore.insertComment');

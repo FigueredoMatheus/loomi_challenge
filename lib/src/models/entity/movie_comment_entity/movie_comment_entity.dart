@@ -24,7 +24,7 @@ class MovieCommentEntity {
     toJson: SerializationHelper.commentStatusToJson,
     fromJson: SerializationHelper.commentStatusFromJson,
   )
-  final CommentStatus status;
+  CommentStatus status;
 
   MovieCommentEntity({
     this.id,
@@ -42,6 +42,10 @@ class MovieCommentEntity {
 
   setCommentText(String text) {
     this.commentText = text;
+  }
+
+  setCommentStatus(CommentStatus status) {
+    this.status = status;
   }
 
   bool get isCommentSent => status == CommentStatus.Sent;
