@@ -6,10 +6,9 @@ import 'package:mobx/mobx.dart';
 
 part 'movie_player_store.g.dart';
 
-class MoviePlayerController = _MoviePlayerController
-    with _$MoviePlayerController;
+class MoviePlayerStore = _MoviePlayerStore with _$MoviePlayerStore;
 
-abstract class _MoviePlayerController with Store {
+abstract class _MoviePlayerStore with Store {
   late MovieEntity movie;
   late VideoPlayerController playerController;
 

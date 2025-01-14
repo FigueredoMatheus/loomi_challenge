@@ -9,7 +9,7 @@ class MoviePlayerBackward extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: getIt<MoviePlayerController>().backward,
+      onTap: getIt<MoviePlayerStore>().backward,
       child: SvgPicture.asset(
         'assets/icons/backward_15_icon.svg',
         semanticsLabel: 'backward_15',

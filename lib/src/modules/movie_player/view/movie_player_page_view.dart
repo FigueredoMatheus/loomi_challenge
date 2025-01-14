@@ -37,7 +37,7 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
     playerController.initialize().then((_) => setState(() {}));
     playerController.play();
 
-    getIt<MoviePlayerController>().initialize(
+    getIt<MoviePlayerStore>().initialize(
       movie: widget.movie,
       playerController: playerController,
     );
@@ -46,7 +46,7 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
   @override
   void dispose() {
     playerController.dispose();
-    getIt<MoviePlayerController>().onDispose();
+    getIt<MoviePlayerStore>().onDispose();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -68,7 +68,7 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
     return SafeArea(
       child: GestureDetector(
         onDoubleTap: () {
-          getIt<MoviePlayerController>().toggleOverlaysView();
+          getIt<MoviePlayerStore>().toggleOverlaysView();
         },
         child: Scaffold(
           body: Stack(

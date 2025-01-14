@@ -10,10 +10,10 @@ class PausePlayMovieWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        getIt<MoviePlayerController>().playPauseButton();
+        getIt<MoviePlayerStore>().playPauseButton();
       },
       child: Icon(
-        getIt<MoviePlayerController>().isMoviePlaying
+        getIt<MoviePlayerStore>().isMoviePlaying
             ? FontAwesomeIcons.circlePause
             : FontAwesomeIcons.circlePlay,
         color: Colors.white,

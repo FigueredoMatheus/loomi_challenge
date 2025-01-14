@@ -13,18 +13,18 @@ class MovieProgressTime extends StatefulWidget {
 class _MovieProgressTimeState extends State<MovieProgressTime> {
   @override
   Widget build(BuildContext context) {
-    final controller = getIt<MoviePlayerController>();
+    final moviePlayerStore = getIt<MoviePlayerStore>();
 
     final movieProgressTime = calculateTotalDuration(
-      controller.movieCurrentPosition.inHours,
-      controller.movieCurrentPosition.inMinutes,
-      controller.movieCurrentPosition.inSeconds,
+      moviePlayerStore.movieCurrentPosition.inHours,
+      moviePlayerStore.movieCurrentPosition.inMinutes,
+      moviePlayerStore.movieCurrentPosition.inSeconds,
     );
 
     final movieTotalDuration = calculateTotalDuration(
-      controller.movieTotalDuration.inHours,
-      controller.movieTotalDuration.inMinutes,
-      controller.movieTotalDuration.inSeconds,
+      moviePlayerStore.movieTotalDuration.inHours,
+      moviePlayerStore.movieTotalDuration.inMinutes,
+      moviePlayerStore.movieTotalDuration.inSeconds,
     );
 
     return Text(

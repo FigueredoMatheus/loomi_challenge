@@ -9,7 +9,7 @@ class MoviePlayerMovieTitleOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      getIt<MoviePlayerController>().movieTitle,
+      getIt<MoviePlayerStore>().movieTitle,
       style: MyThemes.get().epilogueStyle.copyWith(
             fontWeight: FontWeight.w700,
           ),

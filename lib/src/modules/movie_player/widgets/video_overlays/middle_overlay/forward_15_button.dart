@@ -9,7 +9,7 @@ class MoviePlayerForward extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: getIt<MoviePlayerController>().forward,
+      onTap: getIt<MoviePlayerStore>().forward,
       child: SvgPicture.asset(
         'assets/icons/forward_15_icon.svg',
         semanticsLabel: 'forward_15',

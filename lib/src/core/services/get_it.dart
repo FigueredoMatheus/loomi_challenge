@@ -16,7 +16,7 @@ void setupGetItClasses() {
   getIt.registerLazySingleton(() => LoginController());
   getIt.registerLazySingleton(() => ForgotPasswordController());
   getIt.registerLazySingleton(() => SettingsController());
-  getIt.registerLazySingleton(() => MoviePlayerController());
+  getIt.registerLazySingleton(() => MoviePlayerStore());
   getIt.registerLazySingleton(() => CommentStore());
 
   getIt.registerLazySingleton(() => AuthRepository(Dio(BaseOptions(
