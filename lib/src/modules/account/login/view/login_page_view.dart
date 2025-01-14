@@ -18,6 +18,7 @@ class LoginPageView extends StatefulWidget {
 }
 
 class _LoginPageViewState extends State<LoginPageView> {
+  final padding = ApplicationConstants.PAGE_VIEW_DEFAULT_PADDING;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,10 +27,10 @@ class _LoginPageViewState extends State<LoginPageView> {
         body: Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
-              bottom: pageViewDefaultPadding,
-              left: pageViewDefaultPadding,
-              right: pageViewDefaultPadding,
+              top: MediaQuery.of(context).padding.top + padding,
+              bottom: padding,
+              left: padding,
+              right: padding,
             ),
             child: Column(
               children: [

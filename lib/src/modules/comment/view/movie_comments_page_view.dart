@@ -40,13 +40,14 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
 
   @override
   Widget build(BuildContext context) {
+    final padding = ApplicationConstants.PAGE_VIEW_DEFAULT_PADDING;
     return Scaffold(
       body: Padding(
           padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
-            left: pageViewDefaultPadding,
-            right: pageViewDefaultPadding,
-            bottom: pageViewDefaultPadding,
+            top: MediaQuery.of(context).padding.top + padding,
+            left: padding,
+            right: padding,
+            bottom: padding,
           ),
           child: Observer(
             builder: (context) {

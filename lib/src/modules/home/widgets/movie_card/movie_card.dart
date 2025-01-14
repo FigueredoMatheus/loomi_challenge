@@ -21,12 +21,13 @@ class _HomePageViewMovieCardState extends State<HomePageViewMovieCard> {
 
   @override
   Widget build(BuildContext context) {
+    final padding = ApplicationConstants.PAGE_VIEW_DEFAULT_PADDING;
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: pageViewDefaultPadding),
+            padding: EdgeInsets.only(left: padding),
             child: Text(
               'Now Showing',
               style: MyThemes.get().epilogueStyle,
@@ -35,11 +36,11 @@ class _HomePageViewMovieCardState extends State<HomePageViewMovieCard> {
           Expanded(
             child: Container(
               width: double.infinity,
-              margin: const EdgeInsets.only(
+              margin: EdgeInsets.only(
                 top: 10,
-                left: pageViewDefaultPadding,
-                right: pageViewDefaultPadding,
-                bottom: pageViewDefaultPadding,
+                left: padding,
+                right: padding,
+                bottom: padding,
               ),
               decoration: BoxDecoration(
                 color: Colors.transparent,

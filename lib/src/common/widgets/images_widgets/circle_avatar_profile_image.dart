@@ -14,7 +14,8 @@ class CircleAvatarProfileImage extends StatefulWidget {
   const CircleAvatarProfileImage({
     super.key,
     required this.user,
-    this.containerSize = homePageViewCustomAppBarHeight,
+    this.containerSize =
+        ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT,
     this.isFromHomePageViewHeader = false,
   });
 

@@ -13,13 +13,14 @@ class HomePageViewHeader extends StatelessWidget {
     final loggedUser = Provider.of<UserProvider>(context).user;
     return Container(
       color: Colors.transparent,
-      height: homePageViewCustomAppBarHeight,
+      height: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT,
       width: double.infinity,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top + 50,
         bottom: 15,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: pageViewDefaultPadding),
+      padding: const EdgeInsets.symmetric(
+          horizontal: ApplicationConstants.PAGE_VIEW_DEFAULT_PADDING),
       child: Stack(
         children: [
           Positioned(

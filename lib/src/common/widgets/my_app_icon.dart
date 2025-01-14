@@ -12,25 +12,29 @@ class MyAppIcon extends StatelessWidget {
     final double mediumContainer = showText ? biggerContainer * 0.60 : 0;
     final double smallContainer = showText ? mediumContainer * 0.60 : 0;
     return Container(
-      height: homePageViewCustomAppBarHeight + biggerContainer,
-      width: homePageViewCustomAppBarHeight + biggerContainer,
+      height: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT +
+          biggerContainer,
+      width: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT +
+          biggerContainer,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Container(
-            height: homePageViewCustomAppBarHeight + mediumContainer,
-            width: homePageViewCustomAppBarHeight + mediumContainer,
+            height: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT +
+                mediumContainer,
+            width: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT +
+                mediumContainer,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: MyThemes.get().kWhiteColor.withOpacity(0.6),
             ),
           ),
           Container(
-            height: homePageViewCustomAppBarHeight -
-                homePageViewCustomAppBarHeight / 2 +
+            height: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT -
+                ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT / 2 +
                 smallContainer,
-            width: homePageViewCustomAppBarHeight -
-                homePageViewCustomAppBarHeight / 2 +
+            width: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT -
+                ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT / 2 +
                 smallContainer,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -38,9 +42,11 @@ class MyAppIcon extends StatelessWidget {
             ),
           ),
           Container(
-            height:
-                homePageViewCustomAppBarHeight * 0.1 + mediumContainer / 3.5,
-            width: homePageViewCustomAppBarHeight + biggerContainer,
+            height: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT *
+                    0.1 +
+                mediumContainer / 3.5,
+            width: ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT +
+                biggerContainer,
             decoration: BoxDecoration(
               color: MyThemes.get().kVeryDarkGrayColor,
             ),
