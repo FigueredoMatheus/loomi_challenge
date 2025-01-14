@@ -16,11 +16,13 @@ final class LoadMovieEvent extends HomePageEvent {
   List<Object> get props => [movieId];
 }
 
-final class ShowMovieEvent extends HomePageEvent {
-  final MovieEntity movie;
+final class ShowMovieEvent extends HomePageEvent {}
 
-  ShowMovieEvent({required this.movie});
+final class UpdateMovieCommentsEvent extends HomePageEvent {
+  final List<MovieCommentEntity> comments;
+
+  UpdateMovieCommentsEvent({required this.comments});
 
   @override
-  List<Object> get props => [movie];
+  List<Object> get props => [comments];
 }

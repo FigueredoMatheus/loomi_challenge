@@ -38,6 +38,7 @@ class MovieEntity {
   });
 
   setComments(List<MovieCommentEntity> comments) {
+    this.comments.clear();
     this.comments.addAll(comments);
   }
 
