@@ -14,7 +14,14 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   final movieServices = MovieServices();
   final commentsServices = CommentsServices();
   HomePageBloc() : super(HomePageInitial()) {
+    on<ShowMovieEvent>(_onShowMovieEvent);
     on<LoadMovieEvent>(_onLoadMovieEvent);
+  }
+
+  _onShowMovieEvent(ShowMovieEvent event, Emitter<HomePageState> emit) {
+    final timestamp = DateTime.now().microsecondsSinceEpoch;
+
+    emit(ShowMovieState(movie: event.movie, timestamp: timestamp));
   }
 
   _onLoadMovieEvent(LoadMovieEvent event, Emitter<HomePageState> emit) async {
@@ -30,7 +37,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
       movie.setComments(commentsResponse.comments);
 
-      emit(SuccessOnLoadingMovieState(movie: movie));
+      add(ShowMovieEvent(movie: movie));
     } on DioException catch (dioException) {
       final exception = DioExceptionHelper().getException(dioException);
 

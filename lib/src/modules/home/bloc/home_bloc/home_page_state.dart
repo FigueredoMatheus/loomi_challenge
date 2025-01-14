@@ -20,10 +20,11 @@ final class FailOnLoadingMovieState extends HomePageState {
   List<Object> get props => [exception];
 }
 
-final class SuccessOnLoadingMovieState extends HomePageState {
+final class ShowMovieState extends HomePageState {
+  final int timestamp;
   final MovieEntity movie;
 
-  SuccessOnLoadingMovieState({required this.movie});
+  ShowMovieState({required this.movie, required this.timestamp});
   @override
-  List<Object> get props => [movie];
+  List<Object> get props => [timestamp];
 }

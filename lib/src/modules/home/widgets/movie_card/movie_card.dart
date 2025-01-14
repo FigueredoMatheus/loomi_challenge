@@ -52,7 +52,7 @@ class _HomePageViewMovieCardState extends State<HomePageViewMovieCard> {
                     return HomePageViewMovieCardBody();
                   }
 
-                  if (state is SuccessOnLoadingMovieState) {
+                  if (state is ShowMovieState) {
                     return HomePageViewMovieCardBody(movie: state.movie);
                   }
 
