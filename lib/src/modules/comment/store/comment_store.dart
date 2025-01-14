@@ -102,7 +102,6 @@ abstract class _CommentStore with Store {
     if (response.success) {
       comments.clear();
       comments.addAll(response.comments);
-      movie.setComments(comments);
       lasPaginationDocumentSnapshot = response.lastDocument;
     } else {
       getCommentserrorMessage = response.errorMessage;
@@ -113,7 +112,6 @@ abstract class _CommentStore with Store {
 
   @action
   fetchNextCommentsPage() async {
-    print('--- hasMoreUnloadedComments: $hasMoreUnloadedComments');
     if (isFetchingNextCommentsPage ||
         !hasMoreUnloadedComments ||
         hasOnFetchMoreCommentsErrorMessage) return;
@@ -125,11 +123,9 @@ abstract class _CommentStore with Store {
 
     if (response.success) {
       comments.addAll(response.comments);
-      movie.setComments(comments);
       lasPaginationDocumentSnapshot = response.lastDocument;
       hasMoreUnloadedComments = response.comments.isNotEmpty;
     } else {
-      print('--- ERROR: ${response.errorMessage}');
       fetchMoreCommentsErrorMessage = response.errorMessage;
     }
 
