@@ -33,7 +33,10 @@ abstract class _CommentStore with Store {
   bool editCommentMode = false;
 
   @observable
-  String? errorMessage;
+  String? getCommentserrorMessage;
+
+  @observable
+  String? fetchMoreCommentsErrorMessage;
 
   @observable
   bool isLoadingMovieComments = false;
@@ -49,7 +52,11 @@ abstract class _CommentStore with Store {
   int get commentsCount => comments.length;
 
   @computed
-  bool get hasError => errorMessage != null;
+  bool get hasError => getCommentserrorMessage != null;
+
+  @computed
+  bool get hasOnFetchMoreCommentsErrorMessage =>
+      fetchMoreCommentsErrorMessage != null;
 
   init(MovieEntity movie) {
     this.movie = movie;
@@ -98,7 +105,7 @@ abstract class _CommentStore with Store {
       movie.setComments(comments);
       lasPaginationDocumentSnapshot = response.lastDocument;
     } else {
-      errorMessage = response.errorMessage;
+      getCommentserrorMessage = response.errorMessage;
     }
 
     isLoadingMovieComments = false;
@@ -106,7 +113,10 @@ abstract class _CommentStore with Store {
 
   @action
   fetchNextCommentsPage() async {
-    if (isFetchingNextCommentsPage || !hasMoreUnloadedComments) return;
+    print('--- hasMoreUnloadedComments: $hasMoreUnloadedComments');
+    if (isFetchingNextCommentsPage ||
+        !hasMoreUnloadedComments ||
+        hasOnFetchMoreCommentsErrorMessage) return;
 
     isFetchingNextCommentsPage = true;
 
@@ -118,6 +128,9 @@ abstract class _CommentStore with Store {
       movie.setComments(comments);
       lasPaginationDocumentSnapshot = response.lastDocument;
       hasMoreUnloadedComments = response.comments.isNotEmpty;
+    } else {
+      print('--- ERROR: ${response.errorMessage}');
+      fetchMoreCommentsErrorMessage = response.errorMessage;
     }
 
     isFetchingNextCommentsPage = false;
@@ -228,5 +241,7 @@ abstract class _CommentStore with Store {
     cancelEditMode();
     isFetchingNextCommentsPage = false;
     hasMoreUnloadedComments = true;
+    fetchMoreCommentsErrorMessage = null;
+    getCommentserrorMessage = null;
   }
 }

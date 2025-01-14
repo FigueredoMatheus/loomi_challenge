@@ -22,6 +22,14 @@ mixin _$CommentStore on _CommentStore, Store {
   bool get hasError => (_$hasErrorComputed ??=
           Computed<bool>(() => super.hasError, name: '_CommentStore.hasError'))
       .value;
+  Computed<bool>? _$hasOnFetchMoreCommentsErrorMessageComputed;
+
+  @override
+  bool get hasOnFetchMoreCommentsErrorMessage =>
+      (_$hasOnFetchMoreCommentsErrorMessageComputed ??= Computed<bool>(
+              () => super.hasOnFetchMoreCommentsErrorMessage,
+              name: '_CommentStore.hasOnFetchMoreCommentsErrorMessage'))
+          .value;
 
   late final _$isFetchingNextCommentsPageAtom =
       Atom(name: '_CommentStore.isFetchingNextCommentsPage', context: context);
@@ -73,19 +81,37 @@ mixin _$CommentStore on _CommentStore, Store {
     });
   }
 
-  late final _$errorMessageAtom =
-      Atom(name: '_CommentStore.errorMessage', context: context);
+  late final _$getCommentserrorMessageAtom =
+      Atom(name: '_CommentStore.getCommentserrorMessage', context: context);
 
   @override
-  String? get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
+  String? get getCommentserrorMessage {
+    _$getCommentserrorMessageAtom.reportRead();
+    return super.getCommentserrorMessage;
   }
 
   @override
-  set errorMessage(String? value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
+  set getCommentserrorMessage(String? value) {
+    _$getCommentserrorMessageAtom
+        .reportWrite(value, super.getCommentserrorMessage, () {
+      super.getCommentserrorMessage = value;
+    });
+  }
+
+  late final _$fetchMoreCommentsErrorMessageAtom = Atom(
+      name: '_CommentStore.fetchMoreCommentsErrorMessage', context: context);
+
+  @override
+  String? get fetchMoreCommentsErrorMessage {
+    _$fetchMoreCommentsErrorMessageAtom.reportRead();
+    return super.fetchMoreCommentsErrorMessage;
+  }
+
+  @override
+  set fetchMoreCommentsErrorMessage(String? value) {
+    _$fetchMoreCommentsErrorMessageAtom
+        .reportWrite(value, super.fetchMoreCommentsErrorMessage, () {
+      super.fetchMoreCommentsErrorMessage = value;
     });
   }
 
@@ -282,12 +308,14 @@ mixin _$CommentStore on _CommentStore, Store {
 isFetchingNextCommentsPage: ${isFetchingNextCommentsPage},
 hasMoreUnloadedComments: ${hasMoreUnloadedComments},
 editCommentMode: ${editCommentMode},
-errorMessage: ${errorMessage},
+getCommentserrorMessage: ${getCommentserrorMessage},
+fetchMoreCommentsErrorMessage: ${fetchMoreCommentsErrorMessage},
 isLoadingMovieComments: ${isLoadingMovieComments},
 isSendingComment: ${isSendingComment},
 comments: ${comments},
 commentsCount: ${commentsCount},
-hasError: ${hasError}
+hasError: ${hasError},
+hasOnFetchMoreCommentsErrorMessage: ${hasOnFetchMoreCommentsErrorMessage}
     ''';
   }
 }

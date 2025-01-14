@@ -37,7 +37,7 @@ class _CommentPageErrorWidgetState extends State<CommentPageErrorWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                commentStore.errorMessage!,
+                commentStore.getCommentserrorMessage!,
                 style: Get.textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
