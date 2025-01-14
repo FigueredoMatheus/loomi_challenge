@@ -31,3 +31,5 @@ enum SubtitleAudioModalColumnType { subtitles, audio }
 enum CustomModalBodyType { deleteAccount, terminatePlan }
 
 enum CommectActionType { delete, edit, report }
+
+enum CommentStatus { Sending, Sent, Edited, Editing, Failure }
