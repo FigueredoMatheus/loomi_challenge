@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/progress_download_dialog.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
 import 'package:loomi_challenge/src/models/response/file_services_response/file_services_response.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,6 +13,8 @@ class FileRepository {
     String fileNameWithExtension,
   ) async {
     try {
+      showProgressDownload(progressDownload);
+
       final directory = await getTemporaryDirectory();
       final filePath = '${directory.path}/$fileNameWithExtension';
 
@@ -32,6 +35,8 @@ class FileRepository {
             }),
       );
 
+      Get.back();
+
       if (response.statusCode == 200) {
         return FileServicesResponse.onSuccess(filePath);
       } else {
@@ -40,6 +45,8 @@ class FileRepository {
         );
       }
     } on DioException catch (exception) {
+      Get.back();
+
       final exceptionModel = DioExceptionHelper().getException(exception);
 
       return FileServicesResponse.onError(
