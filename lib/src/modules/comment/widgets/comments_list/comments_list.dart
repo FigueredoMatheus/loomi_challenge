@@ -23,7 +23,7 @@ class _CommentsListWidgetState extends State<CommentsListWidget> {
     commentStore = getIt<CommentStore>();
 
     scrollController.addListener(() {
-      if (scrollController.offset ==
+      if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         commentStore.fetchNextCommentsPage();
       }
