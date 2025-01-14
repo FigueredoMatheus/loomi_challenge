@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
+import 'package:loomi_challenge/src/modules/home/controller/home_controller.dart';
 import 'package:loomi_challenge/src/modules/home/widgets/custon_loading_shimmer_style.dart';
-import 'package:share_plus/share_plus.dart';
 
 class MovieCardBottomShareMovieWidget extends StatefulWidget {
   final MovieEntity? movie;
@@ -19,6 +19,7 @@ class _MovieCardBottomShareMovieWidgetState
   @override
   Widget build(BuildContext context) {
     final isLoading = widget.movie == null;
+    final homeController = HomeController();
 
     return isLoading
         ? Column(
@@ -30,7 +31,7 @@ class _MovieCardBottomShareMovieWidgetState
             ],
           )
         : InkWell(
-            onTap: () => Share.share(widget.movie!.title),
+            onTap: () => homeController.shareMovie(widget.movie!),
             overlayColor: MaterialStateProperty.resolveWith((states) {
               return Colors.transparent;
             }),
