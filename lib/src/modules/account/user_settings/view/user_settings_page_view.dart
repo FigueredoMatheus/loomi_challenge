@@ -15,16 +15,17 @@ class UserSettingsPageView extends StatefulWidget {
 }
 
 class _UserSettingsPageViewState extends State<UserSettingsPageView> {
+  final padding = ApplicationConstants.PAGE_VIEW_DEFAULT_PADDING;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
           padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + pageViewDefaultPadding,
-            bottom: pageViewDefaultPadding,
-            left: pageViewDefaultPadding,
-            right: pageViewDefaultPadding,
+            top: MediaQuery.of(context).padding.top + padding,
+            bottom: padding,
+            left: padding,
+            right: padding,
           ),
           child: Column(
             children: [

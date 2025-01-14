@@ -12,6 +12,8 @@ class CommentRepository {
           .collection(commentCollection)
           .doc('movie-$movieId')
           .collection('comments')
+          .orderBy('create_at', descending: true)
+          .limit(5)
           .get();
 
       final docs = response.docs;
