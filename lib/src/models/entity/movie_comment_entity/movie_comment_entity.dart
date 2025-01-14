@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/helpers/serialization_helper.dart';
 import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
 part 'movie_comment_entity.g.dart';
@@ -14,6 +16,11 @@ class MovieCommentEntity {
   final int replies;
   @JsonKey(name: 'movie_id')
   final int movieId;
+  @JsonKey(
+    toJson: SerializationHelper.commentStatusToJson,
+    fromJson: SerializationHelper.commentStatusFromJson,
+  )
+  final CommentStatus status;
 
   MovieCommentEntity({
     this.id,
@@ -22,6 +29,7 @@ class MovieCommentEntity {
     required this.createAt,
     required this.replies,
     required this.movieId,
+    required this.status,
   });
 
   setId(String id) {

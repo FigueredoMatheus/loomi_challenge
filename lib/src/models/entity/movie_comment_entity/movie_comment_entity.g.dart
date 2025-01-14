@@ -14,6 +14,7 @@ MovieCommentEntity _$MovieCommentEntityFromJson(Map<String, dynamic> json) =>
       createAt: DateTime.parse(json['create_at'] as String),
       replies: (json['replies'] as num).toInt(),
       movieId: (json['movie_id'] as num).toInt(),
+      status: $enumDecode(_$CommentStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$MovieCommentEntityToJson(MovieCommentEntity instance) =>
@@ -24,4 +25,13 @@ Map<String, dynamic> _$MovieCommentEntityToJson(MovieCommentEntity instance) =>
       'create_at': instance.createAt.toIso8601String(),
       'replies': instance.replies,
       'movie_id': instance.movieId,
+      'status': _$CommentStatusEnumMap[instance.status]!,
     };
+
+const _$CommentStatusEnumMap = {
+  CommentStatus.Sending: 'Sending',
+  CommentStatus.Sent: 'Sent',
+  CommentStatus.Edited: 'Edited',
+  CommentStatus.Editing: 'Editing',
+  CommentStatus.Failure: 'Failure',
+};

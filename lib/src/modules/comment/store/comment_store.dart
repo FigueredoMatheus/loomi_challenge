@@ -111,6 +111,7 @@ abstract class _CommentStore with Store {
       createAt: DateTime.now(),
       replies: 0,
       movieId: this.movie.id!,
+      status: CommentStatus.Sending,
     );
 
     insertComment(comment);
