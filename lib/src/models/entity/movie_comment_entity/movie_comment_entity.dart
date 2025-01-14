@@ -10,12 +10,16 @@ class MovieCommentEntity {
   String? id;
   @JsonKey(name: 'comment_text')
   String commentText;
-  final UserEntity user;
   @JsonKey(name: 'create_at')
   final DateTime createAt;
   final int replies;
   @JsonKey(name: 'movie_id')
   final int movieId;
+  @JsonKey(
+    toJson: SerializationHelper.userToJson,
+    fromJson: SerializationHelper.userFromJson,
+  )
+  final UserEntity user;
   @JsonKey(
     toJson: SerializationHelper.commentStatusToJson,
     fromJson: SerializationHelper.commentStatusFromJson,
@@ -40,12 +44,14 @@ class MovieCommentEntity {
     this.commentText = text;
   }
 
+  bool get isCommentSent => status == CommentStatus.Sent;
+  bool get isCommentSending => status == CommentStatus.Sending;
+  bool get isCommentEdited => status == CommentStatus.Edited;
+  bool get isCommentEditing => status == CommentStatus.Editing;
+  bool get isCommentFailure => status == CommentStatus.Failure;
+
   factory MovieCommentEntity.fromJson(Map<String, dynamic> json) =>
       _$MovieCommentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final json = _$MovieCommentEntityToJson(this);
-    json['user'] = user.toJson();
-    return json;
-  }
+  Map<String, dynamic> toJson() => _$MovieCommentEntityToJson(this);
 }
