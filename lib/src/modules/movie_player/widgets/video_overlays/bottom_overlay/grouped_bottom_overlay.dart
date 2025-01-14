@@ -6,7 +6,7 @@ import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/bottom_overlay/movie_progress_bar.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/bottom_overlay/movie_remaining%20_time.dart';
 
-import '../../../controller/movie_player_controller.dart';
+import '../../../store/movie_player_store.dart';
 
 class MoviePlayerGroupedBottomOverlay extends StatelessWidget {
   const MoviePlayerGroupedBottomOverlay({super.key});

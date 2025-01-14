@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_back_button.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/modules/movie_player/controller/movie_player_controller.dart';
+import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/top_overlay/movie_title.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/top_overlay/subtitle_audio_overlay.dart';
 

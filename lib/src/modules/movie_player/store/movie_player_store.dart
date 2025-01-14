@@ -4,7 +4,7 @@ import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart
 import 'package:video_player/video_player.dart';
 import 'package:mobx/mobx.dart';
 
-part 'movie_player_controller.g.dart';
+part 'movie_player_store.g.dart';
 
 class MoviePlayerController = _MoviePlayerController
     with _$MoviePlayerController;
@@ -16,12 +16,10 @@ abstract class _MoviePlayerController with Store {
   Timer? timer;
 
   @observable
-  bool hideOverlays = false;
+  bool isCommetsDisplayed = false;
 
-  @action
-  toggleOverlaysView() {
-    hideOverlays = !hideOverlays;
-  }
+  @observable
+  bool hideOverlays = false;
 
   double get videoHeight => playerController.value.size.height;
   double get videoWidth => playerController.value.size.height;
@@ -33,6 +31,16 @@ abstract class _MoviePlayerController with Store {
   Duration get movieCurrentPosition => playerController.value.position;
 
   String get movieTitle => movie.title;
+
+  @action
+  toggleOverlaysView() {
+    hideOverlays = !hideOverlays;
+  }
+
+  @action
+  toggleMovieCommentsVisibility() {
+    isCommetsDisplayed = !isCommetsDisplayed;
+  }
 
   backward() => playerController.seekTo(
         Duration(seconds: playerController.value.position.inSeconds - 15),
@@ -52,6 +60,9 @@ abstract class _MoviePlayerController with Store {
   }) {
     this.movie = movie;
     this.playerController = playerController;
+    this.movie = movie;
+    this.playerController = playerController;
+    this.isCommetsDisplayed = false;
   }
 
   onDispose() {

@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
-import 'package:loomi_challenge/src/modules/movie_player/controller/movie_player_controller.dart';
+import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/movie_player.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/bottom_overlay/grouped_bottom_overlay.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/middle_overlay/grouped_middle_overlays.dart';
