@@ -38,7 +38,7 @@ class _MovieCardBottomShareMovieWidgetState
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'assets/icons/rate_button_icon.svg',
+                  'assets/icons/share_button_icon.svg',
                   semanticsLabel: 'Share',
                   fit: BoxFit.scaleDown,
                   height: 30,
