@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/widgets/close_modal_button.dart';
@@ -6,6 +7,7 @@ import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
+import 'package:loomi_challenge/src/modules/home/bloc/home_bloc/home_page_bloc.dart';
 import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 
 class CommentPageTrailingHeader extends StatefulWidget {
@@ -42,9 +44,12 @@ class _CommentPageTrailingHeaderState extends State<CommentPageTrailingHeader> {
   }
 
   Widget moviePlayerCloseCommentsBtn() {
-    return CustomCloseButton(
-      onTap: getIt<MoviePlayerStore>().closeCommentsSection,
-    );
+    return CustomCloseButton(onTap: () {
+      getIt<MoviePlayerStore>().closeCommentsSection();
+      context
+          .read<HomePageBloc>()
+          .add(UpdateMovieCommentsEvent(comments: commentStore.comments));
+    });
   }
 
   Widget cancelEditCommentBtn() {
