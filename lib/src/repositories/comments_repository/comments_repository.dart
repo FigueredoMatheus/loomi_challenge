@@ -1,37 +1,50 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/helpers/handle_firebase_exceptions_helper.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/response/comment/comment_response.dart';
+import 'package:loomi_challenge/src/models/response/comment/comments_pagination_response.dart';
 
 class CommentRepository {
   final commentCollection = 'movie-comments';
 
-  Future<CommentResponse> getMovieComments(int movieId) async {
+  Future<CommentsPaginationResponse> getMovieComments(
+    int movieId,
+    DocumentSnapshot? lastDocument,
+  ) async {
     try {
-      final response = await FirebaseFirestore.instance
+      Query query = await FirebaseFirestore.instance
           .collection(commentCollection)
           .doc('movie-$movieId')
           .collection('comments')
           .orderBy('create_at', descending: true)
-          .limit(5)
-          .get();
+          .limit(ApplicationConstants.QUERY_COMMENTS_LIMIT);
+
+      if (lastDocument != null) {
+        query = query.startAfterDocument(lastDocument);
+      }
+
+      final response = await query.get();
 
       final docs = response.docs;
-      final List<MovieCommentEntity> comments = [];
 
-      comments.addAll(
-          docs.map((doc) => MovieCommentEntity.fromJson(doc.data())).toList());
+      final List<MovieCommentEntity> comments = docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
 
-      comments.sort((a, b) => b.createAt.compareTo(a.createAt));
+        return MovieCommentEntity.fromJson(data);
+      }).toList();
 
-      return CommentResponse.onSuccess(comments);
+      return CommentsPaginationResponse.onSuccess(
+        comments,
+        docs.isNotEmpty ? docs.last : null,
+      );
     } on FirebaseException catch (e) {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getFirebaseException(e);
 
       final message = 'Fail on load movie comments.\n$exceptionMessage';
 
-      return CommentResponse.onError(null, message);
+      return CommentsPaginationResponse.onError(message);
     }
   }
 

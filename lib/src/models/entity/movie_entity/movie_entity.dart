@@ -17,7 +17,7 @@ class MovieEntity {
   @JsonKey(name: 'poster_image')
   final String posterImage;
 
-  late List<MovieCommentEntity> comments;
+  List<MovieCommentEntity> comments = [];
 
   int get numberOfComments => comments.length;
 
@@ -38,7 +38,6 @@ class MovieEntity {
   });
 
   setComments(List<MovieCommentEntity> comments) {
-    this.comments = [];
     this.comments.addAll(comments);
   }
 

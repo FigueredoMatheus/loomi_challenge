@@ -29,7 +29,7 @@ class _MovieCommentsPageViewState extends State<MovieCommentsPageView> {
 
     commentStore.init(widget.movie);
 
-    commentStore.loadMovieComments();
+    commentStore.getMovieComments();
   }
 
   @override

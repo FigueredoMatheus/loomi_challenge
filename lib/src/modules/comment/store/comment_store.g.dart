@@ -23,6 +23,40 @@ mixin _$CommentStore on _CommentStore, Store {
           Computed<bool>(() => super.hasError, name: '_CommentStore.hasError'))
       .value;
 
+  late final _$isFetchingNextCommentsPageAtom =
+      Atom(name: '_CommentStore.isFetchingNextCommentsPage', context: context);
+
+  @override
+  bool get isFetchingNextCommentsPage {
+    _$isFetchingNextCommentsPageAtom.reportRead();
+    return super.isFetchingNextCommentsPage;
+  }
+
+  @override
+  set isFetchingNextCommentsPage(bool value) {
+    _$isFetchingNextCommentsPageAtom
+        .reportWrite(value, super.isFetchingNextCommentsPage, () {
+      super.isFetchingNextCommentsPage = value;
+    });
+  }
+
+  late final _$hasMoreUnloadedCommentsAtom =
+      Atom(name: '_CommentStore.hasMoreUnloadedComments', context: context);
+
+  @override
+  bool get hasMoreUnloadedComments {
+    _$hasMoreUnloadedCommentsAtom.reportRead();
+    return super.hasMoreUnloadedComments;
+  }
+
+  @override
+  set hasMoreUnloadedComments(bool value) {
+    _$hasMoreUnloadedCommentsAtom
+        .reportWrite(value, super.hasMoreUnloadedComments, () {
+      super.hasMoreUnloadedComments = value;
+    });
+  }
+
   late final _$editCommentModeAtom =
       Atom(name: '_CommentStore.editCommentMode', context: context);
 
@@ -104,12 +138,21 @@ mixin _$CommentStore on _CommentStore, Store {
     });
   }
 
-  late final _$loadMovieCommentsAsyncAction =
-      AsyncAction('_CommentStore.loadMovieComments', context: context);
+  late final _$getMovieCommentsAsyncAction =
+      AsyncAction('_CommentStore.getMovieComments', context: context);
 
   @override
-  Future loadMovieComments() {
-    return _$loadMovieCommentsAsyncAction.run(() => super.loadMovieComments());
+  Future getMovieComments() {
+    return _$getMovieCommentsAsyncAction.run(() => super.getMovieComments());
+  }
+
+  late final _$fetchNextCommentsPageAsyncAction =
+      AsyncAction('_CommentStore.fetchNextCommentsPage', context: context);
+
+  @override
+  Future fetchNextCommentsPage() {
+    return _$fetchNextCommentsPageAsyncAction
+        .run(() => super.fetchNextCommentsPage());
   }
 
   late final _$addCommentAsyncAction =
@@ -236,6 +279,8 @@ mixin _$CommentStore on _CommentStore, Store {
   @override
   String toString() {
     return '''
+isFetchingNextCommentsPage: ${isFetchingNextCommentsPage},
+hasMoreUnloadedComments: ${hasMoreUnloadedComments},
 editCommentMode: ${editCommentMode},
 errorMessage: ${errorMessage},
 isLoadingMovieComments: ${isLoadingMovieComments},

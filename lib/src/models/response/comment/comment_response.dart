@@ -9,19 +9,9 @@ class CommentResponse {
     required this.data,
   });
 
-  factory CommentResponse.onSuccess(dynamic data) {
-    return CommentResponse(
-      success: true,
-      message: '',
-      data: data,
-    );
-  }
+  CommentResponse.onSuccess(this.data)
+      : success = true,
+        message = '';
 
-  factory CommentResponse.onError(dynamic data, String message) {
-    return CommentResponse(
-      success: false,
-      message: message,
-      data: data,
-    );
-  }
+  CommentResponse.onError(this.data, this.message) : success = false;
 }

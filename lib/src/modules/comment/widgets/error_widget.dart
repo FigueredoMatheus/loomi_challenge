@@ -44,7 +44,7 @@ class _CommentPageErrorWidgetState extends State<CommentPageErrorWidget> {
               Padding(
                 padding: const EdgeInsets.only(top: 15.0),
                 child: ElevatedButton(
-                  onPressed: commentStore.loadMovieComments,
+                  onPressed: commentStore.getMovieComments,
                   child: Text('Try Again'),
                 ),
               ),

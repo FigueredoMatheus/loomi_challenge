@@ -26,9 +26,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       final movie = MovieEntity.fromResponse(response);
 
       final commentsResponse =
-          await commentsServices.getMovieComments(movie.id!);
+          await commentsServices.getMovieComments(movie.id!, null);
 
-      movie.setComments(commentsResponse.data);
+      movie.setComments(commentsResponse.comments);
 
       emit(SuccessOnLoadingMovieState(movie: movie));
     } on DioException catch (dioException) {

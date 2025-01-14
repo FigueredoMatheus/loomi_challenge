@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/confirmation_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/random_string_generator.dart';
@@ -19,6 +20,14 @@ abstract class _CommentStore with Store {
   late MovieEntity movie;
 
   late MovieCommentEntity commentToBeEdited;
+
+  DocumentSnapshot? lasPaginationDocumentSnapshot;
+
+  @observable
+  bool isFetchingNextCommentsPage = false;
+
+  @observable
+  bool hasMoreUnloadedComments = true;
 
   @observable
   bool editCommentMode = false;
@@ -78,20 +87,40 @@ abstract class _CommentStore with Store {
   }
 
   @action
-  loadMovieComments() async {
+  getMovieComments() async {
     isLoadingMovieComments = true;
 
-    final response = await commentsServices.getMovieComments(movie.id!);
+    final response = await commentsServices.getMovieComments(movie.id!, null);
 
     if (response.success) {
       comments.clear();
-      comments.addAll(response.data);
+      comments.addAll(response.comments);
       movie.setComments(comments);
+      lasPaginationDocumentSnapshot = response.lastDocument;
     } else {
-      errorMessage = response.message;
+      errorMessage = response.errorMessage;
     }
 
     isLoadingMovieComments = false;
+  }
+
+  @action
+  fetchNextCommentsPage() async {
+    if (isFetchingNextCommentsPage || !hasMoreUnloadedComments) return;
+
+    isFetchingNextCommentsPage = true;
+
+    final response = await commentsServices.getMovieComments(
+        movie.id!, lasPaginationDocumentSnapshot);
+
+    if (response.success) {
+      comments.addAll(response.comments);
+      movie.setComments(comments);
+      lasPaginationDocumentSnapshot = response.lastDocument;
+      hasMoreUnloadedComments = response.comments.isNotEmpty;
+    }
+
+    isFetchingNextCommentsPage = false;
   }
 
   @action
@@ -197,5 +226,7 @@ abstract class _CommentStore with Store {
   @action
   onDispose() {
     cancelEditMode();
+    isFetchingNextCommentsPage = false;
+    hasMoreUnloadedComments = true;
   }
 }
