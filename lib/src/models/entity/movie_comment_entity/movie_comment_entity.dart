@@ -10,8 +10,6 @@ class MovieCommentEntity {
   String? id;
   @JsonKey(name: 'comment_text')
   String commentText;
-  @JsonKey(name: 'create_at')
-  final DateTime createAt;
   final int replies;
   @JsonKey(name: 'movie_id')
   final int movieId;
@@ -25,6 +23,12 @@ class MovieCommentEntity {
     fromJson: SerializationHelper.commentStatusFromJson,
   )
   CommentStatus status;
+  @JsonKey(
+    name: 'create_at',
+    toJson: SerializationHelper.dateTimeToJson,
+    fromJson: SerializationHelper.dateTimeFromJson,
+  )
+  final DateTime createAt;
 
   MovieCommentEntity({
     this.id,
