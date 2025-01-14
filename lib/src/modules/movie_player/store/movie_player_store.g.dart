@@ -56,11 +56,22 @@ mixin _$MoviePlayerStore on _MoviePlayerStore, Store {
   }
 
   @override
-  dynamic toggleMovieCommentsVisibility() {
+  dynamic openCommentsSection() {
     final _$actionInfo = _$_MoviePlayerStoreActionController.startAction(
-        name: '_MoviePlayerStore.toggleMovieCommentsVisibility');
+        name: '_MoviePlayerStore.openCommentsSection');
     try {
-      return super.toggleMovieCommentsVisibility();
+      return super.openCommentsSection();
+    } finally {
+      _$_MoviePlayerStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic closeCommentsSection() {
+    final _$actionInfo = _$_MoviePlayerStoreActionController.startAction(
+        name: '_MoviePlayerStore.closeCommentsSection');
+    try {
+      return super.closeCommentsSection();
     } finally {
       _$_MoviePlayerStoreActionController.endAction(_$actionInfo);
     }

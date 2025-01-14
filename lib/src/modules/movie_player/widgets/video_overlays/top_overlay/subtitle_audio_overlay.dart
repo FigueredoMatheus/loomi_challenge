@@ -76,6 +76,6 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
 
   commentsOnTap() {
     final moviePlayerStore = getIt<MoviePlayerStore>();
-    moviePlayerStore.toggleMovieCommentsVisibility();
+    moviePlayerStore.openCommentsSection();
   }
 }

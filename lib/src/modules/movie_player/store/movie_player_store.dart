@@ -37,8 +37,13 @@ abstract class _MoviePlayerStore with Store {
   }
 
   @action
-  toggleMovieCommentsVisibility() {
-    isCommetsDisplayed = !isCommetsDisplayed;
+  openCommentsSection() {
+    isCommetsDisplayed = true;
+  }
+
+  @action
+  closeCommentsSection() {
+    isCommetsDisplayed = false;
   }
 
   backward() => playerController.seekTo(
