@@ -1,90 +1,56 @@
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
-import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:provider/provider.dart';
 
-class SettingsController {
+class ProfileSettingsController {
   final authService = AuthService();
-
-  String? name;
-  var image = ''.obs;
-  var currentPassword = ''.obs;
-  var newPassword = ''.obs;
-  var confirmNewPassword = ''.obs;
-
-  init(Map<String, dynamic> json) {
-    setName(json['username']);
-    setImage(json['image']);
-  }
+  final profileSettingsStore = getIt<ProfileSettingsStore>();
 
   onChangeUserPassword() async {
-    final message = TextFieldValidatorsHelper().validateFields(
-        password: newPassword.value, confirmPassword: confirmNewPassword.value);
+    final isValid = profileSettingsStore.onChangeUserPasswordValidation();
 
-    if (message != null) {
-      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
-      return;
-    }
+    if (!isValid) return;
 
-    final response =
-        await authService.changeUserPasswordService(_changePasswordData());
+    final data = {
+      "password": profileSettingsStore.newPassword.value,
+      "currentPassword": profileSettingsStore.currentPassword.value,
+      "passwordConfirmation": profileSettingsStore.confirmNewPassword.value,
+    };
+
+    final response = await authService.changeUserPasswordService(data);
+
     if (response) {
-      _onSuccessChangedUserPassword();
+      profileSettingsStore.resetData();
     }
   }
 
   updateUserData() async {
-    final message =
-        TextFieldValidatorsHelper().validateFields(name: name ?? '');
+    final isValid = profileSettingsStore.onUpdateUserDataValidation();
 
-    if (message != null) {
-      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
-      return;
-    }
+    if (!isValid) return;
 
-    final data = {"username": name};
+    final username = profileSettingsStore.name!;
+
+    final data = {"username": username};
 
     final response = await authService.updateUserData(data);
 
     if (response) {
-      Provider.of<UserProvider>(Get.context!, listen: false).setUsername(name!);
+      Provider.of<UserProvider>(Get.context!, listen: false)
+          .setUsername(username);
     }
   }
 
-  _onSuccessChangedUserPassword() {
-    setConfirmNewPassword('');
-    setCurrentPassword('');
-    setNewPassword('');
-  }
+  logout() async {
+    final result = await profileSettingsStore.onLogout();
 
-  Map<String, dynamic> _changePasswordData() {
-    return {
-      "password": this.newPassword.value,
-      "currentPassword": this.currentPassword.value,
-      "passwordConfirmation": this.confirmNewPassword.value,
-    };
-  }
-
-  setCurrentPassword(String text) {
-    this.currentPassword.value = text;
-  }
-
-  setNewPassword(String text) {
-    this.newPassword.value = text;
-  }
-
-  setConfirmNewPassword(String text) {
-    this.confirmNewPassword.value = text;
-  }
-
-  setName(String? text) {
-    name = text;
-  }
-
-  setImage(String? image) {
-    this.image.value = image ?? '';
+    if (result) {
+      Provider.of<UserProvider>(Get.context!, listen: false).logout();
+      Get.offAllNamed(RoutesNames.LOGIN_PAGE_VIEW);
+    }
   }
 }

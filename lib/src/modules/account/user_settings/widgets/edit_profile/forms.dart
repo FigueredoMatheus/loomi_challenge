@@ -4,27 +4,30 @@ import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 
 class EditProfilePageViewForms extends StatelessWidget {
   const EditProfilePageViewForms({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = getIt<SettingsController>();
+    final profileSettingsStore = getIt<ProfileSettingsStore>();
+
+    final profileSettingsController = ProfileSettingsController();
     return Expanded(
       child: Column(
         children: [
           const SizedBox(height: 35),
           CustomTextFormField(
-            onChanged: controller.setName,
+            onChanged: profileSettingsStore.setName,
             label: 'Name',
-            initalValue: controller.name,
+            initalValue: profileSettingsStore.name,
             textFormFieldType: TextFormFieldType.name,
           ),
           Spacer(),
           CustomElevatedButton(
             label: 'Update profile',
-            onPressed: controller.updateUserData,
+            onPressed: profileSettingsController.updateUserData,
           ),
           const SizedBox(height: 30),
         ],

@@ -5,7 +5,7 @@ import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/widgets/edit_profile/forms.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/widgets/edit_profile/profile_image/profile_image_section.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,7 @@ class _EditProfilePageViewState extends State<EditProfilePageView> {
   void initState() {
     super.initState();
 
-    getIt<SettingsController>().init(
+    getIt<ProfileSettingsStore>().init(
       Provider.of<UserProvider>(context, listen: false).userData,
     );
   }
