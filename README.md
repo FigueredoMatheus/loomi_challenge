@@ -1,6 +1,6 @@
-# Loomi Challenge
+# Loomi Challenge - Movie Streaming App
 
-A Flutter Android Aplication!
+This project is a movie streaming application developed in Flutter (version 19.6) as part of a challenge for a job application. The app provides various features, from authentication to viewing and rating movies.
 
 ### Prerequisites
 
@@ -14,10 +14,6 @@ Make sure you have the Flutter SDK installed. For instructions on how to install
 4. Connected device or emulator
 5. Run the app: `flutter run`
 
-## Version
-
-This project was developed using Flutter SDK version 3.19.6.
-
 ## Usage
 
 1. Open the application on your Android device.
@@ -25,3 +21,38 @@ This project was developed using Flutter SDK version 3.19.6.
 3. From the home screen, select the movie you want to watch
 4. On the movie screen, you can pause, jump the video forward, backward, drag the progress bar, hide overlays (double tap), select subtitle and audio
 5. Access the settings screen to modify your profile information or log out of your account.
+
+## Key Features
+
+### Key Features
+### Authentication
+- Login with email and password.
+- Login via Google.
+- User registration.
+- Password recovery.
+- **Note**: Apple login is not yet implemented.
+### Home Screen
+- Access to the user's profile.
+- Display of available movies (cover, title, synopsis, most recent user comment, release date, genre, director).
+- Movie rating options (like, dislike, super like).
+- Share movie option.
+- Access to movie comments.
+- Button to watch the movie.
+### Comments Screen
+- Submit comments.
+- Report comments from other users.
+- Edit and delete user's own comments.
+### User Profile
+- Display user name and photo.
+- Option to edit personal information.
+- Delete account.
+- Change password.
+- Logout.
+- View history of watched movies.
+- Subscription plan information.
+- **Note**: Profile photo isn't storaged
+### Video Player
+- Playback controls (pause, forward).
+- Display video title and progress.
+- Add subtitles.
+- Access to movie comments.
