@@ -15,23 +15,32 @@ class ChangeUserPasswordPageView extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: Center(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + padding,
               bottom: padding,
               left: padding,
               right: padding,
             ),
-            child: Column(
-              children: [
-                CustomPageViewHeader(
-                    headerType: CustomPageViewHeaderType.changePassword),
-                CustomPageViewTitle(
-                    customPageViewTitleType:
-                        CustomPageViewTitleType.changePassword),
-                ChangeUserPasswordPageViewForms(),
-              ],
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height -
+                    (MediaQuery.of(context).padding.top + padding),
+              ),
+              child: IntrinsicHeight(
+                child: Column(
+                  children: [
+                    CustomPageViewHeader(
+                        headerType: CustomPageViewHeaderType.changePassword),
+                    CustomPageViewTitle(
+                        customPageViewTitleType:
+                            CustomPageViewTitleType.changePassword),
+                    ChangeUserPasswordPageViewForms(),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
