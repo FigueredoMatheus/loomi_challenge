@@ -33,6 +33,7 @@ class _EditProfilePageViewState extends State<EditProfilePageView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: Center(
           child: Padding(
             padding: EdgeInsets.only(
@@ -41,16 +42,27 @@ class _EditProfilePageViewState extends State<EditProfilePageView> {
               left: padding,
               right: padding,
             ),
-            child: Column(
-              children: [
-                CustomPageViewHeader(
-                    headerType: CustomPageViewHeaderType.editProfile),
-                CustomPageViewTitle(
-                    customPageViewTitleType:
-                        CustomPageViewTitleType.editProfile),
-                EditProfilePageViewImageSection(),
-                EditProfilePageViewForms(),
-              ],
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height -
+                      (MediaQuery.of(context).padding.top + padding),
+                ),
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomPageViewHeader(
+                          headerType: CustomPageViewHeaderType.editProfile),
+                      CustomPageViewTitle(
+                          customPageViewTitleType:
+                              CustomPageViewTitleType.editProfile),
+                      EditProfilePageViewImageSection(),
+                      EditProfilePageViewForms(),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),
