@@ -162,7 +162,7 @@ class _AuthRepository implements AuthRepository {
 
   @override
   Future<dynamic> updateUserData(
-    String userId,
+    int userId,
     String authToken,
     Map<String, dynamic> data,
   ) async {

@@ -24,7 +24,7 @@ class EditProfilePageViewForms extends StatelessWidget {
           Spacer(),
           CustomElevatedButton(
             label: 'Update profile',
-            onPressed: controller.onUpdate,
+            onPressed: controller.updateUserData,
           ),
           const SizedBox(height: 30),
         ],

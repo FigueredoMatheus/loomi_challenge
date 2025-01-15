@@ -7,6 +7,8 @@ import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettingsController {
+  final authService = AuthService();
+
   String? name;
   var image = ''.obs;
   var currentPassword = ''.obs;
@@ -28,13 +30,13 @@ class SettingsController {
     }
 
     final response =
-        await AuthService().changeUserPasswordService(_changePasswordData());
+        await authService.changeUserPasswordService(_changePasswordData());
     if (response) {
       _onSuccessChangedUserPassword();
     }
   }
 
-  onUpdate() {
+  updateUserData() async {
     final message =
         TextFieldValidatorsHelper().validateFields(name: name ?? '');
 
@@ -43,7 +45,13 @@ class SettingsController {
       return;
     }
 
-    Provider.of<UserProvider>(Get.context!, listen: false).setUsername(name!);
+    final data = {"username": name};
+
+    final response = await authService.updateUserData(data);
+
+    if (response) {
+      Provider.of<UserProvider>(Get.context!, listen: false).setUsername(name!);
+    }
   }
 
   _onSuccessChangedUserPassword() {
