@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>244827145294-uqq8u3s5kcnkshrvbrdeg3kd0qgrqli2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.244827145294-uqq8u3s5kcnkshrvbrdeg3kd0qgrqli2</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>244827145294-1uepj6552ml0kh97ooerblk5b5d5p39i.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyARASAk-MZs7O_14zlmKuvMpqLR7Hd6fBM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>244827145294</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.app.untold</string>
+	<key>PROJECT_ID</key>
+	<string>loomi-challenge</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loomi-challenge.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:244827145294:ios:e4406370a546b209c5ef1f</string>
+</dict>
+</plist>

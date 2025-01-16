@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:244827145294:android:e509c39317373cf7c5ef1f",
+        "android_client_info": {
+          "package_name": "com.app.untold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmsWgLjdWiTJmX4w6wt1u7BFGXV9kE3YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:244827145294:android:fba9aa71083b2176c5ef1f",
         "android_client_info": {
           "package_name": "com.loomi.challenge"
@@ -14,11 +43,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "244827145294-1uepj6552ml0kh97ooerblk5b5d5p39i.apps.googleusercontent.com",
+          "client_id": "244827145294-i21idc6itgdc3355e842rqplav7k3ck6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.loomi.challenge",
-            "certificate_hash": "e6757ad98a4b1bbc2db0bae461b7ce7b8254c965"
+            "certificate_hash": "283c74965502343f37e8f4060087188e89553bbc"
           }
         },
         {

@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "244827145294",
+    "project_id": "loomi-challenge",
+    "storage_bucket": "loomi-challenge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244827145294:android:e509c39317373cf7c5ef1f",
+        "android_client_info": {
+          "package_name": "com.app.untold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmsWgLjdWiTJmX4w6wt1u7BFGXV9kE3YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244827145294:android:fba9aa71083b2176c5ef1f",
+        "android_client_info": {
+          "package_name": "com.loomi.challenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244827145294-i21idc6itgdc3355e842rqplav7k3ck6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loomi.challenge",
+            "certificate_hash": "283c74965502343f37e8f4060087188e89553bbc"
+          }
+        },
+        {
+          "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmsWgLjdWiTJmX4w6wt1u7BFGXV9kE3YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244827145294-qt37soj8874rvr5cgts37s9q7l0criu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
