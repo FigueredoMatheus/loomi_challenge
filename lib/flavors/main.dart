@@ -5,7 +5,6 @@ import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.da
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_themes.dart';
 import '../src/my_app.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 Future initServices() async {
   Get.log('Starting services...');
@@ -14,17 +13,11 @@ Future initServices() async {
 
   final firebaseManager = getIt<FirebaseManager>();
 
-  final firebaseFirestoreApp = await Firebase.initializeApp(
-    name: firebaseManager.firestoreAppName,
-    options: firebaseManager.firestoreOptions,
-  );
-
-  final firebaseAuthApp = await Firebase.initializeApp(
-    name: firebaseManager.authAppName,
-    options: firebaseManager.authOptions,
-  );
-
-  firebaseManager.setInstances(firebaseAuthApp, firebaseFirestoreApp);
+  try {
+    await firebaseManager.initializeInstances();
+  } catch (e) {
+    print('Firebase initialization error: $e');
+  }
 
   Get.put(MyAppThemes());
 

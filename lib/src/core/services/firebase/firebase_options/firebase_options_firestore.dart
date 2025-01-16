@@ -14,7 +14,9 @@ class FirebaseFirestoreOptions {
         'you can reconfigure this by running the FlutterFire CLI again.',
       );
     }
+
     print('Current App Environment: ${FlavorSettings.appFlavor}');
+
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return androidProd;
@@ -45,7 +47,7 @@ class FirebaseFirestoreOptions {
     }
   }
 
-  static const FirebaseOptions androidProd = FirebaseOptions(
+  FirebaseOptions androidProd = FirebaseOptions(
     apiKey: 'AIzaSyBmsWgLjdWiTJmX4w6wt1u7BFGXV9kE3YM',
     appId: '1:244827145294:android:e509c39317373cf7c5ef1f ',
     messagingSenderId: '244827145294',

@@ -35,6 +35,8 @@ class HandleFirebaseExceptionsHelper {
         return 'User doesn\'t have permission to access the object.';
       case 'cancelled':
         return 'The operation was canceled.';
+      case 'no-app':
+        return 'No app';
       default:
         return 'Unknown error';
     }

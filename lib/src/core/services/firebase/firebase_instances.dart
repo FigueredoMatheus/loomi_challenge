@@ -5,22 +5,29 @@ import 'package:loomi_challenge/src/core/services/firebase/firebase_options/fire
 import 'package:loomi_challenge/src/core/services/firebase/firebase_options/firebase_options_firestore.dart';
 
 class FirebaseManager {
-  final firebaseFirestoreOptions = FirebaseFirestoreOptions();
-  final firebaseAuthOptions = FirebaseAuthOptions();
+  final _firebaseFirestoreOptions = FirebaseFirestoreOptions();
+  final _firebaseAuthOptions = FirebaseAuthOptions();
 
-  late FirebaseAuth authIntance;
-  late FirebaseFirestore firestoreInstance;
+  late FirebaseAuth _authInstance;
+  late FirebaseFirestore _firestoreInstance;
 
-  String get firestoreAppName => firebaseFirestoreOptions.APP_NAME;
-  String get authAppName => firebaseAuthOptions.APP_NAME;
+  FirebaseAuth get authInstance => _authInstance;
+  FirebaseFirestore get firestoreInstance => _firestoreInstance;
 
-  FirebaseOptions get firestoreOptions =>
-      firebaseFirestoreOptions.currentPlatformOptions;
-  FirebaseOptions get authOptions => firebaseAuthOptions.currentPlatformOptions;
+  Future initializeInstances() async {
+    final firebaseFirestoreApp = await Firebase.initializeApp(
+      name: _firebaseFirestoreOptions.APP_NAME,
+      options: _firebaseFirestoreOptions.currentPlatformOptions,
+    );
 
-  setInstances(FirebaseApp firebaseAuthApp, FirebaseApp firebaseFirestoreApp) {
-    authIntance = FirebaseAuth.instanceFor(app: firebaseAuthApp);
-    firestoreInstance =
+    final firebaseAuthApp = await Firebase.initializeApp(
+      name: _firebaseAuthOptions.APP_NAME,
+      options: _firebaseAuthOptions.currentPlatformOptions,
+    );
+
+    _authInstance = FirebaseAuth.instanceFor(app: firebaseAuthApp);
+
+    _firestoreInstance =
         FirebaseFirestore.instanceFor(app: firebaseFirestoreApp);
   }
 }
