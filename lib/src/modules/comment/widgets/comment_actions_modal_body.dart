@@ -48,9 +48,9 @@ class _CommentActionsModalBodyState extends State<CommentActionsModalBody> {
 
   Widget actionBtn(CommectActionType actionType) {
     final isReportAction = actionType == CommectActionType.report;
-    final showComment = isCurrentUserComment ? true : isReportAction;
+    final showAction = isCurrentUserComment ? !isReportAction : isReportAction;
 
-    return !showComment
+    return !showAction
         ? Container()
         : TextButton.icon(
             onPressed: () => btnActionOnTap(actionType),
