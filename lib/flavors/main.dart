@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/core/services/firebase_options.dart';
+import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_themes.dart';
 import '../src/my_app.dart';
@@ -11,9 +11,21 @@ Future initServices() async {
   Get.log('Starting services...');
 
   setupGetItClasses();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+
+  final firebaseManager = getIt<FirebaseManager>();
+
+  final firebaseFirestoreApp = await Firebase.initializeApp(
+    name: firebaseManager.firestoreAppName,
+    options: firebaseManager.firestoreOptions,
   );
+
+  final firebaseAuthApp = await Firebase.initializeApp(
+    name: firebaseManager.authAppName,
+    options: firebaseManager.authOptions,
+  );
+
+  firebaseManager.setInstances(firebaseAuthApp, firebaseFirestoreApp);
+
   Get.put(MyAppThemes());
 
   Get.log('All services started...');

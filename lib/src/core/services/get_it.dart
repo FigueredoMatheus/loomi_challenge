@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 import 'package:loomi_challenge/src/modules/account/forgot_password/controller/forgot_password_controller.dart';
 import 'package:loomi_challenge/src/modules/account/login/controller/login_controller.dart';
@@ -18,6 +19,7 @@ void setupGetItClasses() {
   getIt.registerLazySingleton(() => MoviePlayerStore());
   getIt.registerLazySingleton(() => CommentStore());
   getIt.registerLazySingleton(() => ProfileSettingsStore());
+  getIt.registerLazySingleton(() => FirebaseManager());
 
   getIt.registerLazySingleton(() => AuthRepository(Dio(BaseOptions(
         contentType: 'application/json',
