@@ -17,9 +17,7 @@ class FirebaseFirestoreOptions {
     print('Current App Environment: ${FlavorSettings.appFlavor}');
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return FlavorSettings.appFlavor == Flavor.prod
-            ? androidProd
-            : androidHomoDev;
+        return androidProd;
       case TargetPlatform.iOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for IOS - '
@@ -49,17 +47,9 @@ class FirebaseFirestoreOptions {
 
   static const FirebaseOptions androidProd = FirebaseOptions(
     apiKey: 'AIzaSyBmsWgLjdWiTJmX4w6wt1u7BFGXV9kE3YM',
-    appId: '1:244827145294:android:fba9aa71083b2176c5ef1f',
+    appId: '1:244827145294:android:e509c39317373cf7c5ef1f ',
     messagingSenderId: '244827145294',
     projectId: 'loomi-challenge',
     storageBucket: 'loomi-challenge.appspot.com',
-  );
-
-  static const FirebaseOptions androidHomoDev = FirebaseOptions(
-    apiKey: 'AIzaSyAREtMUCx6c3TVW79_8_qp4OFVD2Kgw2m4',
-    appId: '1:330600322380:android:867dc1166a38ae13d7abe9',
-    messagingSenderId: '330600322380',
-    projectId: 'loomi-challenge-homo',
-    storageBucket: 'loomi-challenge-homo.appspot.com',
   );
 }

@@ -66,24 +66,24 @@ flavorizr:
       app:
         name: "Loomi Challenge Dev"
       android:
-        applicationId: "com.loomi.challenge.dev"
+        applicationId: "com.app.untold.dev"
       ios:
-        bundleId: "com.loomi.challenge.dev"
+        bundleId: "com.app.untold.dev"
     homo:
       app:
         name: "Loomi Challenge Homo"
       android:
-        applicationId: "com.loomi.challenge.homo"
+        applicationId: "com.app.untold.homo"
       ios:
-        bundleId: "com.loomi.challenge.homo"
+        bundleId: "com.app.untold.homo"
     prod: 
       app:
         name: "Loomi Challenge"
       android:
-        applicationId: "com.loomi.challenge"
+        applicationId: "com.app.untold"
         icon: "assets/icons/android_launcher_icon.png"
       ios:
-        bundleId: "com.loomi.challenge"
+        bundleId: "com.app.untold"
 
 
   flutter_lints: ^2.0.0

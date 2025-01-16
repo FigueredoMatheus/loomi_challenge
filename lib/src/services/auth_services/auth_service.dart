@@ -20,6 +20,8 @@ class AuthService implements AuthServicesImpl {
     try {
       final response = await _repository.loginUser(credentials);
 
+      print('--- user data: ${response.userEntity.toJson()}');
+
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
         response.jwt,
