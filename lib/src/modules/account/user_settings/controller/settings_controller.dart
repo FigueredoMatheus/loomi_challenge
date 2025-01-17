@@ -29,6 +29,7 @@ class ProfileSettingsController {
     Get.back();
 
     if (response.success) {
+      Get.back();
       profileSettingsStore.resetData();
       alertDialog(title: 'password changed successfully');
     } else {
@@ -48,6 +49,7 @@ class ProfileSettingsController {
     Get.back();
 
     if (response.success) {
+      Get.back();
       Provider.of<UserProvider>(Get.context!, listen: false)
           .setUsername(username);
       alertDialog(title: 'User data has been successfully updated');
