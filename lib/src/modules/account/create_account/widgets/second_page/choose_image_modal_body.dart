@@ -20,18 +20,21 @@ class _ChooseUserProfileImageModalBodyState
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final containerSize = constraints.maxWidth * 0.45;
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          containerImageSource(
-            containerSize: containerSize,
-            imageSourceType: ImageSourceType.camera,
-          ),
-          containerImageSource(
-            containerSize: containerSize,
-            imageSourceType: ImageSourceType.gallery,
-          ),
-        ],
+      return Padding(
+        padding: const EdgeInsets.only(top: 25.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            containerImageSource(
+              containerSize: containerSize,
+              imageSourceType: ImageSourceType.camera,
+            ),
+            containerImageSource(
+              containerSize: containerSize,
+              imageSourceType: ImageSourceType.gallery,
+            ),
+          ],
+        ),
       );
     });
   }

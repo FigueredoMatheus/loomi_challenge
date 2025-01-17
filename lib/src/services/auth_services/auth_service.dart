@@ -56,8 +56,12 @@ class AuthService implements AuthServicesImpl {
     try {
       final response = await _repository.registerUser(data);
 
+      final userData = response.userEntity.toJson();
+
+      userData.addIf(data['image'] != null, 'image', data['image']);
+
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
-        response.userEntity.toJson(),
+        userData,
         response.jwt,
         firebaseResponse.firebaseUserCredential!,
       );
