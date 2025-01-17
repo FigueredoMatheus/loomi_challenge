@@ -4,28 +4,28 @@ import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/modules/account/forgot_password/controller/forgot_password_controller.dart';
+import 'package:loomi_challenge/src/modules/account/forgot_password/store/forgot_password_store.dart';
 
 class ForgotPasswordPageForms extends StatelessWidget {
   const ForgotPasswordPageForms({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = getIt<ForgotPasswordController>();
+    final store = getIt<ForgotPasswordStore>();
 
     return Expanded(
       child: Column(
         children: [
           CustomTextFormField(
             label: 'Email',
-            onChanged: controller.setEmail,
+            onChanged: store.setEmail,
             textFormFieldType: TextFormFieldType.email,
-            initalValue: controller.email,
+            initalValue: store.email,
           ),
           Spacer(),
           CustomElevatedButton(
             label: 'Send reset instructions',
-            onPressed: controller.sendEmailButtonOnTap,
+            onPressed: store.onSendEmail,
             containerWidth: 240,
           ),
           const SizedBox(height: 10),

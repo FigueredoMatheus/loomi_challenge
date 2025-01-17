@@ -21,7 +21,7 @@ class CreateUserAccountController {
     if (response.success) {
       Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
     } else {
-      exceptionWarning(response.exceptionModel!);
+      exceptionWarning(response.exception!);
     }
   }
 }

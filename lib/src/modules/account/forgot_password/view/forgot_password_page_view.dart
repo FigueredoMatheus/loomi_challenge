@@ -3,9 +3,8 @@ import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/page_info_text.dart';
+import 'package:loomi_challenge/src/modules/account/forgot_password/store/forgot_password_store.dart';
 import 'package:loomi_challenge/src/modules/account/forgot_password/widgets/forms.dart';
-
-import '../controller/forgot_password_controller.dart';
 
 class ForgotPasswordPageView extends StatefulWidget {
   const ForgotPasswordPageView({super.key});
@@ -51,6 +50,6 @@ class _ForgotPasswordPageViewState extends State<ForgotPasswordPageView> {
   @override
   void dispose() {
     super.dispose();
-    getIt<ForgotPasswordController>().dispose();
+    getIt<ForgotPasswordStore>().dispose();
   }
 }

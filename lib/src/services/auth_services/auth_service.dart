@@ -7,7 +7,7 @@ import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
-import 'package:loomi_challenge/src/models/response/auth_response/create_account_response.dart';
+import 'package:loomi_challenge/src/models/response/auth_response/auth_response.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_services_impl.dart';
 import 'package:provider/provider.dart';
@@ -37,8 +37,7 @@ class AuthService implements AuthServicesImpl {
     }
   }
 
-  Future<CreateAccountResponse> signUpAccountService(
-      Map<String, dynamic> data) async {
+  Future<AuthResponse> signUpAccountService(Map<String, dynamic> data) async {
     try {
       final response = await _repository.registerUser(data);
 
@@ -47,27 +46,24 @@ class AuthService implements AuthServicesImpl {
         response.jwt,
       );
 
-      return CreateAccountResponse.success();
+      return AuthResponse.success();
     } on DioException catch (exception) {
       final exceptionModel = DioExceptionHelper().getException(exception);
 
-      return CreateAccountResponse.fail(exceptionModel);
+      return AuthResponse.fail(exceptionModel);
     }
   }
 
-  forgotUserPasswordService(Map<String, dynamic> data) async {
-    loadingDialog();
-
+  Future<AuthResponse> forgotUserPasswordService(
+      Map<String, dynamic> data) async {
     try {
       await _repository.forgotUserPassword(data);
 
-      Get.offAllNamed(RoutesNames.SUCCES_ON_SEND_RESENT_EMAIL_PAGE_VIEW);
+      return AuthResponse.success();
     } on DioException catch (exception) {
-      Get.back();
-
       final exceptionModel = DioExceptionHelper().getException(exception);
 
-      exceptionWarning(exceptionModel);
+      return AuthResponse.fail(exceptionModel);
     }
   }
 

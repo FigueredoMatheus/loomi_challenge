@@ -5,8 +5,7 @@ import 'package:loomi_challenge/src/common/widgets/my_app_icon.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/page_info_text.dart';
-
-import '../controller/forgot_password_controller.dart';
+import 'package:loomi_challenge/src/modules/account/forgot_password/store/forgot_password_store.dart';
 
 class SucccessOnSendEmailPageView extends StatefulWidget {
   const SucccessOnSendEmailPageView({super.key});
@@ -56,6 +55,6 @@ class _SucccessOnSendEmailPageViewState
   @override
   void dispose() {
     super.dispose();
-    getIt<ForgotPasswordController>().dispose();
+    getIt<ForgotPasswordStore>().dispose();
   }
 }

@@ -1,30 +1,27 @@
-import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
-import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/modules/account/forgot_password/store/forgot_password_store.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
 
 class ForgotPasswordController {
-  String? email;
+  final authServices = AuthService();
+  final store = getIt<ForgotPasswordStore>();
 
   sendEmailButtonOnTap() async {
-    final message =
-        TextFieldValidatorsHelper().validateFields(email: email ?? '');
+    loadingDialog();
 
-    if (message != null) {
-      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
-      return;
+    final data = {'email': store.email};
+
+    final response = await authServices.forgotUserPasswordService(data);
+
+    Get.back();
+    if (response.success) {
+      Get.offAllNamed(RoutesNames.SUCCES_ON_SEND_RESENT_EMAIL_PAGE_VIEW);
+    } else {
+      exceptionWarning(response.exception!);
     }
-
-    final data = {'email': email};
-
-    AuthService().forgotUserPasswordService(data);
-  }
-
-  setEmail(String? text) {
-    this.email = text;
-  }
-
-  dispose() {
-    setEmail(null);
   }
 }
