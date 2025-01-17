@@ -49,6 +49,8 @@ class PagesRoutes {
     ),
     GetPage(
       name: RoutesNames.EDIT_PROFILE_PAGE_VIEW,
+      transition: Transition.downToUp,
+      transitionDuration: Duration(milliseconds: 300),
       page: () => const EditProfilePageView(),
     ),
     GetPage(
