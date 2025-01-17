@@ -7,6 +7,7 @@ import 'package:loomi_challenge/src/modules/account/create_account/store/create_
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
 
 class CreateUserAccountController {
+  final authService = AuthService();
   final store = getIt<CreateAccountStore>();
 
   signUpAccount() async {
@@ -14,7 +15,7 @@ class CreateUserAccountController {
 
     final data = store.getData();
 
-    final response = await AuthService().signUpAccountService(data);
+    final response = await authService.signUpAccountService(data);
 
     Get.back();
 

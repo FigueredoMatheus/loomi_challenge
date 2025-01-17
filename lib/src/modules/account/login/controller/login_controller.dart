@@ -7,6 +7,7 @@ import 'package:loomi_challenge/src/modules/account/login/store/login_store.dart
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
 
 class LoginController {
+  final authService = AuthService();
   final store = getIt<LoginStore>();
 
   signInUser() async {
@@ -17,7 +18,7 @@ class LoginController {
       'password': store.password,
     };
 
-    final response = await AuthService().signInUserService(credentials);
+    final response = await authService.signInUserService(credentials);
     Get.back();
 
     if (response.success) {
