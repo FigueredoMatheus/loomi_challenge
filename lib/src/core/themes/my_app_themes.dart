@@ -50,15 +50,17 @@ class MyAppThemes extends GetxService {
             fontWeight: FontWeight.w600,
           )),
           backgroundColor: MaterialStateProperty.resolveWith((states) {
-            return MyThemes.get().kLightPurpleColor.withOpacity(0.2);
+            return MyThemes.get().kBtnBgColor;
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(7.33),
-                  side: BorderSide(
-                    color: MyThemes.get().kPurpleColor,
-                    width: 0.92,
-                  ))),
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(7.33),
+              side: BorderSide(
+                color: MyThemes.get().kPurpleColor,
+                width: 0.92,
+              ),
+            ),
+          ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(

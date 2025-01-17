@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/confirmation_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/random_string_generator.dart';
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
+import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
@@ -103,6 +104,9 @@ abstract class _CommentStore with Store {
       comments.clear();
       comments.addAll(response.comments);
       lasPaginationDocumentSnapshot = response.lastDocument;
+
+      hasMoreUnloadedComments =
+          response.comments.length >= ApplicationConstants.QUERY_COMMENTS_LIMIT;
     } else {
       getCommentserrorMessage = response.errorMessage;
     }
