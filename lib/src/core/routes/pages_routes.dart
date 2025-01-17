@@ -43,6 +43,8 @@ class PagesRoutes {
     ),
     GetPage(
       name: RoutesNames.CHANGE_USER_PASSWORD_PAGE_VIEW,
+      transition: Transition.downToUp,
+      transitionDuration: Duration(milliseconds: 300),
       page: () => const ChangeUserPasswordPageView(),
     ),
     GetPage(
