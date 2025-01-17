@@ -15,12 +15,14 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
       id: (json['id'] as num?)?.toInt(),
       image: json['image'] as String?,
       jwt: json['jwt'] as String?,
+      firebase_UID: json['firebase_UID'] as String?,
     );
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
     <String, dynamic>{
       'provider': instance.provider,
       'jwt': instance.jwt,
+      'firebase_UID': instance.firebase_UID,
       'id': instance.id,
       'image': instance.image,
       'email': instance.email,
