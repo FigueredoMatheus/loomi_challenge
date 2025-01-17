@@ -54,6 +54,7 @@ class UserEntity {
 
   onLogout() {
     jwt = null;
+    firebase_UID = null;
   }
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

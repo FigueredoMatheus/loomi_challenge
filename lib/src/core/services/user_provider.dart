@@ -14,13 +14,16 @@ class UserProvider extends ChangeNotifier {
 
   String get jwt => user.jwt!;
 
-  bool get isUserLoggedIn => user.jwt != null;
+  bool get isUserLoggedIn => user.firebase_UID != null;
+
+  String get authToken => 'Bearer ' + user.firebase_UID!;
 
   Map<String, dynamic> get userData => user.toJson();
 
-  initUser(Map<String, dynamic> data, String jwt) {
+  initUser(Map<String, dynamic> data, String jwt, String firebaseUID) {
     user = UserEntity.fromJson(data);
     user.setJwt(jwt);
+    user.setFirebaseUID(firebaseUID);
   }
 
   setUsername(String text) {
