@@ -7,6 +7,7 @@ abstract class MyThemes {
     return LightModeTheme();
   }
 
+  late Color kBtnBgColor;
   late Color kPurpleColor;
   late Color kLightPurpleColor;
   late Color kGrayColor;
@@ -43,6 +44,7 @@ abstract class MyThemes {
 }
 
 class LightModeTheme extends MyThemes {
+  late Color kBtnBgColor = const Color(0Xff351F43);
   late Color kPurpleColor = const Color(0xFFAA73F0);
   late Color kLightPurpleColor = const Color(0xFFBC4CF1);
   late Color kGrayColor = const Color(0xffC4C4C4);
