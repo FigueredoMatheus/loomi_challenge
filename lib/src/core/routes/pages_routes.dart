@@ -37,6 +37,8 @@ class PagesRoutes {
     ),
     GetPage(
       name: RoutesNames.USER_SETTINGS_PAGE_VIEW,
+      transition: Transition.downToUp,
+      transitionDuration: Duration(milliseconds: 300),
       page: () => const UserSettingsPageView(),
     ),
     GetPage(
