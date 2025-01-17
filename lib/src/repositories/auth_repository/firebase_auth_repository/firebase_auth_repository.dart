@@ -16,7 +16,7 @@ class FirebaseAuthRepository {
         password: password,
       );
 
-      final firebaseUID = await userCredentials.user?.getIdToken();
+      final firebaseUID = await userCredentials.user?.uid;
 
       return AuthResponse.firebaseSuccess(firebaseUID);
     } on FirebaseAuthException catch (exception) {

@@ -19,12 +19,24 @@ class AuthService implements AuthServicesImpl {
   Future<AuthResponse> signInUserService(
     Map<String, dynamic> credentials,
   ) async {
+    final firebaseResponse = await _firebaseAuth.userSignIn(
+      credentials['identifier'],
+      credentials['password'],
+    );
+
+    if (!firebaseResponse.success) {
+      return firebaseResponse;
+    }
+
     try {
+      final firebaseUID = firebaseResponse.firebaseUID!;
+
       final response = await _repository.loginUser(credentials);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
         response.jwt,
+        firebaseUID,
       );
 
       return AuthResponse.apiSuccess();
@@ -46,7 +58,7 @@ class AuthService implements AuthServicesImpl {
     }
 
     try {
-      final firebaseUID = firebaseResponse.firebaseUID;
+      final firebaseUID = firebaseResponse.firebaseUID!;
 
       data['firebase_UID'] = firebaseUID;
 
@@ -55,6 +67,7 @@ class AuthService implements AuthServicesImpl {
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
         response.jwt,
+        firebaseUID,
       );
 
       return AuthResponse.apiSuccess();
@@ -81,8 +94,11 @@ class AuthService implements AuthServicesImpl {
   Future<bool> changeUserPasswordService(Map<String, dynamic> data) async {
     loadingDialog();
 
+    final authToken =
+        Provider.of<UserProvider>(Get.context!, listen: false).authToken;
+
     try {
-      await _repository.changeUserPassword(_authToken(), data);
+      await _repository.changeUserPassword(authToken, data);
 
       Get.back();
 
@@ -106,11 +122,5 @@ class AuthService implements AuthServicesImpl {
 
       exceptionWarning(exceptionModel);
     }
-  }
-
-  String _authToken() {
-    final jwt = Provider.of<UserProvider>(Get.context!, listen: false).jwt;
-
-    return 'Bearer ' + jwt;
   }
 }
