@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
 class UserProvider extends ChangeNotifier {
   late UserEntity user;
+
+  User? firebaseUser;
 
   int get userId => user.id!;
 
@@ -14,16 +17,15 @@ class UserProvider extends ChangeNotifier {
 
   String get jwt => user.jwt!;
 
-  bool get isUserLoggedIn => user.firebase_UID != null;
-
-  String get authToken => 'Bearer ' + user.firebase_UID!;
+  bool get isUserLoggedIn => user.jwt != null;
 
   Map<String, dynamic> get userData => user.toJson();
 
-  initUser(Map<String, dynamic> data, String jwt, String firebaseUID) {
+  initUser(
+      Map<String, dynamic> data, String jwt, UserCredential userCredential) {
     user = UserEntity.fromJson(data);
     user.setJwt(jwt);
-    user.setFirebaseUID(firebaseUID);
+    firebaseUser = userCredential.user;
   }
 
   setUsername(String text) {
@@ -31,7 +33,13 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<String> getAuthToken() async {
+    final authToken = await firebaseUser?.getIdToken() ?? '';
+
+    return 'Bearer ' + authToken;
+  }
+
   Future<void> logout() async {
-    user.onLogout();
+    firebaseUser = null;
   }
 }

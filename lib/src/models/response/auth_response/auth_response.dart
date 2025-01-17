@@ -1,26 +1,27 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:loomi_challenge/src/models/dio_exception_model.dart';
 
 class AuthResponse {
   final bool success;
   final DioExceptionModel? exception;
-  final String? firebaseUID;
+  final UserCredential? firebaseUserCredential;
 
   AuthResponse({
     required this.success,
     this.exception,
-    this.firebaseUID,
+    this.firebaseUserCredential,
   });
 
-  AuthResponse.firebaseSuccess(this.firebaseUID)
+  AuthResponse.firebaseSuccess(this.firebaseUserCredential)
       : success = true,
         exception = null;
 
   AuthResponse.apiSuccess()
       : success = true,
         exception = null,
-        firebaseUID = null;
+        firebaseUserCredential = null;
 
   AuthResponse.fail(this.exception)
       : success = false,
-        firebaseUID = null;
+        firebaseUserCredential = null;
 }

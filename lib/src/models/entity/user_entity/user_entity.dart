@@ -8,8 +8,6 @@ class UserEntity {
 
   String? jwt;
 
-  String? firebase_UID;
-
   int? id;
 
   String? image;
@@ -33,15 +31,10 @@ class UserEntity {
     this.id,
     this.image,
     this.jwt,
-    this.firebase_UID,
   });
 
   setJwt(String? value) {
     this.jwt = value;
-  }
-
-  setFirebaseUID(String? value) {
-    this.firebase_UID = value;
   }
 
   setName(String name) {
@@ -50,11 +43,6 @@ class UserEntity {
 
   setImage(String? image) {
     this.image = image;
-  }
-
-  onLogout() {
-    jwt = null;
-    firebase_UID = null;
   }
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>

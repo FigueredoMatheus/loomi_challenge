@@ -18,9 +18,7 @@ class UserServices extends UserServicesImplement {
 
       final userId = userProvider.user.id!;
 
-      final authToken = userProvider.authToken;
-
-      print('--- UpdateUserdata authToken: $authToken');
+      final authToken = await userProvider.getAuthToken();
 
       await _repository.updateUserData(userId, authToken, data);
 

@@ -27,14 +27,12 @@ class AuthService implements AuthServicesImpl {
     }
 
     try {
-      final firebaseUID = firebaseResponse.firebaseUID!;
-
       final response = await _repository.loginUser(credentials);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
         response.jwt,
-        firebaseUID,
+        firebaseResponse.firebaseUserCredential!,
       );
 
       return AuthResponse.apiSuccess();
@@ -56,16 +54,12 @@ class AuthService implements AuthServicesImpl {
     }
 
     try {
-      final firebaseUID = firebaseResponse.firebaseUID!;
-
-      data['firebase_UID'] = firebaseUID;
-
       final response = await _repository.registerUser(data);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
         response.jwt,
-        firebaseUID,
+        firebaseResponse.firebaseUserCredential!,
       );
 
       return AuthResponse.apiSuccess();
@@ -93,7 +87,8 @@ class AuthService implements AuthServicesImpl {
     Map<String, dynamic> data,
   ) async {
     final authToken =
-        Provider.of<UserProvider>(Get.context!, listen: false).authToken;
+        await Provider.of<UserProvider>(Get.context!, listen: false)
+            .getAuthToken();
 
     print('--- authToken: $authToken');
 
