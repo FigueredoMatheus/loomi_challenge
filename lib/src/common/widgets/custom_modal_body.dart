@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 
 class CustomModalBody extends StatelessWidget {
   final CustomModalBodyType type;
@@ -45,12 +47,22 @@ class CustomModalBody extends StatelessWidget {
             ),
             CustomElevatedButton(
               label: getButtonLabel(),
-              onPressed: () {},
+              onPressed: getOnBtnTapped,
             ),
           ],
         ),
       ],
     );
+  }
+
+  getOnBtnTapped() {
+    switch (type) {
+      case CustomModalBodyType.deleteAccount:
+        return getIt<ProfileSettingsStore>().onDeleteAccount();
+      case CustomModalBodyType.terminatePlan:
+      default:
+        return Get.back();
+    }
   }
 
   String getButtonLabel() {

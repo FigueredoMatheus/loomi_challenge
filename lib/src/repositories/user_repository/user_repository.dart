@@ -14,4 +14,10 @@ abstract class UserRepository {
     @Header('Authorization') String authToken,
     @Body() Map<String, dynamic> data,
   );
+
+  @DELETE('/users/{id}')
+  Future deleteUser(
+    @Path("id") String userId,
+    @Header('Authorization') String authToken,
+  );
 }

@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/alert_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
+import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
+import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
@@ -14,6 +16,22 @@ class ProfileSettingsController {
   final authService = AuthService();
   final userService = UserServices();
   final profileSettingsStore = getIt<ProfileSettingsStore>();
+
+  deleteUserAccount() async {
+    loadingDialog();
+
+    final response = await userService.deleteAccount();
+
+    if (response.success) {
+      Get.offAndToNamed(RoutesNames.LOGIN_PAGE_VIEW);
+      MyAppSnackBar(
+              message: 'Your account has been successfully deleted',
+              snackBarType: SnackBarType.success)
+          .show();
+    } else {
+      exceptionWarning(response.exception!);
+    }
+  }
 
   changeUserPassword() async {
     loadingDialog();

@@ -11,7 +11,7 @@ import 'package:loomi_challenge/src/services/auth_services/auth_services_impl.da
 import 'package:provider/provider.dart';
 
 class AuthService implements AuthServicesImpl {
-  final _repository = getIt<AuthRepository>();
+  final _ApiRepository = getIt<AuthRepository>();
   final _firebaseAuth = FirebaseAuthRepository();
 
   Future<AuthResponse> signInUserService(
@@ -27,7 +27,7 @@ class AuthService implements AuthServicesImpl {
     }
 
     try {
-      final response = await _repository.loginUser(credentials);
+      final response = await _ApiRepository.loginUser(credentials);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
@@ -54,7 +54,7 @@ class AuthService implements AuthServicesImpl {
     }
 
     try {
-      final response = await _repository.registerUser(data);
+      final response = await _ApiRepository.registerUser(data);
 
       final userData = response.userEntity.toJson();
 
@@ -77,7 +77,7 @@ class AuthService implements AuthServicesImpl {
   Future<AuthResponse> forgotUserPasswordService(
       Map<String, dynamic> data) async {
     try {
-      await _repository.forgotUserPassword(data);
+      await _ApiRepository.forgotUserPassword(data);
 
       return AuthResponse.apiSuccess();
     } on DioException catch (exception) {
@@ -94,10 +94,8 @@ class AuthService implements AuthServicesImpl {
         await Provider.of<UserProvider>(Get.context!, listen: false)
             .getAuthToken();
 
-    print('--- authToken: $authToken');
-
     try {
-      await _repository.changeUserPassword(authToken, data);
+      await _ApiRepository.changeUserPassword(authToken, data);
 
       return AuthResponse.apiSuccess();
     } on DioException catch (exception) {

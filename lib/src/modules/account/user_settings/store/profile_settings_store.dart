@@ -13,6 +13,7 @@ class ProfileSettingsStore {
   var confirmNewPassword = ''.obs;
 
   Future<bool> onLogout() async {
+    // TODO logout firebase user
     final result =
         await confirmationAlertDialog(title: 'Would you like to log out?');
 
@@ -49,6 +50,20 @@ class ProfileSettingsStore {
     final controller = ProfileSettingsController();
 
     controller.updateUserData();
+  }
+
+  onDeleteAccount() async {
+    Get.back();
+
+    final result = await confirmationAlertDialog(
+      title: 'Do you want to delete your account?',
+    );
+
+    if (result == null || result == 0) return;
+
+    final controller = ProfileSettingsController();
+
+    controller.deleteUserAccount();
   }
 
   init(Map<String, dynamic> json) {
