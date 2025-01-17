@@ -8,11 +8,13 @@ import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/models/response/auth_response/auth_response.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
+import 'package:loomi_challenge/src/repositories/auth_repository/firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_services_impl.dart';
 import 'package:provider/provider.dart';
 
 class AuthService implements AuthServicesImpl {
   final _repository = getIt<AuthRepository>();
+  final _firebaseAuth = FirebaseAuthRepository();
 
   Future<AuthResponse> signInUserService(
     Map<String, dynamic> credentials,
@@ -34,7 +36,20 @@ class AuthService implements AuthServicesImpl {
   }
 
   Future<AuthResponse> signUpAccountService(Map<String, dynamic> data) async {
+    final firebaseResponse = await _firebaseAuth.registerUser(
+      data['email'],
+      data['password'],
+    );
+
+    if (!firebaseResponse.success) {
+      return firebaseResponse;
+    }
+
     try {
+      final firebaseUID = firebaseResponse.firebaseUID;
+
+      data['firebase_UID'] = firebaseUID;
+
       final response = await _repository.registerUser(data);
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
