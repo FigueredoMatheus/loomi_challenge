@@ -6,8 +6,6 @@ import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.da
 import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
 
 class CreateAccountStore {
-  final controller = CreateUserAccountController();
-
   String? email;
   String? password;
   String? confirmPassword;
@@ -36,6 +34,8 @@ class CreateAccountStore {
       MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
       return;
     }
+
+    final controller = CreateUserAccountController();
 
     controller.signUpAccount();
   }
@@ -78,7 +78,7 @@ class CreateAccountStore {
       'email': this.email,
       'username': this.name,
       'password': this.password,
-      'image': profileImage.value,
+      if (profileImage.value.isNotEmpty) 'image': profileImage.value,
     };
   }
 

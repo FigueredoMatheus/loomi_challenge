@@ -4,8 +4,6 @@ import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.da
 import 'package:loomi_challenge/src/modules/account/login/controller/login_controller.dart';
 
 class LoginStore {
-  final controller = LoginController();
-
   String? email;
   String? password;
 
@@ -19,6 +17,8 @@ class LoginStore {
       MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
       return;
     }
+
+    final controller = LoginController();
 
     controller.signInUser();
   }

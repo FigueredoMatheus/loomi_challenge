@@ -4,8 +4,6 @@ import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.da
 import 'package:loomi_challenge/src/modules/account/forgot_password/controller/forgot_password_controller.dart';
 
 class ForgotPasswordStore {
-  final controller = ForgotPasswordController();
-
   String? email;
 
   onSendEmail() {
@@ -16,6 +14,8 @@ class ForgotPasswordStore {
       MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
       return;
     }
+
+    final controller = ForgotPasswordController();
 
     controller.sendEmailButtonOnTap();
   }
