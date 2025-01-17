@@ -4,10 +4,12 @@ import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
+import 'package:loomi_challenge/src/services/user_services/user_services.dart';
 import 'package:provider/provider.dart';
 
 class ProfileSettingsController {
   final authService = AuthService();
+  final userSerice = UserServices();
   final profileSettingsStore = getIt<ProfileSettingsStore>();
 
   onChangeUserPassword() async {
@@ -37,7 +39,7 @@ class ProfileSettingsController {
 
     final data = {"username": username};
 
-    final response = await authService.updateUserData(data);
+    final response = await userSerice.updateUserData(data);
 
     if (response) {
       Provider.of<UserProvider>(Get.context!, listen: false)

@@ -26,11 +26,4 @@ abstract class AuthRepository {
     @Header('Authorization') String authToken,
     @Body() Map<String, dynamic> data,
   );
-
-  @PUT('/users/{id}')
-  Future updateUserData(
-    @Path("id") int userId,
-    @Header('Authorization') String authToken,
-    @Body() Map<String, dynamic> data,
-  );
 }
