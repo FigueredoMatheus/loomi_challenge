@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/dialogs/alert_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
-import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
@@ -91,9 +89,9 @@ class AuthService implements AuthServicesImpl {
     }
   }
 
-  Future<bool> changeUserPasswordService(Map<String, dynamic> data) async {
-    loadingDialog();
-
+  Future<AuthResponse> changeUserPasswordService(
+    Map<String, dynamic> data,
+  ) async {
     final authToken =
         Provider.of<UserProvider>(Get.context!, listen: false).authToken;
 
@@ -102,17 +100,11 @@ class AuthService implements AuthServicesImpl {
     try {
       await _repository.changeUserPassword(authToken, data);
 
-      Get.back();
-
-      alertDialog(title: 'password changed successfully');
-      return true;
+      return AuthResponse.apiSuccess();
     } on DioException catch (exception) {
-      Get.back();
-
       final exceptionModel = DioExceptionHelper().getException(exception);
 
-      exceptionWarning(exceptionModel);
-      return false;
+      return AuthResponse.fail(exceptionModel);
     }
   }
 

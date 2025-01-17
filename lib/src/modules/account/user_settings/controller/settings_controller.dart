@@ -16,6 +16,8 @@ class ProfileSettingsController {
   final profileSettingsStore = getIt<ProfileSettingsStore>();
 
   changeUserPassword() async {
+    loadingDialog();
+
     final data = {
       "password": profileSettingsStore.newPassword.value,
       "currentPassword": profileSettingsStore.currentPassword.value,
@@ -24,8 +26,13 @@ class ProfileSettingsController {
 
     final response = await authService.changeUserPasswordService(data);
 
-    if (response) {
+    Get.back();
+
+    if (response.success) {
       profileSettingsStore.resetData();
+      alertDialog(title: 'password changed successfully');
+    } else {
+      exceptionWarning(response.exception!);
     }
   }
 

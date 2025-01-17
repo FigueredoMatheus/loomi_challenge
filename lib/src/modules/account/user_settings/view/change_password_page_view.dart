@@ -3,11 +3,20 @@ import 'package:loomi_challenge/src/common/widgets/custom_page_header/custom_pag
 import 'package:loomi_challenge/src/common/widgets/custom_page_view_title.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/widgets/change_password/forms.dart';
 
-class ChangeUserPasswordPageView extends StatelessWidget {
+class ChangeUserPasswordPageView extends StatefulWidget {
   const ChangeUserPasswordPageView({super.key});
 
+  @override
+  State<ChangeUserPasswordPageView> createState() =>
+      _ChangeUserPasswordPageViewState();
+}
+
+class _ChangeUserPasswordPageViewState
+    extends State<ChangeUserPasswordPageView> {
   @override
   Widget build(BuildContext context) {
     final padding = ApplicationConstants.PAGE_VIEW_DEFAULT_PADDING;
@@ -46,5 +55,11 @@ class ChangeUserPasswordPageView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    getIt<ProfileSettingsStore>().resetData();
   }
 }
