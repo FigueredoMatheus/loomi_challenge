@@ -3,6 +3,7 @@ import 'package:loomi_challenge/src/common/utils/dialogs/confirmation_dialog.dar
 import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
 
 class ProfileSettingsStore {
   String? name;
@@ -20,7 +21,7 @@ class ProfileSettingsStore {
     return true;
   }
 
-  bool onChangeUserPasswordValidation() {
+  onChangeUserPassword() {
     final message = TextFieldValidatorsHelper().validateFields(
       password: newPassword.value,
       confirmPassword: confirmNewPassword.value,
@@ -28,22 +29,26 @@ class ProfileSettingsStore {
 
     if (message != null) {
       MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
-      return false;
+      return;
     }
 
-    return true;
+    final controller = ProfileSettingsController();
+
+    controller.changeUserPassword();
   }
 
-  bool onUpdateUserDataValidation() {
+  onUpdateUserData() {
     final message =
         TextFieldValidatorsHelper().validateFields(name: name ?? '');
 
     if (message != null) {
       MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
-      return false;
+      return;
     }
 
-    return true;
+    final controller = ProfileSettingsController();
+
+    controller.updateUserData();
   }
 
   init(Map<String, dynamic> json) {

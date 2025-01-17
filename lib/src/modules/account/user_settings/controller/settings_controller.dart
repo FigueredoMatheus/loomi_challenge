@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/alert_dialog.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
@@ -9,14 +12,10 @@ import 'package:provider/provider.dart';
 
 class ProfileSettingsController {
   final authService = AuthService();
-  final userSerice = UserServices();
+  final userService = UserServices();
   final profileSettingsStore = getIt<ProfileSettingsStore>();
 
-  onChangeUserPassword() async {
-    final isValid = profileSettingsStore.onChangeUserPasswordValidation();
-
-    if (!isValid) return;
-
+  changeUserPassword() async {
     final data = {
       "password": profileSettingsStore.newPassword.value,
       "currentPassword": profileSettingsStore.currentPassword.value,
@@ -31,19 +30,22 @@ class ProfileSettingsController {
   }
 
   updateUserData() async {
-    final isValid = profileSettingsStore.onUpdateUserDataValidation();
-
-    if (!isValid) return;
+    loadingDialog();
 
     final username = profileSettingsStore.name!;
 
     final data = {"username": username};
 
-    final response = await userSerice.updateUserData(data);
+    final response = await userService.updateUserData(data);
 
-    if (response) {
+    Get.back();
+
+    if (response.success) {
       Provider.of<UserProvider>(Get.context!, listen: false)
           .setUsername(username);
+      alertDialog(title: 'User data has been successfully updated');
+    } else {
+      exceptionWarning(response.exception!);
     }
   }
 

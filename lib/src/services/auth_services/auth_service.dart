@@ -97,6 +97,8 @@ class AuthService implements AuthServicesImpl {
     final authToken =
         Provider.of<UserProvider>(Get.context!, listen: false).authToken;
 
+    print('--- authToken: $authToken');
+
     try {
       await _repository.changeUserPassword(authToken, data);
 

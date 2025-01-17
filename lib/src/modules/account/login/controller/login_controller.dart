@@ -3,8 +3,10 @@ import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialo
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/modules/account/login/store/login_store.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginController {
   final authService = AuthService();
@@ -22,6 +24,8 @@ class LoginController {
     Get.back();
 
     if (response.success) {
+      print(
+          '--- Logged User Data: ${Provider.of<UserProvider>(Get.context!, listen: false).user.toJson()}');
       Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
     } else {
       exceptionWarning(response.exception!);

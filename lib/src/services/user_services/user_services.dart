@@ -1,29 +1,34 @@
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/core/services/user_provider.dart';
+import 'package:loomi_challenge/src/models/response/user_services_response/user_services_response.dart';
+import 'package:loomi_challenge/src/repositories/user_repository/user_repository.dart';
 import 'package:loomi_challenge/src/services/user_services/user_services_impl.dart';
+import 'package:provider/provider.dart';
 
 class UserServices extends UserServicesImplement {
-  Future<bool> updateUserData(Map<String, dynamic> data) async {
-    return false;
-    // loadingDialog();
+  final _repository = getIt<UserRepository>();
 
-    // try {
-    //   final userId =
-    //       Provider.of<UserProvider>(Get.context!, listen: false).user.id!;
+  Future<UserServicesResponse> updateUserData(Map<String, dynamic> data) async {
+    try {
+      final userProvider =
+          Provider.of<UserProvider>(Get.context!, listen: false);
 
-    //   await _repository.updateUserData(userId, _authToken(), data);
+      final userId = userProvider.user.id!;
 
-    //   Get.back();
+      final authToken = userProvider.authToken;
 
-    //   alertDialog(title: 'User data has been successfully updated');
+      print('--- UpdateUserdata authToken: $authToken');
 
-    //   return true;
-    // } on DioException catch (exception) {
-    //   Get.back();
+      await _repository.updateUserData(userId, authToken, data);
 
-    //   final exceptionModel = DioExceptionHelper().getException(exception);
+      return UserServicesResponse.success();
+    } on DioException catch (exception) {
+      final exceptionModel = DioExceptionHelper().getException(exception);
 
-    //   exceptionWarning(exceptionModel);
-
-    //   return false;
-    // }
+      return UserServicesResponse.fail(exceptionModel);
+    }
   }
 }
