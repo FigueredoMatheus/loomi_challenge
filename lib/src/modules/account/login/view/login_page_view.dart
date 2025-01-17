@@ -7,7 +7,8 @@ import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/page_info_text.dart';
-import 'package:loomi_challenge/src/modules/account/login/controller/login_controller.dart';
+
+import 'package:loomi_challenge/src/modules/account/login/store/login_store.dart';
 import 'package:loomi_challenge/src/modules/account/login/widgets/forms.dart';
 
 class LoginPageView extends StatefulWidget {
@@ -59,6 +60,6 @@ class _LoginPageViewState extends State<LoginPageView> {
   @override
   void dispose() {
     super.dispose();
-    getIt<LoginController>().dispose();
+    getIt<LoginStore>().dispose();
   }
 }

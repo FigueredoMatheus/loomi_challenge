@@ -3,7 +3,7 @@ import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/modules/account/login/controller/login_controller.dart';
+import 'package:loomi_challenge/src/modules/account/login/store/login_store.dart';
 import 'package:loomi_challenge/src/modules/account/login/widgets/forgot_pass_text_button.dart';
 
 class LoginPageForms extends StatelessWidget {
@@ -11,27 +11,27 @@ class LoginPageForms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = getIt<LoginController>();
+    final store = getIt<LoginStore>();
     return Column(
       children: [
         CustomTextFormField(
           label: 'Email',
-          onChanged: controller.setEmail,
+          onChanged: store.setEmail,
           textFormFieldType: TextFormFieldType.email,
-          initalValue: controller.email,
+          initalValue: store.email,
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
           label: 'Password',
-          onChanged: controller.setPassword,
+          onChanged: store.setPassword,
           textFormFieldType: TextFormFieldType.password,
-          initalValue: controller.password,
+          initalValue: store.password,
         ),
         LoginPageForgotPasswordTextButton(),
         const SizedBox(height: 40),
         CustomElevatedButton(
           label: 'Login',
-          onPressed: controller.signInUser,
+          onPressed: store.onLogin,
         ),
       ],
     );

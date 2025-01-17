@@ -4,6 +4,7 @@ import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.da
 import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 import 'package:loomi_challenge/src/modules/account/forgot_password/store/forgot_password_store.dart';
 import 'package:loomi_challenge/src/modules/account/login/controller/login_controller.dart';
+import 'package:loomi_challenge/src/modules/account/login/store/login_store.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
@@ -22,6 +23,7 @@ void setupGetItClasses() {
   getIt.registerLazySingleton(() => CommentStore());
   getIt.registerLazySingleton(() => CreateAccountStore());
   getIt.registerLazySingleton(() => ForgotPasswordStore());
+  getIt.registerLazySingleton(() => LoginStore());
 
   getIt.registerLazySingleton(() => AuthRepository(Dio(BaseOptions(
         contentType: 'application/json',

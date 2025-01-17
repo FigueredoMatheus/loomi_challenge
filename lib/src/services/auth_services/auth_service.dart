@@ -4,7 +4,6 @@ import 'package:loomi_challenge/src/common/utils/dialogs/alert_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
 import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
-import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
 import 'package:loomi_challenge/src/models/response/auth_response/auth_response.dart';
@@ -15,25 +14,22 @@ import 'package:provider/provider.dart';
 class AuthService implements AuthServicesImpl {
   final _repository = getIt<AuthRepository>();
 
-  signInUserService(Map<String, dynamic> credentials) async {
-    loadingDialog();
-
+  Future<AuthResponse> signInUserService(
+    Map<String, dynamic> credentials,
+  ) async {
     try {
       final response = await _repository.loginUser(credentials);
-
-      print('--- user data: ${response.userEntity.toJson()}');
 
       Provider.of<UserProvider>(Get.context!, listen: false).initUser(
         response.userEntity.toJson(),
         response.jwt,
       );
 
-      Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
+      return AuthResponse.success();
     } on DioException catch (exception) {
-      Get.back();
       final exceptionModel = DioExceptionHelper().getException(exception);
 
-      exceptionWarning(exceptionModel);
+      return AuthResponse.fail(exceptionModel);
     }
   }
 
