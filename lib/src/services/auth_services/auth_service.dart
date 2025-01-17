@@ -25,7 +25,7 @@ class AuthService implements AuthServicesImpl {
         response.jwt,
       );
 
-      return AuthResponse.success();
+      return AuthResponse.apiSuccess();
     } on DioException catch (exception) {
       final exceptionModel = DioExceptionHelper().getException(exception);
 
@@ -42,7 +42,7 @@ class AuthService implements AuthServicesImpl {
         response.jwt,
       );
 
-      return AuthResponse.success();
+      return AuthResponse.apiSuccess();
     } on DioException catch (exception) {
       final exceptionModel = DioExceptionHelper().getException(exception);
 
@@ -55,7 +55,7 @@ class AuthService implements AuthServicesImpl {
     try {
       await _repository.forgotUserPassword(data);
 
-      return AuthResponse.success();
+      return AuthResponse.apiSuccess();
     } on DioException catch (exception) {
       final exceptionModel = DioExceptionHelper().getException(exception);
 

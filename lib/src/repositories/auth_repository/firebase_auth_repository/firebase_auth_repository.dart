@@ -10,12 +10,13 @@ class FirebaseAuthRepository {
 
   Future<AuthResponse> registerUser(String email, String password) async {
     try {
-      await _firebaseAuthInstance.createUserWithEmailAndPassword(
+      final userCredentials =
+          await _firebaseAuthInstance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      return AuthResponse.success();
+      return AuthResponse.firebaseSuccess(userCredentials);
     } on FirebaseAuthException catch (exception) {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getAuthExceptionMessage(exception);
@@ -31,12 +32,13 @@ class FirebaseAuthRepository {
 
   Future<AuthResponse> userSignIn(String email, String password) async {
     try {
-      await _firebaseAuthInstance.signInWithEmailAndPassword(
+      final userCredentials =
+          await _firebaseAuthInstance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      return AuthResponse.success();
+      return AuthResponse.firebaseSuccess(userCredentials);
     } on FirebaseAuthException catch (exception) {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getAuthExceptionMessage(exception);
