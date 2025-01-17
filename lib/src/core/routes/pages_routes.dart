@@ -60,6 +60,8 @@ class PagesRoutes {
     ),
     GetPage(
       name: RoutesNames.MOVIE_COMMENTS_PAGE_VIEW,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 300),
       page: () {
         final MovieEntity movie = Get.arguments;
         return MovieCommentsPageView(movie: movie);
