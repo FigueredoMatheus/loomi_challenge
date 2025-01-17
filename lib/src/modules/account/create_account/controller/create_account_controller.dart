@@ -1,91 +1,27 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
-import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
-import 'package:loomi_challenge/src/core/helpers/text_field_validators_helper.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
+import 'package:loomi_challenge/src/common/utils/dialogs/loading_dialog.dart';
+import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_service.dart';
 
 class CreateUserAccountController {
-  String? email;
-  String? password;
-  String? confirmPassword;
-  String? name;
+  final store = getIt<CreateAccountStore>();
 
-  var profileImage = ''.obs;
+  signUpAccount() async {
+    loadingDialog();
 
-  late PageController pageViewController;
+    final data = store.getData();
 
-  bool get hasImage => profileImage.value.isNotEmpty;
+    final response = await AuthService().signUpAccountService(data);
 
-  init({required PageController pageController}) {
-    this.pageViewController = pageController;
-  }
+    Get.back();
 
-  Map<String, dynamic> toJson() {
-    return {
-      'email': this.email,
-      'username': this.name,
-      'password': this.password,
-      'image': profileImage.value,
-    };
-  }
-
-  signUpAccount(SignInMethod signInMethod) async {
-    final message = TextFieldValidatorsHelper().validateFields(
-      email: email ?? '',
-      password: password ?? '',
-      confirmPassword: confirmPassword ?? '',
-      name: name ?? '',
-      isCreateAccount: true,
-    );
-
-    if (message != null) {
-      MyAppSnackBar(message: message, snackBarType: SnackBarType.fail)..show();
-      return;
+    if (response.success) {
+      Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
+    } else {
+      exceptionWarning(response.exceptionModel!);
     }
-
-    AuthService().signUpAccountService(toJson());
-  }
-
-  nextPage() {
-    FocusScope.of(Get.context!).unfocus();
-    pageViewController.nextPage(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.ease,
-    );
-  }
-
-  previousPage() => pageViewController.previousPage(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.ease,
-      );
-
-  setEmail(String? email) {
-    this.email = email != null ? email.trim().toLowerCase() : email;
-  }
-
-  setPassword(String? text) {
-    password = text;
-  }
-
-  setConfirmPassword(String? text) {
-    confirmPassword = text;
-  }
-
-  setName(String? text) {
-    name = text;
-  }
-
-  setProfileImage(String imagePth) {
-    profileImage.value = imagePth;
-  }
-
-  dispose() {
-    pageViewController.dispose();
-    setName(null);
-    setConfirmPassword(null);
-    setPassword(null);
-    setEmail(null);
-    setProfileImage('');
   }
 }

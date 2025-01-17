@@ -4,14 +4,14 @@ import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/common/widgets/form_head.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 
 class CreateUserAccountFirstPageFormsWidget extends StatelessWidget {
   const CreateUserAccountFirstPageFormsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = getIt<CreateUserAccountController>();
+    final store = getIt<CreateAccountStore>();
 
     return Column(
       children: [
@@ -19,28 +19,28 @@ class CreateUserAccountFirstPageFormsWidget extends StatelessWidget {
         const SizedBox(height: 40),
         CustomTextFormField(
           label: 'Email',
-          onChanged: controller.setEmail,
+          onChanged: store.setEmail,
           textFormFieldType: TextFormFieldType.email,
-          initalValue: controller.email,
+          initalValue: store.email,
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
           label: 'Password',
-          onChanged: controller.setPassword,
+          onChanged: store.setPassword,
           textFormFieldType: TextFormFieldType.password,
-          initalValue: controller.password,
+          initalValue: store.password,
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
           label: 'Confirm your Password',
-          onChanged: controller.setConfirmPassword,
+          onChanged: store.setConfirmPassword,
           textFormFieldType: TextFormFieldType.confirmPassword,
-          initalValue: controller.confirmPassword,
+          initalValue: store.confirmPassword,
         ),
         const SizedBox(height: 20),
         CustomElevatedButton(
           label: 'Create Account',
-          onPressed: () => controller.nextPage(),
+          onPressed: () => store.nextPage(),
         ),
       ],
     );

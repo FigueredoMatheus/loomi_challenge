@@ -6,7 +6,7 @@ import 'package:loomi_challenge/src/common/widgets/edit_profile_image_info_text.
 import 'package:loomi_challenge/src/common/widgets/images_widgets/show_image_widget.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/widgets/second_page/choose_image_modal_body.dart';
 
 class CreateUserAccountChooseUserProfileImageWidget extends StatefulWidget {
@@ -31,7 +31,7 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
   }
 
   Widget profileImageContainer() {
-    final controller = getIt<CreateUserAccountController>();
+    final store = getIt<CreateAccountStore>();
     return InkWell(
       onTap: () {
         openModalBottomSheet(
@@ -51,9 +51,9 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
             color: MyThemes.get().kLightPurpleColor.withOpacity(0.2),
             borderRadius: BorderRadius.circular(34),
           ),
-          child: controller.hasImage
+          child: store.hasImage
               ? CustomShowImageWidget(
-                  imagePath: controller.profileImage.value,
+                  imagePath: store.profileImage.value,
                   radius: 34,
                   size: 116,
                 )

@@ -4,7 +4,7 @@ import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/image_helper.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 
 class ChooseUserProfileImageModalBody extends StatefulWidget {
   const ChooseUserProfileImageModalBody({super.key});
@@ -128,12 +128,12 @@ class _ChooseUserProfileImageModalBodyState
   }
 
   getOnTap(ImageSourceType imageSourceType) async {
-    final controller = getIt<CreateUserAccountController>();
+    final store = getIt<CreateAccountStore>();
     final selectedImagePath =
         await ImageHelper().getDeviceImage(imageSourceType);
 
     if (selectedImagePath == null) return;
 
-    controller.setProfileImage(selectedImagePath);
+    store.setProfileImage(selectedImagePath);
   }
 }

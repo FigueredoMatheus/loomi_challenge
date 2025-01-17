@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/view/pages/first_page.dart';
 import 'package:loomi_challenge/src/modules/account/create_account/view/pages/second_page.dart';
 
@@ -22,7 +22,7 @@ class _CreateUserAccountPageViewState extends State<CreateUserAccountPageView> {
 
     pageViewController = PageController(initialPage: 0);
 
-    getIt<CreateUserAccountController>().init(
+    getIt<CreateAccountStore>().init(
       pageController: pageViewController,
     );
   }
@@ -58,6 +58,6 @@ class _CreateUserAccountPageViewState extends State<CreateUserAccountPageView> {
   @override
   void dispose() {
     super.dispose();
-    getIt<CreateUserAccountController>().dispose();
+    getIt<CreateAccountStore>().dispose();
   }
 }

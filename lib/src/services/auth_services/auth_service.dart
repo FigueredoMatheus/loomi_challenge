@@ -7,6 +7,7 @@ import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
+import 'package:loomi_challenge/src/models/response/auth_response/create_account_response.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/services/auth_services/auth_services_impl.dart';
 import 'package:provider/provider.dart';
@@ -36,9 +37,8 @@ class AuthService implements AuthServicesImpl {
     }
   }
 
-  signUpAccountService(Map<String, dynamic> data) async {
-    loadingDialog();
-
+  Future<CreateAccountResponse> signUpAccountService(
+      Map<String, dynamic> data) async {
     try {
       final response = await _repository.registerUser(data);
 
@@ -47,13 +47,11 @@ class AuthService implements AuthServicesImpl {
         response.jwt,
       );
 
-      Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
+      return CreateAccountResponse.success();
     } on DioException catch (exception) {
-      Get.back();
-
       final exceptionModel = DioExceptionHelper().getException(exception);
 
-      exceptionWarning(exceptionModel);
+      return CreateAccountResponse.fail(exceptionModel);
     }
   }
 

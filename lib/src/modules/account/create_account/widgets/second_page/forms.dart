@@ -3,7 +3,7 @@ import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/common/widgets/custom_text_form_field.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
-import 'package:loomi_challenge/src/modules/account/create_account/controller/create_account_controller.dart';
+import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 
 class CreateUserAccountSecondPageFormsWidget extends StatefulWidget {
   const CreateUserAccountSecondPageFormsWidget({super.key});
@@ -15,12 +15,12 @@ class CreateUserAccountSecondPageFormsWidget extends StatefulWidget {
 
 class _CreateUserAccountSecondPageFormsWidgetState
     extends State<CreateUserAccountSecondPageFormsWidget> {
-  late CreateUserAccountController controller;
+  late CreateAccountStore store;
   @override
   void initState() {
     super.initState();
 
-    controller = getIt<CreateUserAccountController>();
+    store = getIt<CreateAccountStore>();
   }
 
   @override
@@ -29,20 +29,18 @@ class _CreateUserAccountSecondPageFormsWidgetState
       children: [
         CustomTextFormField(
           label: 'Your name',
-          onChanged: controller.setName,
+          onChanged: store.setName,
           textFormFieldType: TextFormFieldType.name,
-          initalValue: controller.name,
+          initalValue: store.name,
         ),
         const SizedBox(height: 40),
         CustomElevatedButton(
           label: 'Continue',
-          onPressed: () {
-            controller.signUpAccount(SignInMethod.emailPass);
-          },
+          onPressed: store.onCreateAccount,
         ),
         const SizedBox(height: 10),
         TextButton(
-          onPressed: () => controller.previousPage(),
+          onPressed: () => store.previousPage(),
           child: Text('Back'),
         ),
       ],
