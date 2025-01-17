@@ -37,9 +37,7 @@ class _UserSettingsPageViewSubscriptionSectionCardState
 
   Widget textButton() {
     return InkWell(
-      onTap: () {
-        print('COMING SOON TAPPED');
-      },
+      onTap: () => Get.toNamed(RoutesNames.USER_SUBSCRIPTION_PAGE_VIEW),
       child: Text(
         'Coming soon',
         style: MyThemes.get().epilogueStyle.copyWith(
