@@ -17,7 +17,7 @@ class UserProvider extends ChangeNotifier {
 
   String get jwt => user.jwt!;
 
-  bool get isUserLoggedIn => user.jwt != null;
+  bool get isUserLoggedIn => firebaseUser != null;
 
   Map<String, dynamic> get userData => user.toJson();
 

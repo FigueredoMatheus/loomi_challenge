@@ -76,12 +76,20 @@ class ProfileSettingsController {
     }
   }
 
-  logout() async {
-    final result = await profileSettingsStore.onLogout();
+  userLogout() async {
+    loadingDialog();
 
-    if (result) {
+    final response = await userService.logoutFirebaseUser();
+
+    if (response.success) {
       Provider.of<UserProvider>(Get.context!, listen: false).logout();
       Get.offAllNamed(RoutesNames.LOGIN_PAGE_VIEW);
+      MyAppSnackBar(
+              message: 'The user has been logged out',
+              snackBarType: SnackBarType.alert)
+          .show();
+    } else {
+      Get.back();
     }
   }
 }

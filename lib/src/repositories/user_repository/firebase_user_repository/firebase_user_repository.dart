@@ -26,8 +26,20 @@ class FirebaseUserRepository {
     }
   }
 
-  // TODO
-  signOut() {
-    _firebaseAuthInstance.signOut();
+  Future<UserServicesResponse> signOut() async {
+    try {
+      await _firebaseAuthInstance.signOut();
+      return UserServicesResponse.success();
+    } on FirebaseAuthException catch (exception) {
+      final exceptionMessage =
+          HandleFirebaseExceptionsHelper.getAuthExceptionMessage(exception);
+
+      final exceptionModel = DioExceptionModel(
+        title: 'Firebase Exception',
+        message: exceptionMessage,
+      );
+
+      return UserServicesResponse.fail(exceptionModel);
+    }
   }
 }

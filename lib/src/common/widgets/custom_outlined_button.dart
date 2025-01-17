@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
+import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
 
 class CustomOutlinedButton extends StatefulWidget {
   final CustomOutlinedButtonType buttonType;
@@ -49,7 +50,7 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
         return editProfileOnTap();
       case CustomOutlinedButtonType.logout:
       default:
-        return ProfileSettingsController().logout();
+        return getIt<ProfileSettingsStore>().onLogout();
     }
   }
 

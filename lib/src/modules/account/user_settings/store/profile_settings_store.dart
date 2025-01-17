@@ -12,14 +12,15 @@ class ProfileSettingsStore {
   var newPassword = ''.obs;
   var confirmNewPassword = ''.obs;
 
-  Future<bool> onLogout() async {
-    // TODO logout firebase user
+  onLogout() async {
     final result =
         await confirmationAlertDialog(title: 'Would you like to log out?');
 
-    if (result == null || result == 0) return false;
+    if (result == null || result == 0) return;
 
-    return true;
+    final controller = ProfileSettingsController();
+
+    controller.userLogout();
   }
 
   onChangeUserPassword() {

@@ -33,7 +33,7 @@ class MyAppSnackBar {
       case SnackBarType.fail:
         return Colors.red;
       case SnackBarType.alert:
-        return Colors.yellow;
+        return Colors.orange;
       case SnackBarType.success:
       default:
         return Colors.green;

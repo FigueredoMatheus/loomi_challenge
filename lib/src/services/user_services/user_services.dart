@@ -63,4 +63,9 @@ class UserServices extends UserServicesImplement {
 
     return UserServicesResponse.success();
   }
+
+  @override
+  Future<UserServicesResponse> logoutFirebaseUser() async {
+    return await _firebaseUser.signOut();
+  }
 }
