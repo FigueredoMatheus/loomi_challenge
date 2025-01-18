@@ -17,9 +17,9 @@ class FirebaseUserRepository {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getAuthExceptionMessage(exception);
 
-      final exceptionModel = DioExceptionModel(
-        title: 'Firebase Exception',
+      final exceptionModel = ExceptionModel.firebaseException(
         message: exceptionMessage,
+        exceptionCode: exception.code,
       );
 
       return UserServicesResponse.fail(exceptionModel);
@@ -34,9 +34,9 @@ class FirebaseUserRepository {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getAuthExceptionMessage(exception);
 
-      final exceptionModel = DioExceptionModel(
-        title: 'Firebase Exception',
+      final exceptionModel = ExceptionModel.firebaseException(
         message: exceptionMessage,
+        exceptionCode: exception.code,
       );
 
       return UserServicesResponse.fail(exceptionModel);

@@ -2,7 +2,7 @@ import 'package:loomi_challenge/src/models/dio_exception_model.dart';
 
 class UserServicesResponse {
   final bool success;
-  final DioExceptionModel? exception;
+  final ExceptionModel? exception;
 
   UserServicesResponse({
     required this.success,

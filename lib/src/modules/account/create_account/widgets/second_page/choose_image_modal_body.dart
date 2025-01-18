@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/helpers/image_helper.dart';
-import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/account/create_account/store/create_account_store.dart';
 
 class ChooseUserProfileImageModalBody extends StatefulWidget {
-  const ChooseUserProfileImageModalBody({super.key});
+  final Function(String) setImage;
+  const ChooseUserProfileImageModalBody({super.key, required this.setImage});
 
   @override
   State<ChooseUserProfileImageModalBody> createState() =>
@@ -131,12 +130,11 @@ class _ChooseUserProfileImageModalBodyState
   }
 
   getOnTap(ImageSourceType imageSourceType) async {
-    final store = getIt<CreateAccountStore>();
     final selectedImagePath =
         await ImageHelper().getDeviceImage(imageSourceType);
 
     if (selectedImagePath == null) return;
 
-    store.setProfileImage(selectedImagePath);
+    widget.setImage(selectedImagePath);
   }
 }

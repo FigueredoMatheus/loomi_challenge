@@ -36,12 +36,13 @@ class _CreateUserAccountChooseUserProfileImageWidgetState
       onTap: () {
         openModalBottomSheet(
           title: 'CHOOSE IMAGE',
-          child: ChooseUserProfileImageModalBody(),
+          child: ChooseUserProfileImageModalBody(
+            setImage: store.setProfileImage,
+          ),
         );
       },
-      overlayColor: MaterialStateProperty.resolveWith((states) {
-        return Colors.transparent;
-      }),
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       child: Obx(
         () => Container(
           width: 116,

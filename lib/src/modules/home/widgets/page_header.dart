@@ -29,7 +29,8 @@ class HomePageViewHeader extends StatelessWidget {
           Positioned(
             right: 0,
             child: CircleAvatarProfileImage(
-              user: loggedUser,
+              username: loggedUser.username,
+              image: loggedUser.image,
               isFromHomePageViewHeader: true,
             ),
           ),

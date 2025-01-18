@@ -59,6 +59,9 @@ class ProfileSettingsController {
     loadingDialog();
 
     final username = profileSettingsStore.name!;
+    final image = profileSettingsStore.image.value.isEmpty
+        ? null
+        : profileSettingsStore.image.value;
 
     final data = {"username": username};
 
@@ -68,8 +71,9 @@ class ProfileSettingsController {
 
     if (response.success) {
       Get.back();
+
       Provider.of<UserProvider>(Get.context!, listen: false)
-          .setUsername(username);
+          .updateUserData(username, image);
       alertDialog(title: 'User data has been successfully updated');
     } else {
       exceptionWarning(response.exception!);
@@ -86,7 +90,7 @@ class ProfileSettingsController {
       Get.offAllNamed(RoutesNames.LOGIN_PAGE_VIEW);
       MyAppSnackBar(
               message: 'The user has been logged out',
-              snackBarType: SnackBarType.alert)
+              snackBarType: SnackBarType.success)
           .show();
     } else {
       Get.back();

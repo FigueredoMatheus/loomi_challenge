@@ -11,15 +11,23 @@ class UserSettingsPageViewUserProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loggedUser = Provider.of<UserProvider>(context, listen: false).user;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 30),
-      child: Row(
-        children: [
-          CircleAvatarProfileImage(user: loggedUser, containerSize: 100),
-          const SizedBox(width: 10),
-          Expanded(child: UserSettingsPageViewProfileInfoName()),
-        ],
-      ),
+    return Consumer<UserProvider>(
+      builder: (context, value, child) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 30),
+          child: Row(
+            children: [
+              CircleAvatarProfileImage(
+                username: loggedUser.username,
+                image: loggedUser.image,
+                containerSize: 100,
+              ),
+              const SizedBox(width: 10),
+              Expanded(child: UserSettingsPageViewProfileInfoName()),
+            ],
+          ),
+        );
+      },
     );
   }
 }

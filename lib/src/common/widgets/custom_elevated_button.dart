@@ -21,8 +21,7 @@ class CustomElevatedButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Color.fromRGBO(241, 204, 76, 0.2),
-            blurRadius: 18.33,
-            spreadRadius: 0,
+            blurRadius: 10.33,
             offset: Offset(0, 0),
           ),
         ],

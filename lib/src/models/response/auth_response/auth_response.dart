@@ -3,7 +3,7 @@ import 'package:loomi_challenge/src/models/dio_exception_model.dart';
 
 class AuthResponse {
   final bool success;
-  final DioExceptionModel? exception;
+  final ExceptionModel? exception;
   final UserCredential? firebaseUserCredential;
 
   AuthResponse({
