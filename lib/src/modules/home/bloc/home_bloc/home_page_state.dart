@@ -12,7 +12,7 @@ final class HomePageInitial extends HomePageState {}
 final class LoadingMovieState extends HomePageState {}
 
 final class FailOnLoadingMovieState extends HomePageState {
-  final DioExceptionModel exception;
+  final ExceptionModel exception;
 
   FailOnLoadingMovieState({required this.exception});
 

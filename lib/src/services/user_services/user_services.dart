@@ -23,8 +23,6 @@ class UserServices extends UserServicesImplement {
 
       final authToken = await userProvider.getAuthToken();
 
-      print('--- authToken: $authToken');
-
       await _repository.updateUserData(userId, authToken, data);
 
       return UserServicesResponse.success();
@@ -43,7 +41,7 @@ class UserServices extends UserServicesImplement {
 
     late bool isApiSuccess;
 
-    late DioExceptionModel dioException;
+    late ExceptionModel dioException;
 
     try {
       await _repository.deleteUser(authToken, userProvider.userId.toString());
@@ -58,8 +56,6 @@ class UserServices extends UserServicesImplement {
     final firebaseResponse = await _firebaseUser.deleteUserAccount();
 
     if (!firebaseResponse.success && !isApiSuccess) {
-      print(
-          '--- Firebase Exception on Delete Account\n: ${firebaseResponse.exception?.message}');
       return UserServicesResponse.fail(dioException);
     }
 

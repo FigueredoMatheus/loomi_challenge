@@ -28,6 +28,7 @@ class CircleAvatarProfileImage extends StatefulWidget {
 class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
   @override
   Widget build(BuildContext context) {
+    final hasImage = widget.image != null && widget.image!.isNotEmpty;
     return InkWell(
       onTap: widget.isFromHomePageViewHeader
           ? () => Get.toNamed(RoutesNames.USER_SETTINGS_PAGE_VIEW)
@@ -35,7 +36,7 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
       overlayColor: MaterialStateProperty.resolveWith((states) {
         return Colors.transparent;
       }),
-      child: widget.image != null
+      child: hasImage
           ? CustomShowImageWidget(
               imagePath: widget.image!,
               size: widget.containerSize,
