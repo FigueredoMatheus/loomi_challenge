@@ -82,7 +82,7 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
               children: [
                 Visibility(
                   visible: !moviePlayerStore.isLoadingMovieSubtitles,
-                  child: MoviePlayer(),
+                  child: Positioned.fill(child: MoviePlayer()),
                   replacement: LoadingMovieSubtitlesWidget(),
                 ),
                 Positioned(

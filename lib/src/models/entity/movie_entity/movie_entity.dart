@@ -34,6 +34,9 @@ class MovieEntity {
       comments.reduce((value, element) =>
           value.createAt.isAfter(element.createAt) ? value : element);
 
+  SubtitleAttributes get defaultLanguage =>
+      getSubtitlesAttributes.firstWhere((element) => !element.isDefault);
+
   MovieEntity({
     required this.title,
     required this.endDate,
