@@ -26,7 +26,8 @@ class _LeadingCommentTileState extends State<LeadingCommentTile> {
   @override
   Widget build(BuildContext context) {
     return CircleAvatarProfileImage(
-      user: widget.comment.user,
+      username: widget.comment.user.username,
+      image: widget.comment.user.image,
       containerSize: isMovieCommentsPageView ? 50 : 35,
     );
   }

@@ -75,7 +75,11 @@ class _CommentTextFieldState extends State<CommentTextField> {
         ),
         child: Row(
           children: [
-            CircleAvatarProfileImage(user: loggedUser, containerSize: 40),
+            CircleAvatarProfileImage(
+              username: loggedUser.username,
+              image: loggedUser.image,
+              containerSize: 40,
+            ),
             const SizedBox(width: 10),
             Expanded(
               child: CustomTextFormField(

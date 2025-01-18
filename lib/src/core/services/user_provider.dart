@@ -28,8 +28,9 @@ class UserProvider extends ChangeNotifier {
     firebaseUser = userCredential.user;
   }
 
-  setUsername(String text) {
-    user.setName(text);
+  updateUserData(String name, String? image) {
+    user.setName(name);
+    user.setImage(image);
     notifyListeners();
   }
 

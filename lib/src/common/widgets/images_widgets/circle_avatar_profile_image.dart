@@ -4,16 +4,17 @@ import 'package:loomi_challenge/src/common/widgets/images_widgets/show_image_wid
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/routes/routes_names.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/models/entity/user_entity/user_entity.dart';
 
 class CircleAvatarProfileImage extends StatefulWidget {
-  final UserEntity user;
+  final String? image;
+  final String username;
   final double containerSize;
   final bool isFromHomePageViewHeader;
 
   const CircleAvatarProfileImage({
     super.key,
-    required this.user,
+    required this.username,
+    this.image,
     this.containerSize =
         ApplicationConstants.HOME_PAGE_VIEW_CUSTOM_APP_BAR_HEIGHT,
     this.isFromHomePageViewHeader = false,
@@ -34,9 +35,9 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
       overlayColor: MaterialStateProperty.resolveWith((states) {
         return Colors.transparent;
       }),
-      child: widget.user.hasImage
+      child: widget.image != null
           ? CustomShowImageWidget(
-              imagePath: widget.user.image!,
+              imagePath: widget.image!,
               size: widget.containerSize,
               radius: widget.containerSize,
             )
@@ -51,7 +52,7 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 3),
                 child: Text(
-                  widget.user.username[0].toUpperCase(),
+                  widget.username[0].toUpperCase(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: widget.containerSize * 0.45,
@@ -63,7 +64,7 @@ class _CircleAvatarProfileImageState extends State<CircleAvatarProfileImage> {
   }
 
   Color getContainerBgColor() {
-    switch (widget.user.username[0].toUpperCase()) {
+    switch (widget.username[0].toUpperCase()) {
       case 'J':
         return MyThemes.get().kUserProfileImgeBgColorJ;
       case 'L':

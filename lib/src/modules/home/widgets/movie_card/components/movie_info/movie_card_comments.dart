@@ -79,7 +79,8 @@ class _MovieCardCommentsState extends State<MovieCardComments> {
         ? CustomLoadingShimmerStyle(width: 20, height: 20, bottomPadding: 8)
         : widget.movie!.hasComment
             ? CircleAvatarProfileImage(
-                user: widget.movie!.mostRecenteComment.user,
+                username: widget.movie!.mostRecenteComment.user.username,
+                image: widget.movie!.mostRecenteComment.user.image,
                 containerSize: 35,
               )
             : Container();

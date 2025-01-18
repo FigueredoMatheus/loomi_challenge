@@ -22,18 +22,14 @@ class UserSettingsPageViewProfileInfoName extends StatelessWidget {
               ),
         ),
         const SizedBox(height: 3),
-        Consumer<UserProvider>(
-          builder: (context, value, child) {
-            return Text(
-              loggedUser.username,
-              style: MyThemes.get().epilogueStyle.copyWith(
-                    color: MyThemes.get().kWhiteColor,
-                    fontSize: 24,
-                  ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            );
-          },
+        Text(
+          loggedUser.username,
+          style: MyThemes.get().epilogueStyle.copyWith(
+                color: MyThemes.get().kWhiteColor,
+                fontSize: 24,
+              ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
