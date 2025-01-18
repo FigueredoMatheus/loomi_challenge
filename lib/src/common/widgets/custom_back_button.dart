@@ -11,6 +11,8 @@ class CustomBackButton extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10),
       child: InkWell(
         onTap: () => Get.back(),
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
         child: Icon(
           Icons.arrow_back_ios,
           color: MyThemes.get().kPurpleColor,
