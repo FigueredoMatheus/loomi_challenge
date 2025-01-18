@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loomi_challenge/src/core/data/constants.dart';
 import 'package:loomi_challenge/src/core/helpers/handle_firebase_exceptions_helper.dart';
-import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.dart';
+import 'package:loomi_challenge/src/core/services/firebase/firebase_manager.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:loomi_challenge/src/models/response/comment/comment_response.dart';

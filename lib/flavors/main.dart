@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.dart';
+import 'package:loomi_challenge/src/core/services/firebase/firebase_manager.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/my_app_themes.dart';
 import '../src/my_app.dart';

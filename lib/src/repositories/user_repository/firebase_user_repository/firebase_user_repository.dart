@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:loomi_challenge/src/core/helpers/handle_firebase_exceptions_helper.dart';
-import 'package:loomi_challenge/src/core/services/firebase/firebase_instances.dart';
+import 'package:loomi_challenge/src/core/services/firebase/firebase_manager.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/models/dio_exception_model.dart';
 import 'package:loomi_challenge/src/models/response/user_services_response/user_services_response.dart';
