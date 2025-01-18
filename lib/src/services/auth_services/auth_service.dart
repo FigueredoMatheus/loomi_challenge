@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:loomi_challenge/src/common/utils/dialogs/exception_warning_dialog.dart';
 import 'package:loomi_challenge/src/core/helpers/dio_exception_helper.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/services/user_provider.dart';
@@ -105,13 +104,21 @@ class AuthService implements AuthServicesImpl {
     }
   }
 
-  googleSignInService() async {
-    try {
-      await getIt<AuthRepository>().googleSignIn();
-    } on DioException catch (exception) {
-      final exceptionModel = DioExceptionHelper().getException(exception);
+  Future<AuthResponse?> googleSignInService() async {
+    final firebaseResponse = await _firebaseAuth.signInWithGoogle();
 
-      exceptionWarning(exceptionModel);
+    if (firebaseResponse == null || !firebaseResponse.success) {
+      return firebaseResponse;
     }
+
+    return AuthResponse.apiSuccess();
+
+    // try {
+    //   _ApiRepository.loginUser(credentials);
+    // } on DioException catch (exception) {
+    //   final exceptionModel = DioExceptionHelper().getException(exception);
+
+    //   exceptionWarning(exceptionModel);
+    // }
   }
 }

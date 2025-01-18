@@ -12,6 +12,31 @@ class LoginController {
   final authService = AuthService();
   final store = getIt<LoginStore>();
 
+  googleSignIn() async {
+    final response = await authService.googleSignInService();
+
+    if (response == null) ;
+
+    if (response!.success) {
+      final userCredentials = response.firebaseUserCredential!;
+
+      final userData = {
+        'username': userCredentials.user?.displayName,
+        'provider': 'google',
+        'email': userCredentials.user?.email,
+        'confirmed': true,
+        'blocked': false,
+      };
+
+      Provider.of<UserProvider>(Get.context!)
+          .initUser(userData, '', userCredentials);
+
+      Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
+    } else {
+      exceptionWarning(response.exception!);
+    }
+  }
+
   signInUser() async {
     loadingDialog();
 
@@ -24,8 +49,6 @@ class LoginController {
     Get.back();
 
     if (response.success) {
-      print(
-          '--- Logged User Data: ${Provider.of<UserProvider>(Get.context!, listen: false).user.toJson()}');
       Get.offAllNamed(RoutesNames.HOME_PAGE_VIEW);
     } else {
       exceptionWarning(response.exception!);

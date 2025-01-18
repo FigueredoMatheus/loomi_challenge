@@ -5,5 +5,5 @@ abstract class AuthServicesImpl {
   signUpAccountService(Map<String, dynamic> data);
   forgotUserPasswordService(Map<String, dynamic> data);
   Future<AuthResponse> changeUserPasswordService(Map<String, dynamic> data);
-  googleSignInService();
+  Future<AuthResponse?> googleSignInService();
 }
