@@ -56,16 +56,6 @@ class _MovieCardSwitcherMovieMediaState
           imagePath: widget.movie!.posterImage,
         ),
       ),
-      // Container(
-      //   key: Key('2'),
-      //   child: CustomShowImageWidget(
-      //     bottomLeftRadius: 22,
-      //     bottomRightRadius: 22,
-      //     topLeftRadius: 22,
-      //     topRightRadius: 22,
-      //     imagePath: widget.movie!.posterImage,
-      //   ),
-      // ),
     ];
   }
 

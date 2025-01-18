@@ -77,8 +77,8 @@ class FirebaseAuthRepository {
       final exceptionMessage =
           HandleFirebaseExceptionsHelper.getAuthExceptionMessage(exception);
 
-      final exceptionModel = DioExceptionModel(
-        title: 'Firebase Exception',
+      final exceptionModel = ExceptionModel.firebaseException(
+        exceptionCode: exception.code,
         message: exceptionMessage,
       );
 

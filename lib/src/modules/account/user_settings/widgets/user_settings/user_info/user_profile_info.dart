@@ -15,16 +15,26 @@ class UserSettingsPageViewUserProfileInfo extends StatelessWidget {
       builder: (context, value, child) {
         return Container(
           margin: const EdgeInsets.only(bottom: 30),
-          child: Row(
-            children: [
-              CircleAvatarProfileImage(
-                username: loggedUser.username,
-                image: loggedUser.image,
-                containerSize: 100,
-              ),
-              const SizedBox(width: 10),
-              Expanded(child: UserSettingsPageViewProfileInfoName()),
-            ],
+          child: InkWell(
+            onTap: () async {
+              final token =
+                  await Provider.of<UserProvider>(context, listen: false)
+                      .getAuthToken();
+              print('--- Auth Token: $token');
+            },
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            child: Row(
+              children: [
+                CircleAvatarProfileImage(
+                  username: loggedUser.username,
+                  image: loggedUser.image,
+                  containerSize: 100,
+                ),
+                const SizedBox(width: 10),
+                Expanded(child: UserSettingsPageViewProfileInfoName()),
+              ],
+            ),
           ),
         );
       },

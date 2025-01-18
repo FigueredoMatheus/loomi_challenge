@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
@@ -51,28 +52,35 @@ class CustomNetworkImage extends StatelessWidget {
           height: height,
           bottomPadding: 0,
         );
-        // SizedBox(
-        //   height: imageHeight,
-        //   width: imageWidth,
-        //   child: Center(
-        //     child: CircularProgressIndicator(
-        //       value: downloadProgress.progress,
-        //       strokeWidth: 1,
-        //     ),
-        //   ),
-        // );
       },
       errorWidget: (context, url, error) {
+        final double iconSize = height * 0.50 > 60 ? 60 : height * 0.50;
+        final showErrorText = height > 150;
         return Container(
           height: height,
           width: width,
-          color: MyThemes.get().kGrayColor,
-          child: Center(
-            child: Icon(
-              Icons.priority_high,
-              color: MyThemes.get().kWhiteColor,
-              size: height * 0.4,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(imageRadiusTopLeft),
+              topRight: Radius.circular(imageRadiusTopRight),
+              bottomLeft: Radius.circular(imageRadiusBottomLeft),
+              bottomRight: Radius.circular(imageRadiusBottomRight),
             ),
+            color: MyThemes.get().kGrayColor.withOpacity(0.2),
+          ),
+          alignment: showErrorText ? Alignment.topCenter : Alignment.center,
+          child: Column(
+            mainAxisAlignment: showErrorText
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.error,
+                color: MyThemes.get().kWhiteColor,
+                size: iconSize,
+              ),
+              if (showErrorText) AutoSizeText('Image Error: $error'),
+            ],
           ),
         );
       },
