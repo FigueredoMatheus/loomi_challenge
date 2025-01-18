@@ -54,6 +54,10 @@ class AuthService implements AuthServicesImpl {
     }
 
     try {
+      final firebaseUID = firebaseResponse.firebaseUserCredential!.user?.uid;
+
+      data['firebase_UID'] = firebaseUID;
+
       final response = await _ApiRepository.registerUser(data);
 
       final userData = response.userEntity.toJson();
