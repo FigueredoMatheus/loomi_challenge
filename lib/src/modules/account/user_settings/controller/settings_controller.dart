@@ -90,7 +90,7 @@ class ProfileSettingsController {
       Get.offAllNamed(RoutesNames.LOGIN_PAGE_VIEW);
       MyAppSnackBar(
               message: 'The user has been logged out',
-              snackBarType: SnackBarType.alert)
+              snackBarType: SnackBarType.success)
           .show();
     } else {
       Get.back();
