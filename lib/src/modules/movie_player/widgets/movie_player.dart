@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/comments_card.dart';
@@ -19,17 +18,13 @@ class MoviePlayer extends StatelessWidget {
       child: SizedBox(
         height: screenWidth,
         width: screenHeight,
-        child: Observer(
-          builder: (context) {
-            return Row(
-              children: [
-                Expanded(
-                  child: VideoPlayer(moviePlayerStore.playerController),
-                ),
-                MoviePlayerCommentsCard(),
-              ],
-            );
-          },
+        child: Row(
+          children: [
+            Expanded(
+              child: VideoPlayer(moviePlayerStore.playerController),
+            ),
+            MoviePlayerCommentsCard(),
+          ],
         ),
       ),
     );

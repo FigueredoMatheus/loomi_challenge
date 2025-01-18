@@ -1,7 +1,10 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
 import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
+import 'package:loomi_challenge/src/modules/movie_player/widgets/loading_movie_subtitles.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/movie_player.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/bottom_overlay/grouped_bottom_overlay.dart';
 import 'package:loomi_challenge/src/modules/movie_player/widgets/video_overlays/middle_overlay/grouped_middle_overlays.dart';
@@ -20,7 +23,7 @@ class MoviePlayerPageView extends StatefulWidget {
 
 class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
   late VideoPlayerController playerController;
-
+  late MoviePlayerStore moviePlayerStore;
   @override
   void initState() {
     super.initState();
@@ -35,12 +38,15 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
 
     playerController.setLooping(true);
     playerController.initialize().then((_) => setState(() {}));
-    playerController.play();
 
-    getIt<MoviePlayerStore>().initialize(
+    moviePlayerStore = getIt<MoviePlayerStore>();
+
+    moviePlayerStore.initialize(
       movie: widget.movie,
       playerController: playerController,
     );
+
+    moviePlayerStore.loadMovieSubtitles();
   }
 
   @override
@@ -67,32 +73,36 @@ class _MoviePlayerPageViewState extends State<MoviePlayerPageView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: GestureDetector(
-        onDoubleTap: () {
-          getIt<MoviePlayerStore>().toggleOverlaysView();
-        },
+        onDoubleTap: moviePlayerStore.toggleOverlaysView,
         child: Scaffold(
-          body: Stack(
-            alignment: Alignment.bottomCenter,
-            fit: StackFit.expand,
-            children: [
-              MoviePlayer(),
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: MoviePlayerGroupedTopOverlays(),
-              ),
-              Positioned(
-                child: MoviePlayerGroupedMiddleOverlays(),
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: MoviePlayerGroupedBottomOverlay(),
-              ),
-            ],
-          ),
+          body: Observer(builder: (context) {
+            return Stack(
+              alignment: Alignment.bottomCenter,
+              fit: StackFit.expand,
+              children: [
+                Visibility(
+                  visible: !moviePlayerStore.isLoadingMovieSubtitles,
+                  child: MoviePlayer(),
+                  replacement: LoadingMovieSubtitlesWidget(),
+                ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: MoviePlayerGroupedTopOverlays(),
+                ),
+                Positioned(
+                  child: MoviePlayerGroupedMiddleOverlays(),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: MoviePlayerGroupedBottomOverlay(),
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );

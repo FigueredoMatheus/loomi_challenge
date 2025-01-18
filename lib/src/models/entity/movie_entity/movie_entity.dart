@@ -1,6 +1,8 @@
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/response/movie/movie_response.dart';
+import 'package:loomi_challenge/src/models/response/subtitle_reponse/subtitle_attributes.dart';
+import 'package:loomi_challenge/src/models/response/subtitle_reponse/subtitle_data.dart';
 
 part 'movie_entity.g.dart';
 
@@ -17,11 +19,16 @@ class MovieEntity {
   @JsonKey(name: 'poster_image')
   final String posterImage;
 
+  List<SubtitleData> subtitles = [];
+
   List<MovieCommentEntity> comments = [];
 
   int get numberOfComments => comments.length;
 
   bool get hasComment => comments.isNotEmpty;
+
+  List<SubtitleAttributes> get getSubtitlesAttributes =>
+      subtitles.map((e) => e.attributes).toList();
 
   MovieCommentEntity get mostRecenteComment =>
       comments.reduce((value, element) =>
@@ -36,6 +43,10 @@ class MovieEntity {
     required this.posterImage,
     required this.streamLink,
   });
+
+  setSubtitles(List<SubtitleData> subtitles) {
+    this.subtitles.addAll(subtitles);
+  }
 
   setComments(List<MovieCommentEntity> comments) {
     this.comments.clear();
