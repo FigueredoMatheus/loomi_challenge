@@ -22,7 +22,7 @@ class MoviePlayerController {
   String get movieTitle => movie.title;
   bool get hasMovieSubtitles => movie.subtitles.isNotEmpty;
 
-  String? get getMovieDefaultLanguage => movie.subtitles
+  String? get defaultSubtitleUrl => movie.subtitles
       .firstWhereOrNull((element) => element.attributes.isDefault)
       ?.attributes
       .file
@@ -30,18 +30,39 @@ class MoviePlayerController {
       .attributes
       .url;
 
+  int get indexOfDefaultLanguage =>
+      movie.subtitles.indexWhere((element) => element.attributes.isDefault);
+
+  String getLanguageUrl(int index) {
+    if (index == 0 || movie.subtitles.isEmpty) return '';
+    return movie.subtitles[index - 1].attributes.file.data.attributes.url;
+  }
+
   bool get isMoviePlaying => playerController.value.isPlaying;
   Duration get movieProgressTime => playerController.value.position;
   Duration get movieTotalDuration => playerController.value.duration;
 
+  List<String> get subtitlesAvailable =>
+      movie.subtitles.map((e) => e.attributes.language).toList()
+        ..insert(0, 'Off');
+
+  List<String> get audioAvailable =>
+      movie.subtitles.map((e) => e.attributes.language).toList();
+
   initController(MovieEntity movie) {
     this.movie = movie;
     initializePlayerController();
+    initSubtitleController();
   }
 
-  initializeSubtitleController() {
+  updateSubtitleUrl(int index) {
+    final subtitleUrl = getLanguageUrl(index);
+    subtitleController.updateSubtitleUrl(url: subtitleUrl);
+  }
+
+  initSubtitleController() {
     subtitleController = SubtitleController(
-      subtitleUrl: getMovieDefaultLanguage,
+      subtitleUrl: getLanguageUrl(indexOfDefaultLanguage + 1),
       subtitleType: SubtitleType.srt,
     );
   }
@@ -63,7 +84,7 @@ class MoviePlayerController {
     final response = await _subtitleServices.getMovieSubtitles(movie.id!);
     if (response.success) {
       setMovieSubtitles(response.data);
-      initializeSubtitleController();
+      initSubtitleController();
     } else {
       await exceptionWarning(response.exception!);
       MyAppSnackBar(

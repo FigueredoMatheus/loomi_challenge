@@ -1,7 +1,6 @@
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/response/movie/movie_response.dart';
-import 'package:loomi_challenge/src/models/response/subtitle_reponse/subtitle_attributes.dart';
 import 'package:loomi_challenge/src/models/response/subtitle_reponse/subtitle_data.dart';
 
 part 'movie_entity.g.dart';
@@ -27,15 +26,9 @@ class MovieEntity {
 
   bool get hasComment => comments.isNotEmpty;
 
-  List<SubtitleAttributes> get getSubtitlesAttributes =>
-      subtitles.map((e) => e.attributes).toList();
-
   MovieCommentEntity get mostRecenteComment =>
       comments.reduce((value, element) =>
           value.createAt.isAfter(element.createAt) ? value : element);
-
-  SubtitleAttributes get defaultLanguage =>
-      getSubtitlesAttributes.firstWhere((element) => !element.isDefault);
 
   MovieEntity({
     required this.title,
@@ -48,6 +41,7 @@ class MovieEntity {
   });
 
   setSubtitles(List<SubtitleData> subtitles) {
+    this.subtitles.clear();
     this.subtitles.addAll(subtitles);
   }
 

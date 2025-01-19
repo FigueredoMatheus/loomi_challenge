@@ -12,6 +12,12 @@ abstract class _MoviePlayerStore with Store {
   MovieEntity get movie => controller.movie;
 
   @observable
+  int currentSubtitleIndex = 0;
+
+  @observable
+  int currentAudioIndex = 0;
+
+  @observable
   Duration currentProgress = Duration.zero;
 
   @observable
@@ -33,6 +39,19 @@ abstract class _MoviePlayerStore with Store {
 
     isLoadingMovieSubtitles = false;
     hideOverlays = false;
+    setCurrentAudioIndex(controller.indexOfDefaultLanguage);
+    setCurrentSubtitleIndex(controller.indexOfDefaultLanguage + 1);
+  }
+
+  @action
+  setCurrentSubtitleIndex(int index) {
+    this.currentSubtitleIndex = index;
+    controller.updateSubtitleUrl(index);
+  }
+
+  @action
+  setCurrentAudioIndex(int index) {
+    this.currentAudioIndex = index;
   }
 
   @action
@@ -85,5 +104,6 @@ abstract class _MoviePlayerStore with Store {
   onDispose() {
     controller.playerController.removeListener(updateProgress);
     controller.playerController.dispose();
+    isMoviePlaying = true;
   }
 }

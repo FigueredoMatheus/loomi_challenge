@@ -9,6 +9,39 @@ part of 'movie_player_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MoviePlayerStore on _MoviePlayerStore, Store {
+  late final _$currentSubtitleIndexAtom =
+      Atom(name: '_MoviePlayerStore.currentSubtitleIndex', context: context);
+
+  @override
+  int get currentSubtitleIndex {
+    _$currentSubtitleIndexAtom.reportRead();
+    return super.currentSubtitleIndex;
+  }
+
+  @override
+  set currentSubtitleIndex(int value) {
+    _$currentSubtitleIndexAtom.reportWrite(value, super.currentSubtitleIndex,
+        () {
+      super.currentSubtitleIndex = value;
+    });
+  }
+
+  late final _$currentAudioIndexAtom =
+      Atom(name: '_MoviePlayerStore.currentAudioIndex', context: context);
+
+  @override
+  int get currentAudioIndex {
+    _$currentAudioIndexAtom.reportRead();
+    return super.currentAudioIndex;
+  }
+
+  @override
+  set currentAudioIndex(int value) {
+    _$currentAudioIndexAtom.reportWrite(value, super.currentAudioIndex, () {
+      super.currentAudioIndex = value;
+    });
+  }
+
   late final _$currentProgressAtom =
       Atom(name: '_MoviePlayerStore.currentProgress', context: context);
 
@@ -94,6 +127,28 @@ mixin _$MoviePlayerStore on _MoviePlayerStore, Store {
       ActionController(name: '_MoviePlayerStore', context: context);
 
   @override
+  dynamic setCurrentSubtitleIndex(int index) {
+    final _$actionInfo = _$_MoviePlayerStoreActionController.startAction(
+        name: '_MoviePlayerStore.setCurrentSubtitleIndex');
+    try {
+      return super.setCurrentSubtitleIndex(index);
+    } finally {
+      _$_MoviePlayerStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setCurrentAudioIndex(int index) {
+    final _$actionInfo = _$_MoviePlayerStoreActionController.startAction(
+        name: '_MoviePlayerStore.setCurrentAudioIndex');
+    try {
+      return super.setCurrentAudioIndex(index);
+    } finally {
+      _$_MoviePlayerStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void updateProgress() {
     final _$actionInfo = _$_MoviePlayerStoreActionController.startAction(
         name: '_MoviePlayerStore.updateProgress');
@@ -173,6 +228,8 @@ mixin _$MoviePlayerStore on _MoviePlayerStore, Store {
   @override
   String toString() {
     return '''
+currentSubtitleIndex: ${currentSubtitleIndex},
+currentAudioIndex: ${currentAudioIndex},
 currentProgress: ${currentProgress},
 isMoviePlaying: ${isMoviePlaying},
 isLoadingMovieSubtitles: ${isLoadingMovieSubtitles},
