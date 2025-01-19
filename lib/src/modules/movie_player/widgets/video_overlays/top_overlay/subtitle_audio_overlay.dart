@@ -86,7 +86,7 @@ class _MoviePlayerSubtitlesAudioCommentsOverlayState
   }
 
   subtitleAudioOnTap() {
-    moviePlayerStore.hasMovieSubtitles
+    moviePlayerStore.controller.hasMovieSubtitles
         ? showMovieSubtitleAudioModal()
         : MyAppSnackBar(
                 message: 'No subtitles or audio',

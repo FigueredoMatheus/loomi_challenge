@@ -10,7 +10,7 @@ class MovieProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VideoProgressIndicator(
-      getIt<MoviePlayerStore>().playerController,
+      getIt<MoviePlayerStore>().controller.playerController,
       allowScrubbing: true,
       colors: VideoProgressColors(
         backgroundColor: Colors.white.withOpacity(0.33),

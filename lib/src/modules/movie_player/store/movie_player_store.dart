@@ -1,9 +1,5 @@
-import 'dart:async';
-
 import 'package:loomi_challenge/src/models/entity/movie_entity/movie_entity.dart';
-import 'package:loomi_challenge/src/models/response/subtitle_reponse/subtitle_data.dart';
 import 'package:loomi_challenge/src/modules/movie_player/controller/movie_player_controller.dart';
-import 'package:video_player/video_player.dart';
 import 'package:mobx/mobx.dart';
 
 part 'movie_player_store.g.dart';
@@ -11,10 +7,15 @@ part 'movie_player_store.g.dart';
 class MoviePlayerStore = _MoviePlayerStore with _$MoviePlayerStore;
 
 abstract class _MoviePlayerStore with Store {
-  late MovieEntity movie;
-  late VideoPlayerController playerController;
+  final controller = MoviePlayerController();
 
-  Timer? timer;
+  MovieEntity get movie => controller.movie;
+
+  @observable
+  Duration currentProgress = Duration.zero;
+
+  @observable
+  bool isMoviePlaying = true;
 
   @observable
   bool isLoadingMovieSubtitles = false;
@@ -25,34 +26,18 @@ abstract class _MoviePlayerStore with Store {
   @observable
   bool hideOverlays = true;
 
-  double get videoHeight => playerController.value.size.height;
-  double get videoWidth => playerController.value.size.height;
-  double get videoAspectRatio => playerController.value.aspectRatio;
-
-  bool get isMoviePlaying => playerController.value.isPlaying;
-
-  Duration get movieTotalDuration => playerController.value.duration;
-  Duration get movieCurrentPosition => playerController.value.position;
-
-  String get movieTitle => movie.title;
-
-  bool get hasMovieSubtitles => movie.subtitles.isNotEmpty;
-
   loadMovieSubtitles() async {
     isLoadingMovieSubtitles = true;
 
-    final controller = MoviePlayerController();
+    await controller.loadMovieSubtitles();
 
-    final subtitles = await controller.loadMovieSubtitles();
-
-    setMovieSubtitles(subtitles);
     isLoadingMovieSubtitles = false;
     hideOverlays = false;
-    playerController.play();
   }
 
-  setMovieSubtitles(List<SubtitleData> subtitles) {
-    this.movie.setSubtitles(subtitles);
+  @action
+  void updateProgress() {
+    currentProgress = controller.playerController.value.position;
   }
 
   @action
@@ -70,30 +55,35 @@ abstract class _MoviePlayerStore with Store {
     isCommetsDisplayed = false;
   }
 
-  backward() => playerController.seekTo(
-        Duration(seconds: playerController.value.position.inSeconds - 15),
+  @action
+  backward() => controller.playerController.seekTo(
+        Duration(
+            seconds: controller.playerController.value.position.inSeconds - 15),
       );
 
-  forward() => playerController.seekTo(
-        Duration(seconds: playerController.value.position.inSeconds + 15),
+  @action
+  forward() => controller.playerController.seekTo(
+        Duration(
+            seconds: controller.playerController.value.position.inSeconds + 15),
       );
 
+  @action
   playPauseButton() {
-    isMoviePlaying ? playerController.pause() : playerController.play();
+    isMoviePlaying
+        ? controller.playerController.pause()
+        : controller.playerController.play();
+
+    isMoviePlaying = !isMoviePlaying;
   }
 
-  initialize({
-    required MovieEntity movie,
-    required VideoPlayerController playerController,
-  }) {
-    this.movie = movie;
-    this.playerController = playerController;
-    this.movie = movie;
-    this.playerController = playerController;
+  initialize({required MovieEntity movie}) {
     this.isCommetsDisplayed = false;
+    controller.initController(movie);
+    controller.playerController.addListener(updateProgress);
   }
 
   onDispose() {
-    playerController.dispose();
+    controller.playerController.removeListener(updateProgress);
+    controller.playerController.dispose();
   }
 }

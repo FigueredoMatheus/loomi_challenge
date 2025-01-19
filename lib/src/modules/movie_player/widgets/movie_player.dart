@@ -14,21 +14,12 @@ class MoviePlayer extends StatefulWidget {
 
 class _MoviePlayerState extends State<MoviePlayer> {
   late MoviePlayerStore moviePlayerStore;
-  late SubtitleController subtitleController;
 
   @override
   void initState() {
     super.initState();
 
     moviePlayerStore = getIt<MoviePlayerStore>();
-
-    final subtitleUrl =
-        moviePlayerStore.movie.defaultLanguage.file.data.attributes.url;
-
-    subtitleController = SubtitleController(
-      subtitleUrl: subtitleUrl,
-      subtitleType: SubtitleType.srt,
-    );
   }
 
   @override
@@ -37,7 +28,7 @@ class _MoviePlayerState extends State<MoviePlayer> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return AspectRatio(
-      aspectRatio: moviePlayerStore.videoAspectRatio,
+      aspectRatio: moviePlayerStore.controller.videoAspectRatio,
       child: SizedBox(
         height: screenWidth,
         width: screenHeight,
@@ -45,8 +36,10 @@ class _MoviePlayerState extends State<MoviePlayer> {
           children: [
             Expanded(
               child: SubtitleWrapper(
-                videoPlayerController: moviePlayerStore.playerController,
-                subtitleController: subtitleController,
+                videoPlayerController:
+                    moviePlayerStore.controller.playerController,
+                subtitleController:
+                    moviePlayerStore.controller.subtitleController,
                 subtitleStyle: SubtitleStyle(
                   textColor: Colors.white,
                   hasBorder: true,
@@ -56,7 +49,8 @@ class _MoviePlayerState extends State<MoviePlayer> {
                   ),
                 ),
                 backgroundColor: Colors.black,
-                videoChild: VideoPlayer(moviePlayerStore.playerController),
+                videoChild:
+                    VideoPlayer(moviePlayerStore.controller.playerController),
               ),
             ),
             MoviePlayerCommentsCard(),

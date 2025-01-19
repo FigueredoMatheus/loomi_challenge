@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
+import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
+import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 
 class SubtitlesAudioCustomColumn extends StatelessWidget {
   final SubtitleAudioModalColumnType columnType;
@@ -62,13 +64,22 @@ class SubtitlesAudioCustomColumn extends StatelessWidget {
   }
 
   List<String> getOpstions() {
+    final moviePlayerStore = getIt<MoviePlayerStore>();
+
+    final languages = moviePlayerStore.movie.getSubtitlesAttributes;
+
+    final audios = languages.map((element) => element.language).toList();
+    final subtitles = languages.map((element) => element.language).toList();
+    print('--- subtitles.length: ${subtitles.length}');
+
     switch (columnType) {
       case SubtitleAudioModalColumnType.audio:
-        return ['English', 'Spanish', 'Portuguese'];
+        return audios;
 
       case SubtitleAudioModalColumnType.subtitles:
       default:
-        return ['Off', 'English (CC)', 'Spanish', 'Portuguese'];
+        subtitles.insert(0, 'Off');
+        return subtitles;
     }
   }
 }
