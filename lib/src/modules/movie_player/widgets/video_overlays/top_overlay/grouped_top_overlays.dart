@@ -20,55 +20,56 @@ class MoviePlayerGroupedTopOverlays extends StatelessWidget {
 
     return Observer(
       builder: (_) {
-        return moviePlayerStore.hideOverlays
-            ? Container()
-            : Observer(builder: (context) {
-                return FractionallySizedBox(
-                  widthFactor: moviePlayerStore.isCommetsDisplayed
-                      ? 1 -
-                          ApplicationConstants
-                              .MOVIE_PLAYER_COMMENTS_WIDTH_FACTOR
-                      : 1,
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 20),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            CustomBackButton(),
-                            const SizedBox(width: 10),
-                            MoviePlayerMovieTitleOverlay(),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            MoviePlayerSubtitlesAudioCommentsOverlay(
-                              type: MoviePlayerSubtitlesAudioCommentsOverlayType
-                                  .subtitlesAudio,
-                            ),
-                            Visibility(
-                              visible: !moviePlayerStore.isCommetsDisplayed,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: MoviePlayerSubtitlesAudioCommentsOverlay(
-                                  type:
-                                      MoviePlayerSubtitlesAudioCommentsOverlayType
-                                          .comments,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+        final bool showBackBtn = moviePlayerStore.isLoadingMovieSubtitles ||
+            !moviePlayerStore.hideOverlays;
+
+        final bool showOverlays = !moviePlayerStore.hideOverlays &&
+            !moviePlayerStore.isLoadingMovieSubtitles;
+
+        return Observer(builder: (context) {
+          return FractionallySizedBox(
+            widthFactor: moviePlayerStore.isCommetsDisplayed
+                ? 1 - ApplicationConstants.MOVIE_PLAYER_COMMENTS_WIDTH_FACTOR
+                : 1,
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      if (showBackBtn) CustomBackButton(),
+                      const SizedBox(width: 10),
+                      if (showBackBtn) MoviePlayerMovieTitleOverlay(),
+                    ],
                   ),
-                );
-              });
+                  if (showOverlays)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        MoviePlayerSubtitlesAudioCommentsOverlay(
+                          type: MoviePlayerSubtitlesAudioCommentsOverlayType
+                              .subtitlesAudio,
+                        ),
+                        Visibility(
+                          visible: !moviePlayerStore.isCommetsDisplayed,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: MoviePlayerSubtitlesAudioCommentsOverlay(
+                              type: MoviePlayerSubtitlesAudioCommentsOverlayType
+                                  .comments,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                ],
+              ),
+            ),
+          );
+        });
       },
     );
   }

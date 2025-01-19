@@ -4,8 +4,8 @@ import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/dio_exception_model.dart';
 import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
 
-exceptionWarning(ExceptionModel exception) {
-  Get.defaultDialog(
+Future exceptionWarning(ExceptionModel exception) async {
+  await Get.defaultDialog(
     title: exception.title,
     middleText: exception.isUnauthorized
         ? "Your session has expired due to an issue with your authorization token. Please log in again to continue."

@@ -14,7 +14,8 @@ class MoviePlayerGroupedMiddleOverlays extends StatelessWidget {
   Widget build(BuildContext context) {
     final moviePlayerStore = getIt<MoviePlayerStore>();
     return Observer(builder: (_) {
-      return moviePlayerStore.hideOverlays
+      return moviePlayerStore.hideOverlays ||
+              moviePlayerStore.isLoadingMovieSubtitles
           ? Container()
           : FractionallySizedBox(
               widthFactor: moviePlayerStore.isCommetsDisplayed

@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loomi_challenge/src/common/utils/modal/movie_subtitles_audio.dart';
+import 'package:loomi_challenge/src/common/utils/snack_bar.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 
-class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
+class MoviePlayerSubtitlesAudioCommentsOverlay extends StatefulWidget {
   final MoviePlayerSubtitlesAudioCommentsOverlayType type;
 
   const MoviePlayerSubtitlesAudioCommentsOverlay({
     super.key,
     required this.type,
   });
+
+  @override
+  State<MoviePlayerSubtitlesAudioCommentsOverlay> createState() =>
+      _MoviePlayerSubtitlesAudioCommentsOverlayState();
+}
+
+class _MoviePlayerSubtitlesAudioCommentsOverlayState
+    extends State<MoviePlayerSubtitlesAudioCommentsOverlay> {
+  late MoviePlayerStore moviePlayerStore;
+  @override
+  void initState() {
+    super.initState();
+    moviePlayerStore = getIt<MoviePlayerStore>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +56,7 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
   }
 
   String getLabel() {
-    switch (type) {
+    switch (widget.type) {
       case MoviePlayerSubtitlesAudioCommentsOverlayType.comments:
         return 'Comments';
       case MoviePlayerSubtitlesAudioCommentsOverlayType.subtitlesAudio:
@@ -51,7 +66,7 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
   }
 
   String getIconPath() {
-    switch (type) {
+    switch (widget.type) {
       case MoviePlayerSubtitlesAudioCommentsOverlayType.comments:
         return 'assets/icons/comments_icon.svg';
       case MoviePlayerSubtitlesAudioCommentsOverlayType.subtitlesAudio:
@@ -61,7 +76,7 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
   }
 
   getOnTap() {
-    switch (type) {
+    switch (widget.type) {
       case MoviePlayerSubtitlesAudioCommentsOverlayType.comments:
         return commentsOnTap();
       case MoviePlayerSubtitlesAudioCommentsOverlayType.subtitlesAudio:
@@ -71,11 +86,15 @@ class MoviePlayerSubtitlesAudioCommentsOverlay extends StatelessWidget {
   }
 
   subtitleAudioOnTap() {
-    showMovieSubtitleAudioModal();
+    moviePlayerStore.controller.hasMovieSubtitles
+        ? showMovieSubtitleAudioModal()
+        : MyAppSnackBar(
+                message: 'No subtitles or audio',
+                snackBarType: SnackBarType.alert)
+            .show();
   }
 
   commentsOnTap() {
-    final moviePlayerStore = getIt<MoviePlayerStore>();
     moviePlayerStore.openCommentsSection();
   }
 }

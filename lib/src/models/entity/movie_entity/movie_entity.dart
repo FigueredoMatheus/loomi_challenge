@@ -1,6 +1,7 @@
 import 'package:loomi_challenge/src/models/entity/movie_comment_entity/movie_comment_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:loomi_challenge/src/models/response/movie/movie_response.dart';
+import 'package:loomi_challenge/src/models/response/subtitle_reponse/subtitle_data.dart';
 
 part 'movie_entity.g.dart';
 
@@ -16,6 +17,8 @@ class MovieEntity {
   final String streamLink;
   @JsonKey(name: 'poster_image')
   final String posterImage;
+
+  List<SubtitleData> subtitles = [];
 
   List<MovieCommentEntity> comments = [];
 
@@ -36,6 +39,11 @@ class MovieEntity {
     required this.posterImage,
     required this.streamLink,
   });
+
+  setSubtitles(List<SubtitleData> subtitles) {
+    this.subtitles.clear();
+    this.subtitles.addAll(subtitles);
+  }
 
   setComments(List<MovieCommentEntity> comments) {
     this.comments.clear();

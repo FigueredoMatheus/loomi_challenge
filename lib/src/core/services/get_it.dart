@@ -9,6 +9,7 @@ import 'package:loomi_challenge/src/modules/comment/store/comment_store.dart';
 import 'package:loomi_challenge/src/modules/movie_player/store/movie_player_store.dart';
 import 'package:loomi_challenge/src/repositories/auth_repository/auth_repository.dart';
 import 'package:loomi_challenge/src/repositories/movie_repository/movie_repository.dart';
+import 'package:loomi_challenge/src/repositories/subtitle_repository/subtitle_repository.dart';
 import 'package:loomi_challenge/src/repositories/user_repository/user_repository.dart';
 
 GetIt getIt = GetIt.instance;
@@ -36,6 +37,12 @@ void setupGetItClasses() {
       ))));
 
   getIt.registerLazySingleton(() => UserRepository(Dio(BaseOptions(
+        contentType: 'application/json',
+        connectTimeout: Duration(seconds: 10),
+        receiveTimeout: Duration(seconds: 10),
+      ))));
+
+  getIt.registerLazySingleton(() => SubtitleRepository(Dio(BaseOptions(
         contentType: 'application/json',
         connectTimeout: Duration(seconds: 10),
         receiveTimeout: Duration(seconds: 10),

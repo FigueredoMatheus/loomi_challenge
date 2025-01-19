@@ -14,9 +14,13 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       synopsis: json['synopsis'] as String,
       posterImage: json['poster_image'] as String,
       streamLink: json['stream_link'] as String,
-    )..comments = (json['comments'] as List<dynamic>)
-        .map((e) => MovieCommentEntity.fromJson(e as Map<String, dynamic>))
-        .toList();
+    )
+      ..subtitles = (json['subtitles'] as List<dynamic>)
+          .map((e) => SubtitleData.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..comments = (json['comments'] as List<dynamic>)
+          .map((e) => MovieCommentEntity.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
     <String, dynamic>{
@@ -27,5 +31,6 @@ Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
       'end_date': instance.endDate.toIso8601String(),
       'stream_link': instance.streamLink,
       'poster_image': instance.posterImage,
+      'subtitles': instance.subtitles,
       'comments': instance.comments,
     };
