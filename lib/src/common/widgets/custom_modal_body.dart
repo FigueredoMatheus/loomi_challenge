@@ -4,7 +4,7 @@ import 'package:loomi_challenge/src/common/widgets/custom_elevated_button.dart';
 import 'package:loomi_challenge/src/core/data/my_app_enums.dart';
 import 'package:loomi_challenge/src/core/services/get_it.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/store/profile_settings_store.dart';
+import 'package:loomi_challenge/src/modules/user_settings/store/profile_settings_store.dart';
 
 class CustomModalBody extends StatelessWidget {
   final CustomModalBodyType type;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loomi_challenge/src/core/themes/app_themes.dart';
 import 'package:loomi_challenge/src/models/dio_exception_model.dart';
-import 'package:loomi_challenge/src/modules/account/user_settings/controller/settings_controller.dart';
+import 'package:loomi_challenge/src/modules/user_settings/controller/settings_controller.dart';
 
 Future exceptionWarning(ExceptionModel exception) async {
   await Get.defaultDialog(
